@@ -16,7 +16,7 @@
           <th>Id</th>
           <th>Nama Bahan Penolong</th>
           <th>Satuan</th>
-          <th>jumlah</th>
+          <th>Jumlah</th>
           <th style="text-align: center;">Aksi</th>
         </tr>
       </thead>

@@ -61,10 +61,15 @@ class Pesanan extends AUTH_Controller {
 	}
 
   public function prosesUpdate() {
-		$this->form_validation->set_rules('nama_pesanan', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
-		$this->form_validation->set_rules('tipe_gaji', 'Tipe Gaji', 'trim|required');
-		$this->form_validation->set_rules('gaji', 'Gaji', 'trim|required');
+    $this->form_validation->set_rules('nama_pemesan', 'Nama', 'trim|required');
+    $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
+    $this->form_validation->set_rules('no_telp', 'Nomer Telp', 'trim|required');
+    $this->form_validation->set_rules('pesanan', 'Pesanan', 'trim|required');
+    $this->form_validation->set_rules('deskripsi_pesanan', 'Deskripsi', 'trim|required');
+    $this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required');
+    $this->form_validation->set_rules('harga_kisaran', 'Harga', 'trim|required');
+    $this->form_validation->set_rules('tanggal_estimasi', 'Estimasi', 'trim|required');
+    $this->form_validation->set_rules('dp', 'DP', 'trim|required');
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
