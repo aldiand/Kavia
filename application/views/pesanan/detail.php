@@ -1,0 +1,165 @@
+
+<div class="msg" style="display:none;">
+  <?php echo @$this->session->flashdata('msg'); ?>
+</div>
+<?php
+  foreach ($dataPesanan as $data) {
+    ?>
+<div class="row">
+
+  <div class="col-md-3">
+    <!-- Profile Image -->
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <h3 class="profile-username text-center"><?php echo 'ID Pesanan: '.$data->id; ?></h3>
+        <p class="text-muted text-center">Detail Pemesan</p>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>ID Pesanan</b> <a class="pull-right"><?php echo $data->tanggal_pesanan; ?></a>
+          </li>
+          <li class="list-group-item">
+            <b>Nama Pemesan</b> <a class="pull-right"><?php echo $data->nama_pemesan; ?></a>
+          </li>
+          <li class="list-group-item">
+          <b>Alamat</b> <a class="pull-right"><?php echo $data->alamat; ?></a>
+          </li>
+          <li class="list-group-item">
+          <b>No Telpon</b> <a class="pull-right"><?php echo $data->no_telp; ?></a>
+          </li>
+      </div>
+    </div>
+  </div>
+    <div class="col-md-3">
+      <!-- Profile Image -->
+      <div class="box box-primary">
+        <div class="box-body box-profile">
+          <h3 class="profile-username text-center"><?php echo 'ID Pesanan: '.$data->id; ?></h3>
+          <p class="text-muted text-center">Detail Pesanan</p>
+          <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+              <b>Pesanan</b> <a class="pull-right"><?php echo $data->pesanan; ?></a>
+            </li>
+            <li class="list-group-item">
+              <b>Deskripsi</b> <a class="pull-right"><?php echo $data->deskripsi_pesanan; ?></a>
+            </li>
+            <li class="list-group-item">
+            <b>Harga Kisaran</b> <a class="pull-right"><?php echo $data->harga_kisaran; ?></a>
+            </li>
+            <li class="list-group-item">
+            <b>Jumlah</b> <a class="pull-right"><?php echo $data->jumlah; ?></a>
+            </li>
+            <li class="list-group-item">
+            <b>Tanggal Estimasi</b> <a class="pull-right"><?php echo $data->tanggal_estimasi; ?></a>
+            </li>
+            <li class="list-group-item">
+            <b>DP</b> <a class="pull-right"><?php echo $data->dp; ?></a>
+            </li>
+        </div>
+      </div>
+    </div>
+
+      <div class="col-md-3">
+        <!-- Profile Image -->
+        <div class="box box-primary">
+          <div class="box-body box-profile">
+            <h3 class="profile-username text-center"><?php echo 'ID Pesanan: '.$data->id; ?></h3>
+            <p class="text-muted text-center">Detail Produksi</p>
+            <ul class="list-group list-group-unbordered">
+              <li class="list-group-item">
+                <b>Status Pesanan </b> <a class="pull-right"><?php echo getStatus($data->deskripsi_pesanan); ?></a>
+              </li>
+              <li class="list-group-item">
+                <b>Produksi aktif </b> <a class="pull-right"><?php echo $a = getRowCountStatusPesanan('t_produksi', 'id_pesanan', $data->id, 1); ?></a>
+              </li>
+              <li class="list-group-item">
+                <b>Produksi selesai </b> <a class="pull-right"><?php echo $b = getRowCountStatusPesanan('t_produksi', 'id_pesanan', $data->id, 2); ?></a>
+              </li>
+              <li class="list-group-item">
+              <b>Total Produksi</b> <a class="pull-right"><?php echo $c=$a+$b; ?></a>
+              </li>
+              <?php if ($c==0) {?>
+              <li class="list-group-item">
+                <button class="btn btn-danger konfirmasiHapus-pesanan" data-id="<?php echo $data->id; ?>" data-toggle="modal" data-target="#konfirmasiHapus"><i class="glyphicon glyphicon-remove-sign"></i> Cancel</button>
+              </li>
+            <?php } else if ($b==$c) { ?>
+            <li class="list-group-item">
+              <button class="btn btn-success konfirmasiSelesai-pesanan" data-id="<?php echo $data->id; ?>" data-toggle="modal" data-target="#konfirmasiSelesai"><i class="glyphicon glyphicon-ok-sign"></i> Selesai</button>
+            </li>
+
+            <?php }
+
+            ?>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-3">
+        <!-- Profile Image -->
+        <div class="box box-primary">
+          <div class="box-body box-profile">
+            <h3 class="profile-username text-center"><?php echo 'ID Pesanan: '.$data->id; ?></h3>
+            <p class="text-muted text-center">Detail Biaya</p>
+            <ul class="list-group list-group-unbordered">
+              <li class="list-group-item">
+                <b>Biaya Bahan Baku </b> <a class="pull-right"><?php echo $data->deskripsi_pesanan; ?></a>
+              </li>
+              <li class="list-group-item">
+                <b>Biaya Bahan Penolong </b> <a class="pull-right"><?php echo $data->deskripsi_pesanan; ?></a>
+              </li>
+              <li class="list-group-item">
+              <b>Biaya BTKL</b> <a class="pull-right"><?php echo $data->harga_kisaran; ?></a>
+              </li>
+              <li class="list-group-item">
+              <b>Biaya Overhead Pabrik</b> <a class="pull-right"><?php echo $data->jumlah; ?></a>
+              </li>
+              <li class="list-group-item">
+              <b>Total Biaya </b> <a class="pull-right"><?php echo $data->jumlah; ?></a>
+              </li>
+          </div>
+        </div>
+      </div>
+
+</div>
+
+<?php
+  }
+  ?>
+</ul>
+<div class="box">
+  <div class="box-header">
+    <div class="col-md-12" style="padding: 0;">
+        <button class="form-control btn btn-primary" data-toggle="modal" data-target="#tambah-pesanan"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data</button>
+    </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table id="list-data" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tanggal Pesanan</th>
+          <th>Nama Pemesan</th>
+          <th>Alamat</th>
+          <th>Pesanan</th>
+          <th>Deskripsi</th>
+          <th>Harga Kisaran</th>
+          <th>Jumlah</th>
+          <th>Tanggal Estimasi</th>
+          <th>DP</th>
+          <th>Status</th>
+          <th style="text-align: center;">Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="data-pesanan">
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="tempat-modal"></div>
+
+<?php show_my_confirm('konfirmasiHapus', 'hapus-dataSelesai', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
+
+<?php show_my_confirm('konfirmasiSelesai', 'selesai-dataPesanan', 'Selesaikan Pesanan Ini?', 'Ya'); ?>

@@ -71,7 +71,7 @@
 					    <div class="modal-content">
 					        <div class="col-md-offset-1 col-md-10 col-md-offset-1 well">
 						      <h3 style="display:block; text-align:center;">' .$title .'</h3>
-						      
+
 						      <div class="col-md-6">
 						        <button class="form-control btn btn-primary ' .$class .'"> <i class="glyphicon glyphicon-ok-sign"></i> ' .$yes .'</button>
 						      </div>
@@ -83,5 +83,33 @@
 					  </div>
 					</div>';
 		}
+	}
+	function getStatus($status) {
+		switch ($status) {
+			case 0:
+				return "Belum diproses";
+				break;
+			case 1:
+				return "Sedang diproses";
+				break;
+			case 2:
+				return "Selesai";
+				break;
+			case 3:
+				return "Batal";
+				break;
+
+			default:
+				return "";
+				break;
+		}
+	}
+
+	function getRowCountStatusPesanan($table, $key, $id, $status) {
+		$ci =& get_instance();
+		$ci->db->where($key, $id);
+		$ci->db->where('status', $status);
+		$data = $ci->db->get($table);
+		return $data->num_rows();
 	}
 ?>

@@ -18,6 +18,19 @@ class Pesanan extends AUTH_Controller {
 
     $this->template->views('pesanan/home', $data);
   }
+
+  public function id($id='') {
+    $data['dataPesanan'] = $this->M_pesanan->select_by_id($id);
+
+    $data['page'] = "pesanan";
+    $data['judul'] = "Detail Pesanan";
+    $data['deskripsi'] = "Manage Data Pesanan";
+
+    $data['modal_tambah_pesanan'] = show_my_modal('modals/modal_tambah_pesanan', 'tambah-pesanan', $data);
+
+    $this->template->views('pesanan/detail', $data);
+  }
+
   public function tampil() {
 		$data['dataPesanan'] = $this->M_pesanan->select_all();
 		$this->load->view('pesanan/list_data', $data);
@@ -100,5 +113,6 @@ class Pesanan extends AUTH_Controller {
 			echo show_err_msg('Data Pesanan Gagal dihapus', '20px');
 		}
 	}
+
 
 }
