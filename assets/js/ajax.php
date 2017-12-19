@@ -14,6 +14,7 @@
 		tampilBahanBaku();
 		tampilBahanPenolong();
 		tampilOverhead();
+		tampilProduksi()
 		<?php
 			if ($this->session->flashdata('msg') != '') {
 				echo "effect_msg();";
@@ -182,6 +183,20 @@
 			$('#update-pesanan').modal('show');
 		})
 	})
+
+		$(document).on("click", ".update-dataPesanan2", function() {
+			var id = $(this).attr("data-id");
+
+			$.ajax({
+				method: "POST",
+				url: "<?php echo base_url('Pesanan/update'); ?>",
+				data: "id=" +id
+			})
+			.done(function(data) {
+				$('#tempat-modal').html(data);
+				$('#update-pesanan').modal('show');
+			})
+		})
 
 	$('#form-tambah-pesanan').submit(function(e) {
 		var data = $(this).serialize();
@@ -553,6 +568,116 @@
 	$('#update-overhead').on('hidden.bs.modal', function () {
 	  $('.form-msg').html('');
 	})
+
+
+		function tampilProduksi() {
+			$.get('<?php echo base_url('Produksi/tampil'); ?>', function(data) {
+				MyTable.fnDestroy();
+				$('#data-produksi').html(data);
+				refresh();
+			});
+		}
+		function tampilProduksi2() {
+			$.get('<?php echo base_url('Produksi/tampil2'); ?>', function(data) {
+				MyTable.fnDestroy();
+				$('#data-produksi').html(data);
+				refresh();
+			});
+		}
+
+		var id_produksi;
+		$(document).on("click", ".konfirmasiHapus-produksi", function() {
+			id_produksi = $(this).attr("data-id");
+		})
+		$(document).on("click", ".hapus-dataProduksi", function() {
+			var id = id_produksi;
+
+			$.ajax({
+				method: "POST",
+				url: "<?php echo base_url('Produksi/delete'); ?>",
+				data: "id=" +id
+			})
+			.done(function(data) {
+				$('#konfirmasiHapus').modal('hide');
+				tampilProduksi();
+				$('.msg').html(data);
+				effect_msg();
+			})
+		})
+
+		$(document).on("click", ".update-dataProduksi", function() {
+			var id = $(this).attr("data-id");
+
+			$.ajax({
+				method: "POST",
+				url: "<?php echo base_url('Produksi/update'); ?>",
+				data: "id=" +id
+			})
+			.done(function(data) {
+				$('#tempat-modal').html(data);
+				$('#update-produksi').modal('show');
+			})
+		})
+
+		$('#form-tambah-produksi').submit(function(e) {
+			var data = $(this).serialize();
+
+			$.ajax({
+				method: 'POST',
+				url: '<?php echo base_url('Produksi/prosesTambah'); ?>',
+				data: data
+			})
+			.done(function(data) {
+				var out = jQuery.parseJSON(data);
+
+				tampilProduksi();
+				if (out.status == 'form') {
+					$('.form-msg').html(out.msg);
+					effect_msg_form();
+				} else {
+					document.getElementById("form-tambah-produksi").reset();
+					$('#tambah-produksi').modal('hide');
+					$('.msg').html(out.msg);
+					effect_msg();
+				}
+			})
+
+			e.preventDefault();
+		});
+
+		$(document).on('submit', '#form-update-produksi', function(e){
+			var data = $(this).serialize();
+
+			$.ajax({
+				method: 'POST',
+				url: '<?php echo base_url('Produksi/prosesUpdate'); ?>',
+				data: data
+			})
+			.done(function(data) {
+				var out = jQuery.parseJSON(data);
+
+				tampilProduksi();
+				if (out.status == 'form') {
+					$('.form-msg').html(out.msg);
+					effect_msg_form();
+				} else {
+					document.getElementById("form-update-produksi").reset();
+					$('#update-produksi').modal('hide');
+					$('.msg').html(out.msg);
+					effect_msg();
+				}
+			})
+
+			e.preventDefault();
+		});
+
+		$('#tambah-produksi').on('hidden.bs.modal', function () {
+		  $('.form-msg').html('');
+		})
+
+		$('#update-produksi').on('hidden.bs.modal', function () {
+		  $('.form-msg').html('');
+		})
 
 
 </script>

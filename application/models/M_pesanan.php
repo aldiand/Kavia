@@ -6,6 +6,17 @@ class M_pesanan extends CI_Model {
 		$data = $this->db->get('t_pesanan');
 		return $data->result();
 	}
+	public function select_all_uncomplete() {
+    $this->db->where('status !=', 2);
+		$data = $this->db->get('t_pesanan');
+		return $data->result();
+	}
+
+	public function select_all_complete() {
+		$this->db->where('status', 2);
+		$data = $this->db->get('t_pesanan');
+		return $data->result();
+	}
 
   public function select_by_status($status){
     $this->db->where('status', $status);

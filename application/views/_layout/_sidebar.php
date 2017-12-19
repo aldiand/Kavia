@@ -33,6 +33,13 @@
             <i class="fa fa-edit"></i>
             <span>Data Pesanan</span>
           </a>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>Pesanan/"><i class="fa fa-circle-o"></i> Pesanan</a></li>
+            <li><a href="<?php echo base_url(); ?>Pesanan/riwayat#"><i class="fa fa-circle-o"></i> Riwayat Pesanan</a></li>
+          </ul>
         </li>
         <?php } ?>
 

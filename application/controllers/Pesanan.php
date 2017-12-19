@@ -8,7 +8,7 @@ class Pesanan extends AUTH_Controller {
   }
 
   public function index() {
-    $data['dataPesanan'] = $this->M_pesanan->select_all();
+    $data['dataPesanan'] = $this->M_pesanan->select_all_uncomplete();
 
     $data['page'] = "pesanan";
     $data['judul'] = "Data Pesanan Aktif";
@@ -19,6 +19,18 @@ class Pesanan extends AUTH_Controller {
     $this->template->views('pesanan/home', $data);
   }
 
+  public function riwayat() {
+    $data['dataPesanan'] = $this->M_pesanan->select_all_complete();
+
+    $data['page'] = "riwayat";
+    $data['judul'] = "Data Pesanan";
+    $data['deskripsi'] = "Riwayat Pesanan";
+
+
+    $this->template->views('pesanan/riwayat', $data);
+
+  }
+
   public function id($id='') {
     $data['dataPesanan'] = $this->M_pesanan->select_by_id($id);
 
@@ -26,13 +38,13 @@ class Pesanan extends AUTH_Controller {
     $data['judul'] = "Detail Pesanan";
     $data['deskripsi'] = "Manage Data Pesanan";
 
-    $data['modal_tambah_pesanan'] = show_my_modal('modals/modal_tambah_pesanan', 'tambah-pesanan', $data);
+    $data['modal_tambah_produksi'] = show_my_modal('modals/modal_tambah_produksi', 'tambah-produksi', $data);
 
     $this->template->views('pesanan/detail', $data);
   }
 
   public function tampil() {
-		$data['dataPesanan'] = $this->M_pesanan->select_all();
+		$data['dataPesanan'] = $this->M_pesanan->select_all_uncomplete();
 		$this->load->view('pesanan/list_data', $data);
 	}
 
