@@ -112,4 +112,13 @@
 		$data = $ci->db->get($table);
 		return $data->num_rows();
 	}
+	function getRowCountTablebyProduksi($table, $id, $distinct='') {
+		$ci =& get_instance();
+		if(!empty($distinct)) {
+			$ci->db->select("count(DISTINCT(".$distinct."))");
+		}
+		$ci->db->where('id_produksi', $id);
+		$data = $ci->db->get($table);
+		return $data->num_rows();
+	}
 ?>

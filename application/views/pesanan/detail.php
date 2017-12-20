@@ -103,7 +103,7 @@
             <p class="text-muted text-center">Detail Biaya</p>
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Biaya Bahan Baku </b> <a class="pull-right"><?php echo $data->deskripsi_pesanan; ?></a>
+                <b>Biaya Bahan Baku </b> <a class="pull-right"><?php echo $total_biaya_bb; ?></a>
               </li>
               <li class="list-group-item">
                 <b>Biaya Bahan Penolong </b> <a class="pull-right"><?php echo $data->deskripsi_pesanan; ?></a>

@@ -52,7 +52,7 @@
                 <p class="text-muted text-center">Detail BTKL</p>
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Jumlah Tenaga Kerja</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->deskripsi; ?></a>
+                  <b>Jumlah Tenaga Kerja</b> <br> <a style="word-wrap: break-word;"><?php echo getRowCountTablebyProduksi('t_btkl', $produksi->id, 'id_pegawai'); ?></a>
                 </li>
                 <li class="list-group-item">
                   <b>Total Jam</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->tanggal_mulai; ?></a>
@@ -72,10 +72,10 @@
               <p class="text-muted text-center">Detail Bahan Baku</p>
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Jumlah Bahan Baku</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->deskripsi; ?></a>
+                <b>Jumlah Bahan Baku</b> <br> <a style="word-wrap: break-word;"><?php echo getRowCountTablebyProduksi('t_bb_terpakai', $produksi->id); ?></a>
               </li>
               <li class="list-group-item">
-                <b>Total Biaya</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->tanggal_mulai; ?></a>
+                <b>Total Biaya</b> <br> <a style="word-wrap: break-word;"><?php echo $total_biaya_bb; ?></a>
               </li>
             </ul>
           </div>
@@ -88,7 +88,7 @@
             <p class="text-muted text-center">Detail BOP</p>
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              <b>Jumlah Overhead</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->deskripsi; ?></a>
+              <b>Jumlah Overhead</b> <br> <a style="word-wrap: break-word;"><?php echo getRowCountTablebyProduksi('t_bop', $produksi->id); ?></a>
             </li>
             <li class="list-group-item">
               <b>Total Biaya</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->tanggal_mulai; ?></a>
@@ -104,7 +104,7 @@
           <p class="text-muted text-center">Detail Bahan Penolong</p>
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
-            <b>Jumlah Bahan Penolong</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->deskripsi; ?></a>
+            <b>Jumlah Bahan Penolong</b> <br> <a style="word-wrap: break-word;"><?php echo getRowCountTablebyProduksi('t_biaya_bahan_penolong', $produksi->id); ?></a>
           </li>
           <li class="list-group-item">
             <b>Total Biaya</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->tanggal_mulai; ?></a>
@@ -141,7 +141,7 @@
                         <th style="text-align: center;">Aksi</th>
                       </tr>
                     </thead>
-                    <tbody id="data-bb-produksi">
+                    <tbody id="data-bbTerpakai">
 
                     </tbody>
                   </table>
@@ -210,3 +210,10 @@
 </div>
 <?php }
 ?>
+
+<div id="tempat-modal"></div>
+<?php echo $modal_tambah_produksi; ?>
+<?php echo $modal_tambah_bb; ?>
+<?php echo $modal_tambah_bop; ?>
+<?php echo $modal_tambah_bbp; ?>
+<?php echo $modal_tambah_btkl; ?>

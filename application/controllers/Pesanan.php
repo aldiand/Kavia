@@ -5,6 +5,7 @@ class Pesanan extends AUTH_Controller {
   public function __construct() {
     parent::__construct();
     $this->load->model('M_pesanan');
+    $this->load->model('M_bbb');
   }
 
   public function index() {
@@ -37,6 +38,8 @@ class Pesanan extends AUTH_Controller {
     $data['page'] = "pesanan";
     $data['judul'] = "Detail Pesanan";
     $data['deskripsi'] = "Manage Data Pesanan";
+
+    $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
 
     $data['modal_tambah_produksi'] = show_my_modal('modals/modal_tambah_produksi', 'tambah-produksi', $data);
 

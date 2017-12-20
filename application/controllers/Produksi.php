@@ -5,6 +5,11 @@ class Produksi extends AUTH_Controller {
   public function __construct() {
     parent::__construct();
     $this->load->model('M_produksi');
+    $this->load->model('M_overhead');
+    $this->load->model('M_bahanBaku');
+    $this->load->model('M_bahanPenolong');
+    $this->load->model('M_pegawai');
+    $this->load->model('M_bbb');
   }
 
   public function index() {
@@ -33,12 +38,22 @@ class Produksi extends AUTH_Controller {
 
   public function id($id='') {
     $data['dataProduksi'] = $this->M_produksi->select_by_id($id);
+    $data['dataBahanBaku'] = $this->M_bahanBaku->select_all();
+    $data['dataOverhead'] = $this->M_overhead->select_all();
+    $data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all();
+    $data['dataPegawai'] = $this->M_pegawai->select_all();
+
+    $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_produksi($id);
 
     $data['page'] = "produksi";
     $data['judul'] = "Detail Produksi";
     $data['deskripsi'] = "Manage Data Produksi";
 
     $data['modal_tambah_produksi'] = show_my_modal('modals/modal_tambah_produksi', 'tambah-produksi', $data);
+    $data['modal_tambah_bb'] = show_my_modal('modals/modal_tambah_biaya_bb', 'tambah-bb-produksi', $data);
+    $data['modal_tambah_bop'] = show_my_modal('modals/modal_tambah_biaya_bop', 'tambah-bop-produksi', $data);
+    $data['modal_tambah_bbp'] = show_my_modal('modals/modal_tambah_biaya_bbp', 'tambah-bbp-produksi', $data);
+    $data['modal_tambah_btkl'] = show_my_modal('modals/modal_tambah_biaya_btkl', 'tambah-btkl-produksi', $data);
 
     $this->template->views('produksi/detail', $data);
   }
