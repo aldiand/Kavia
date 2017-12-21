@@ -21,7 +21,6 @@
           <th>Deskripsi</th>
           <th>Harga Kisaran</th>
           <th>Jumlah</th>
-          <th>Tanggal Estimasi</th>
           <th>DP</th>
           <th>Status</th>
           <th style="text-align: center;">Aksi</th>

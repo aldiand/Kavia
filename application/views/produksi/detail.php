@@ -16,7 +16,6 @@
         <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
         <li><a href="#btkl" data-toggle="tab">BTKL</a></li>
         <li><a href="#bb" data-toggle="tab">Bahan Baku</a></li>
-        <li><a href="#bop" data-toggle="tab">BOP</a></li>
         <li><a href="#bbp" data-toggle="tab">Bahan Penolong</a></li>
       </ul>
       <div class="tab-content">
@@ -118,6 +117,27 @@
         <div class="tab-pane" id="btkl">
           <div class="row">
             <div class="col-md-12">
+                <div class="box-header">
+                  <div class="col-md-12" style="padding: 0;">
+                      <button class="form-control btn btn-primary" data-toggle="modal" data-target="#tambah-btkl-produksi"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data</button>
+                  </div>
+                </div>
+                <table id="list-data3" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tanggal</th>
+                      <th>Nama Pegawai</th>
+                      <th>Jam Masuk</th>
+                      <th>Jam Keluar</th>
+                      <th>Biaya</th>
+                      <th style="text-align: center;">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="data-btkl">
+
+                  </tbody>
+                </table>
 
             </div>
           </div>
@@ -138,6 +158,7 @@
                         <th>Tanggal</th>
                         <th>Nama Bahan Baku</th>
                         <th>Jumlah</th>
+                        <th>Harga</th>
                         <th style="text-align: center;">Aksi</th>
                       </tr>
                     </thead>
@@ -148,32 +169,7 @@
               </div>
             </div>
         </div>
-        <div class="tab-pane" id="bop">
-            <div class="row">
-              <div class="col-md-12">
 
-                  <div class="box-header">
-                    <div class="col-md-12" style="padding: 0;">
-                        <button class="form-control btn btn-primary" data-toggle="modal" data-target="#tambah-bop-produksi"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data</button>
-                    </div>
-                  </div>
-                  <table id="list-data" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Tanggal</th>
-                        <th>Nama Bahan Baku</th>
-                        <th>Jumlah</th>
-                        <th style="text-align: center;">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody id="data-bop-produksi">
-
-                    </tbody>
-                  </table>
-              </div>
-            </div>
-        </div>
         <div class="tab-pane" id="bbp">
             <div class="row">
               <div class="col-md-12">
@@ -183,17 +179,18 @@
                         <button class="form-control btn btn-primary" data-toggle="modal" data-target="#tambah-bbp-produksi"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data</button>
                     </div>
                   </div>
-                  <table id="list-data" class="table table-bordered table-striped">
+                  <table id="list-data2" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>ID</th>
                         <th>Tanggal</th>
                         <th>Nama Bahan Baku</th>
                         <th>Jumlah</th>
+                        <th>Harga</th>
                         <th style="text-align: center;">Aksi</th>
                       </tr>
                     </thead>
-                    <tbody id="data-bbp-produksi">
+                    <tbody id="data-bbp">
 
                     </tbody>
                   </table>
@@ -212,6 +209,9 @@
 ?>
 
 <div id="tempat-modal"></div>
+<?php show_my_confirm('konfirmasiHapusBbb', 'hapus-dataBbTerpakai', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
+<?php show_my_confirm('konfirmasiHapusBbp', 'hapus-dataBbp', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
+<?php show_my_confirm('konfirmasiHapusBtkl', 'hapus-dataBtkl', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
 <?php echo $modal_tambah_produksi; ?>
 <?php echo $modal_tambah_bb; ?>
 <?php echo $modal_tambah_bop; ?>

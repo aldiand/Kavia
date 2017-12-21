@@ -36,10 +36,6 @@
             <input type="number" class="form-control" placeholder="Harga Kisaran" name="harga_kisaran" value="<?php echo $dataPesanan->harga_kisaran; ?>" aria-describedby="sizing-addon2">
           </div>
           <div class="input-group form-group">
-            <label  class="control-label">Tanggal Estimasi</label>
-            <input type="date" class="form-control" placeholder="Tanggal Estimasi" name="tanggal_estimasi" value="<?php echo $dataPesanan->tanggal_estimasi; ?>" aria-describedby="sizing-addon2">
-          </div>
-          <div class="input-group form-group">
             <label  class="control-label">DP</label>
             <input type="number" class="form-control" placeholder="DP" name="dp" value="<?php echo $dataPesanan->dp; ?>" aria-describedby="sizing-addon2">
           </div>

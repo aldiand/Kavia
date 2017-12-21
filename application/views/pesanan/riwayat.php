@@ -20,7 +20,6 @@
           <th>Deskripsi</th>
           <th>Harga Kisaran</th>
           <th>Jumlah</th>
-          <th>Tanggal Estimasi</th>
           <th>DP</th>
         </tr>
       </thead>
@@ -37,7 +36,6 @@
               <td><?php echo $data->deskripsi_pesanan; ?></td>
               <td><?php echo $data->harga_kisaran; ?></td>
               <td><?php echo $data->jumlah; ?></td>
-              <td><?php echo $data->tanggal_estimasi; ?></td>
               <td><?php echo $data->dp; ?></td>
             </tr>
             <?php

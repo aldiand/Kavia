@@ -6,16 +6,23 @@
   foreach ($dataPesanan as $data) {
     ?>
 <div class="row">
+  <div class="col-md-12">
+    <!-- Profile Image -->
+    <div class="box box-primary">
+      <div class="col-md-12" style="padding: 0;">
+      <h3 class="profile-username text-left">ID Produksi : <?php echo $data->id; ?></h3>
+    </div>
+  </div>
+    </div>
 
   <div class="col-md-3">
     <!-- Profile Image -->
     <div class="box box-primary">
       <div class="box-body box-profile">
-        <h3 class="profile-username text-center"><?php echo 'ID Pesanan: '.$data->id; ?></h3>
         <p class="text-muted text-center">Detail Pemesan</p>
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
-            <b>ID Pesanan</b> <a class="pull-right"><?php echo $data->tanggal_pesanan; ?></a>
+            <b>Tanggal Pesanan</b> <a class="pull-right"><?php echo $data->tanggal_pesanan; ?></a>
           </li>
           <li class="list-group-item">
             <b>Nama Pemesan</b> <a class="pull-right"><?php echo $data->nama_pemesan; ?></a>
@@ -33,7 +40,6 @@
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-body box-profile">
-          <h3 class="profile-username text-center"><?php echo 'ID Pesanan: '.$data->id; ?></h3>
           <p class="text-muted text-center">Detail Pesanan</p>
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
@@ -49,9 +55,6 @@
             <b>Jumlah</b> <a class="pull-right"><?php echo $data->jumlah; ?></a>
             </li>
             <li class="list-group-item">
-            <b>Tanggal Estimasi</b> <a class="pull-right"><?php echo $data->tanggal_estimasi; ?></a>
-            </li>
-            <li class="list-group-item">
             <b>DP</b> <a class="pull-right"><?php echo $data->dp; ?></a>
             </li>
         </div>
@@ -62,7 +65,6 @@
         <!-- Profile Image -->
         <div class="box box-primary">
           <div class="box-body box-profile">
-            <h3 class="profile-username text-center"><?php echo 'ID Pesanan: '.$data->id; ?></h3>
             <p class="text-muted text-center">Detail Produksi</p>
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
@@ -99,7 +101,6 @@
         <!-- Profile Image -->
         <div class="box box-primary">
           <div class="box-body box-profile">
-            <h3 class="profile-username text-center"><?php echo 'ID Pesanan: '.$data->id; ?></h3>
             <p class="text-muted text-center">Detail Biaya</p>
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">

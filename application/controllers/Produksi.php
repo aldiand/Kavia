@@ -10,6 +10,7 @@ class Produksi extends AUTH_Controller {
     $this->load->model('M_bahanPenolong');
     $this->load->model('M_pegawai');
     $this->load->model('M_bbb');
+    $this->load->model('M_bbp');
   }
 
   public function index() {
@@ -44,6 +45,7 @@ class Produksi extends AUTH_Controller {
     $data['dataPegawai'] = $this->M_pegawai->select_all();
 
     $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_produksi($id);
+    $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_produksi($id);
 
     $data['page'] = "produksi";
     $data['judul'] = "Detail Produksi";
