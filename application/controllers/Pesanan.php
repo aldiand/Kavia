@@ -5,7 +5,14 @@ class Pesanan extends AUTH_Controller {
   public function __construct() {
     parent::__construct();
     $this->load->model('M_pesanan');
+    $this->load->model('M_produksi');
+    $this->load->model('M_overhead');
+    $this->load->model('M_bahanBaku');
+    $this->load->model('M_bahanPenolong');
+    $this->load->model('M_pegawai');
     $this->load->model('M_bbb');
+    $this->load->model('M_bbp');
+    $this->load->model('M_btkl');
   }
 
   public function index() {
@@ -39,7 +46,11 @@ class Pesanan extends AUTH_Controller {
     $data['judul'] = "Detail Pesanan";
     $data['deskripsi'] = "Manage Data Pesanan";
 
-    $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
+      $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
+      $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_pesanan($id);
+      $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id);
+      $data['total_biaya_overhead'] = $this->M_produksi->get_overhead_by_pesanan($id);
+
 
     $data['modal_tambah_produksi'] = show_my_modal('modals/modal_tambah_produksi', 'tambah-produksi', $data);
 
@@ -129,5 +140,23 @@ class Pesanan extends AUTH_Controller {
 		}
 	}
 
+  public function setSelesai() {
+		$id = $_POST['id'];
+		$result = $this->M_pesanan->setStatus($id, 2);
+  		if ($result > 0) {
+  			echo show_succ_msg('Pesanan Selesai', '20px');
+  		} else {
+  			echo show_err_msg('Pesanan Gagal di Update', '20px');
+  		}
+  }
+  public function setProses() {
+		$id = $_POST['id'];
+		$result = $this->M_pesanan->setStatus($id, 1);
+  		if ($result > 0) {
+  			echo show_succ_msg('Pesanan Selesai', '20px');
+  		} else {
+  			echo show_err_msg('Pesanan Gagal di Update', '20px');
+  		}
+  }
 
 }

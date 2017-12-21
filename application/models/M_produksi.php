@@ -47,7 +47,28 @@ class M_produksi extends CI_Model {
   public function insert($data){
     $hasil=$this->db->insert('t_produksi', $data);
     return $hasil;
-  }
+}
+
+	public function setStatus($id, $status) {
+		$this->db->where('id', $id);
+		$data =  array('status' => $status, 'tanggal_selesai' => date('Y-m-d') );
+		$hasil=$this->db->update('t_produksi', $data);
+		return $hasil;
+	}
+
+	public function getOverHead($id) {
+		$this->db->select('SUM(DATEDIFF(day,tanggal_selesai,tanggal_mulai)*20000) AS hasil');
+		$this->db->where('id', $id);
+		$data = $this->db->get('t_produksi')->result();
+		return $data[0]->hasil;
+	}
+
+	public function get_overhead_by_pesanan($id) {
+		$this->db->select('SUM(DATEDIFF(`tanggal_selesai`, `tanggal_mulai`)*20000) AS hasil');
+    $this->db->where_in("id","SELECT id AS id_produksi from t_produksi where id_pesanan=$id", false);
+		$data = $this->db->get('t_produksi')->result();
+		return $data[0]->hasil;
+	}
 
   public function update($data, $id){
     $this->db->where('id', $id);

@@ -43,6 +43,9 @@
           <p class="text-muted text-center">Detail Pesanan</p>
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
+              <b>Status Pesanan </b> <a class="pull-right"><?php echo getStatus($data->status); ?></a>
+            </li>
+            <li class="list-group-item">
               <b>Pesanan</b> <a class="pull-right"><?php echo $data->pesanan; ?></a>
             </li>
             <li class="list-group-item">
@@ -67,9 +70,6 @@
           <div class="box-body box-profile">
             <p class="text-muted text-center">Detail Produksi</p>
             <ul class="list-group list-group-unbordered">
-              <li class="list-group-item">
-                <b>Status Pesanan </b> <a class="pull-right"><?php echo getStatus($data->status); ?></a>
-              </li>
               <li class="list-group-item">
                 <b>Produksi aktif </b> <a class="pull-right"><?php echo $a = getRowCountStatusPesanan('t_produksi', 'id_pesanan', $data->id, 1); ?></a>
               </li>
@@ -107,17 +107,22 @@
                 <b>Biaya Bahan Baku </b> <a class="pull-right"><?php echo $total_biaya_bb; ?></a>
               </li>
               <li class="list-group-item">
-                <b>Biaya Bahan Penolong </b> <a class="pull-right"><?php echo $data->deskripsi_pesanan; ?></a>
+                <b>Biaya Bahan Penolong </b> <a class="pull-right"><?php echo $total_biaya_bp; ?></a>
               </li>
               <li class="list-group-item">
-              <b>Biaya BTKL</b> <a class="pull-right"><?php echo $data->harga_kisaran; ?></a>
+              <b>Biaya BTKL</b> <a class="pull-right"><?php echo $total_biaya_tkl; ?></a>
               </li>
-              <li class="list-group-item">
-              <b>Biaya Overhead Pabrik</b> <a class="pull-right"><?php echo $data->jumlah; ?></a>
-              </li>
-              <li class="list-group-item">
-              <b>Total Biaya </b> <a class="pull-right"><?php echo $data->jumlah; ?></a>
-              </li>
+              <?php if ($data->status == 2): ?>
+                <li class="list-group-item">
+                <b>Biaya Overhead Pabrik</b> <a class="pull-right"><?php echo $total_biaya_overhead; ?></a>
+                </li>
+                <li class="list-group-item">
+                <b>Total Biaya </b> <a class="pull-right"><?php echo $data->jumlah; ?></a>
+                </li>
+
+              <?php endif; ?>
+
+              <button class="btn btn-success konfirmasiSelesai-pesanan" data-id="<?php echo $data->id; ?>" data-toggle="modal" data-target="#konfirmasiSelesai"><i class="glyphicon glyphicon-ok-sign"></i> Selesai</button>
           </div>
         </div>
       </div>

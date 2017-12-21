@@ -7,6 +7,12 @@ class M_pegawai extends CI_Model {
 		return $data->result();
 	}
 
+	public function select_all_btkl() {
+		$this->db->where('tipe_gaji', 'btkl');
+		$data = $this->db->get('t_pegawai');
+		return $data->result();
+	}
+
   public function select_by_id($id){
     $this->db->where('id', $id);
 		$data = $this->db->get('t_pegawai');

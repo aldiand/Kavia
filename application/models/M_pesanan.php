@@ -41,6 +41,13 @@ class M_pesanan extends CI_Model {
     return $hasil;
   }
 
+	public function setStatus($id, $status) {
+		$this->db->where('id', $id);
+		$data =  array('status' => $status);
+		$hasil=$this->db->update('t_pesanan', $data);
+    return $hasil;
+	}
+
 	public function delete($id){
     $this->db->where('id', $id);
     $hasil=$this->db->delete('t_pesanan');

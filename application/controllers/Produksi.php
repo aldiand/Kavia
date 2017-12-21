@@ -5,12 +5,14 @@ class Produksi extends AUTH_Controller {
   public function __construct() {
     parent::__construct();
     $this->load->model('M_produksi');
+    $this->load->model('M_pesanan');
     $this->load->model('M_overhead');
     $this->load->model('M_bahanBaku');
     $this->load->model('M_bahanPenolong');
     $this->load->model('M_pegawai');
     $this->load->model('M_bbb');
     $this->load->model('M_bbp');
+    $this->load->model('M_btkl');
   }
 
   public function index() {
@@ -42,10 +44,13 @@ class Produksi extends AUTH_Controller {
     $data['dataBahanBaku'] = $this->M_bahanBaku->select_all();
     $data['dataOverhead'] = $this->M_overhead->select_all();
     $data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all();
-    $data['dataPegawai'] = $this->M_pegawai->select_all();
+    $data['dataPegawai'] = $this->M_pegawai->select_all_btkl();
 
     $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_produksi($id);
     $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_produksi($id);
+    $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_produksi($id);
+    $data['total_jam_tkl'] = $this->M_btkl->get_totaljam_by_produksi($id);
+
 
     $data['page'] = "produksi";
     $data['judul'] = "Detail Produksi";
@@ -72,7 +77,7 @@ class Produksi extends AUTH_Controller {
 
   	public function prosesTambah() {
       $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
-
+      $this->M_pesanan->setStatus($this->input->post('id_pesanan'), 1);
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
   			$result = $this->M_produksi->insert($data);
@@ -131,5 +136,13 @@ class Produksi extends AUTH_Controller {
 		}
 	}
 
-
+    public function setSelesai() {
+  		$id = $_POST['id'];
+  		$result = $this->M_produksi->setStatus($id, 2);
+    		if ($result > 0) {
+    			echo show_succ_msg('Produksi Selesai', '20px');
+    		} else {
+    			echo show_err_msg('Produksi Gagal di Update', '20px');
+    		}
+    }
 }
