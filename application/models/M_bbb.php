@@ -21,6 +21,14 @@ class M_bbb extends CI_Model {
 		$data = $this->db->get();
 		return $data->result();
   }
+  public function select_by_pesanan($id_pesanan) {
+		$this->db->select('t_bb_terpakai.*, t_bbb.nama_bahan_baku, t_bbb.harga, (t_bb_terpakai.jumlah*t_bbb.harga) AS total');
+		$this->db->from('t_bb_terpakai');
+		$this->db->join('t_bbb', 't_bbb.id = t_bb_terpakai.id_bbb');
+    $this->db->where_in("t_bb_terpakai.id_produksi","SELECT id AS id_produksi from t_produksi where id_pesanan=$id_pesanan", false);
+		$data = $this->db->get();
+		return $data->result();
+  }
 
 	public function get_biaya_by_produksi($id_produksi) {
 		$this->db->select("SUM(t_bb_terpakai.jumlah*t_bbb.harga) AS hasil");

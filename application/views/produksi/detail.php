@@ -59,7 +59,7 @@
                 <p class="text-muted text-center">Detail BTKL</p>
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Jumlah Tenaga Kerja</b> <br> <a style="word-wrap: break-word;"><?php echo getRowCountTablebyProduksi('t_btkl', $produksi->id, 'id_pegawai'); ?></a>
+                  <b>Jumlah Tenaga Kerja</b> <br> <a style="word-wrap: break-word;"><?php echo getRowCountTablebyProduksi('t_btkl', $produksi->id); ?></a>
                 </li>
                 <li class="list-group-item">
                   <b>Total Jam</b> <br> <a style="word-wrap: break-word;"><?php echo $total_jam_tkl ; ?></a>

@@ -65,8 +65,13 @@ class Produksi extends AUTH_Controller {
     $this->template->views('produksi/detail', $data);
   }
 
-  public function tampil() {
-		$data['dataProduksi'] = $this->M_produksi->select_all();
+  public function tampil($id='') {
+    if(!empty($id)){
+  		$data['dataProduksi'] = $this->M_produksi->select_by_pesanan($id);
+
+    } else {
+  		$data['dataProduksi'] = $this->M_produksi->select_all();
+    }
 		$this->load->view('produksi/list_data', $data);
 	}
 

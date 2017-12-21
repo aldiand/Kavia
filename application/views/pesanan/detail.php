@@ -10,7 +10,7 @@
     <!-- Profile Image -->
     <div class="box box-primary">
       <div class="col-md-12" style="padding: 0;">
-      <h3 class="profile-username text-left">ID Produksi : <?php echo $data->id; ?></h3>
+      <h3 class="profile-username text-left">ID Pesanan : <?php echo $data->id; ?></h3>
     </div>
   </div>
     </div>
@@ -117,12 +117,15 @@
                 <b>Biaya Overhead Pabrik</b> <a class="pull-right"><?php echo $total_biaya_overhead; ?></a>
                 </li>
                 <li class="list-group-item">
-                <b>Total Biaya </b> <a class="pull-right"><?php echo $data->jumlah; ?></a>
+                <b>Total Biaya </b> <a class="pull-right"><?php echo $total_biaya; ?></a>
                 </li>
+                <li class="list-group-item">
+                <b>Harga Jual </b> <a class="pull-right"><?php echo (120*$total_biaya/100); ?></a>
+                </li>
+                <a href="<?php echo base_url('/Pesanan/detail/').$data->id?>"><button class="btn btn-success" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-files"></i> Detail</button></a>
 
               <?php endif; ?>
 
-              <button class="btn btn-success konfirmasiSelesai-pesanan" data-id="<?php echo $data->id; ?>" data-toggle="modal" data-target="#konfirmasiSelesai"><i class="glyphicon glyphicon-ok-sign"></i> Selesai</button>
           </div>
         </div>
       </div>

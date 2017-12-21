@@ -594,16 +594,25 @@
 
 
 		function tampilProduksi() {
-			$.get('<?php echo base_url('Produksi/tampil'); ?>', function(data) {
+			<?php if (!empty($this->uri->segment(3))): ?>
+			$.get('<?php echo base_url('Produksi/tampil/'.$this->uri->segment(3)); ?>', function(data) {
 				MyTable.fnDestroy();
 				$('#data-produksi').html(data);
 				refresh();
 			});
+
+			<?php else: ?>
+			$.get('<?php echo base_url('Produksi/tampil/'); ?>', function(data) {
+				MyTable.fnDestroy();
+				$('#data-produksi').html(data);
+				refresh();
+			});
+			<?php endif; ?>
 		}
 		function tampilProduksi2() {
 			$.get('<?php echo base_url('Produksi/tampil2'); ?>', function(data) {
 				MyTable.fnDestroy();
-				$('#data-produksi').html(data);
+				$('#data-produksi2').html(data);
 				refresh();
 			});
 		}
