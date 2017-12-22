@@ -52,23 +52,6 @@
       </li>
       <?php } ?>
 
-      <?php if($jenis == "admin") { ?>
-      <li class="treeview <?php if ($page == 'master') {echo "active";}?>">
-        <a href="#">
-            <i class="fa fa-database"></i>
-            <span>Biaya Produksi</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>Biaya/bahan_baku"><i class="fa fa-circle-o"></i> Bahan Baku</a></li>
-            <li><a href="<?php echo base_url(); ?>Biaya/bahan_penolong"><i class="fa fa-circle-o"></i> Bahan Penolong</a></li>
-            <li><a href="<?php echo base_url(); ?>Biaya/btkl"><i class="fa fa-circle-o"></i> BTKL</a></li>
-            <li><a href="<?php echo base_url(); ?>Biaya/bop"><i class="fa fa-circle-o"></i> BOP</a></li>
-          </ul>
-        </li>
-      <?php } ?>
     </ul>
     <!-- /.sidebar-menu -->
   </section>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 04 Des 2017 pada 11.55
+-- Generation Time: 22 Des 2017 pada 02.43
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -43,7 +43,8 @@ CREATE TABLE `t_bbb` (
   `id` int(11) NOT NULL,
   `nama_bahan_baku` varchar(30) NOT NULL,
   `satuan` varchar(10) NOT NULL,
-  `jumlah` int(11) NOT NULL
+  `jumlah` int(11) NOT NULL,
+  `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -113,9 +114,8 @@ CREATE TABLE `t_btkl` (
   `tanggal` date NOT NULL,
   `jam_masuk` int(2) NOT NULL,
   `jam_keluar` int(2) NOT NULL,
-  `total_jam` int(2) NOT NULL,
   `id_pegawai` int(11) NOT NULL,
-  `id_pengerjaan` int(11) NOT NULL
+  `id_produksi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -143,7 +143,7 @@ CREATE TABLE `t_pegawai` (
   `alamat` varchar(100) NOT NULL,
   `tipe_gaji` varchar(15) NOT NULL,
   `gaji` int(11) NOT NULL,
-  `no_telp` int(11) NOT NULL
+  `no_telp` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -154,8 +154,8 @@ CREATE TABLE `t_pegawai` (
 
 CREATE TABLE `t_pengerjaan` (
   `id` int(11) NOT NULL,
-  `nama` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `nama` varchar(11) NOT NULL,
+  `status` int(1) NOT NULL,
   `id_produksi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -167,15 +167,15 @@ CREATE TABLE `t_pengerjaan` (
 
 CREATE TABLE `t_pesanan` (
   `id` int(11) NOT NULL,
-  `nama_pemesan` int(11) NOT NULL,
-  `alamat` int(11) NOT NULL,
+  `nama_pemesan` varchar(30) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `no_telp` int(13) NOT NULL,
   `pesanan` varchar(30) NOT NULL,
   `deskripsi_pesanan` text NOT NULL,
   `jumlah` int(11) NOT NULL,
   `harga_kisaran` int(11) NOT NULL,
-  `tanggal_estimasi` date NOT NULL,
   `dp` int(11) NOT NULL,
-  `status` varchar(20) NOT NULL,
+  `status` int(1) NOT NULL,
   `tanggal_pesanan` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -188,8 +188,9 @@ CREATE TABLE `t_pesanan` (
 CREATE TABLE `t_produksi` (
   `id` int(11) NOT NULL,
   `tanggal_mulai` date NOT NULL,
-  `tanggal_selesai` date NOT NULL,
+  `tanggal_selesai` date DEFAULT NULL,
   `deskripsi` text NOT NULL,
+  `status` int(1) NOT NULL,
   `id_pesanan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -231,7 +232,8 @@ ALTER TABLE `t_biaya_bahan_penolong`
 -- Indexes for table `t_bop`
 --
 ALTER TABLE `t_bop`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_overhead` (`id_overhead`);
 
 --
 -- Indexes for table `t_btkl`
@@ -277,12 +279,12 @@ ALTER TABLE `t_produksi`
 -- AUTO_INCREMENT for table `t_bahan_penolong`
 --
 ALTER TABLE `t_bahan_penolong`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `t_bbb`
 --
 ALTER TABLE `t_bbb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `t_bb_masuk`
 --
@@ -292,12 +294,12 @@ ALTER TABLE `t_bb_masuk`
 -- AUTO_INCREMENT for table `t_bb_terpakai`
 --
 ALTER TABLE `t_bb_terpakai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `t_biaya_bahan_penolong`
 --
 ALTER TABLE `t_biaya_bahan_penolong`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `t_bop`
 --
@@ -307,27 +309,42 @@ ALTER TABLE `t_bop`
 -- AUTO_INCREMENT for table `t_btkl`
 --
 ALTER TABLE `t_btkl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `t_overhead`
 --
 ALTER TABLE `t_overhead`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `t_pegawai`
 --
 ALTER TABLE `t_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `t_pengerjaan`
 --
 ALTER TABLE `t_pengerjaan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `t_pesanan`
+--
+ALTER TABLE `t_pesanan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `t_produksi`
 --
 ALTER TABLE `t_produksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `t_bop`
+--
+ALTER TABLE `t_bop`
+  ADD CONSTRAINT `t_bop_ibfk_1` FOREIGN KEY (`id_overhead`) REFERENCES `t_overhead` (`id`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
