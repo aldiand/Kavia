@@ -94,7 +94,6 @@ class Pesanan extends AUTH_Controller {
   		$this->form_validation->set_rules('deskripsi_pesanan', 'Deskripsi', 'trim|required');
   		$this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required');
   		$this->form_validation->set_rules('harga_kisaran', 'Harga', 'trim|required');
-  		$this->form_validation->set_rules('tanggal_estimasi', 'Estimasi', 'trim|required');
   		$this->form_validation->set_rules('dp', 'DP', 'trim|required');
 
   		$data = $this->input->post();
@@ -131,7 +130,6 @@ class Pesanan extends AUTH_Controller {
     $this->form_validation->set_rules('deskripsi_pesanan', 'Deskripsi', 'trim|required');
     $this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required');
     $this->form_validation->set_rules('harga_kisaran', 'Harga', 'trim|required');
-    $this->form_validation->set_rules('tanggal_estimasi', 'Estimasi', 'trim|required');
     $this->form_validation->set_rules('dp', 'DP', 'trim|required');
 
 		$data = $this->input->post();
