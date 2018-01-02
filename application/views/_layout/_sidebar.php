@@ -13,6 +13,25 @@
       <li class="treeview <?php if ($page == 'master') {echo "active";}?>">
         <a href="#">
             <i class="fa fa-database"></i>
+            <span>Data Bahan</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>Bahanbaku/#"><i class="fa fa-circle-o"></i> Bahan Baku</a></li>
+            <li><a href="<?php echo base_url(); ?>Bahanpenolong/#"><i class="fa fa-circle-o"></i> Bahan Penolong</a></li>
+            <li><a href="<?php echo base_url(); ?>Bahanmasuk/#"><i class="fa fa-circle-o"></i> Bahan Masuk</a></li>
+            <li><a href="<?php echo base_url(); ?>Bahankeluar/#"><i class="fa fa-circle-o"></i> Bahan Keluar</a></li>
+          </ul>
+        </li>
+      <?php } ?>
+
+
+      <?php if($jenis == "admin") { ?>
+      <li class="treeview <?php if ($page == 'master') {echo "active";}?>">
+        <a href="#">
+            <i class="fa fa-database"></i>
             <span>Master Data</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -27,21 +46,21 @@
         </li>
       <?php } ?>
 
-        <?php if($jenis == "admin") { ?>
-        <li <?php if ($page == 'pesanan') {echo 'class="active"';} ?>>
-          <a href="<?php echo base_url('Pesanan'); ?>">
-            <i class="fa fa-edit"></i>
-            <span>Data Pesanan</span>
-          </a>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>Pesanan/"><i class="fa fa-circle-o"></i> Pesanan</a></li>
-            <li><a href="<?php echo base_url(); ?>Pesanan/riwayat#"><i class="fa fa-circle-o"></i> Riwayat Pesanan</a></li>
-          </ul>
-        </li>
-        <?php } ?>
+      <?php if($jenis == "admin") { ?>
+      <li <?php if ($page == 'pesanan') {echo 'class="active"';} ?>>
+        <a href="#">
+          <i class="fa fa-edit"></i>
+          <span>Data Pesanan</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+        <ul class="treeview-menu">
+          <li><a href="<?php echo base_url(); ?>Pesanan/"><i class="fa fa-circle-o"></i> Pesanan</a></li>
+          <li><a href="<?php echo base_url(); ?>Pesanan/riwayat#"><i class="fa fa-circle-o"></i> Riwayat Pesanan</a></li>
+        </ul>
+      </li>
+      <?php } ?>
 
       <?php if($jenis == "produksi" || $jenis == "admin") { ?>
       <li <?php if ($page == 'produksi') {echo 'class="active"';} ?>>

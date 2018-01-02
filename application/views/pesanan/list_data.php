@@ -14,7 +14,8 @@
       <<?php if ($page!="riwayat") { ?>
 
         <td><?php echo $data->status==0 ?  "Belum diproses" : "Sedang diproses"; ?></td>
-        <td class="text-center" style="min-width:230px;">
+        <td style="min-width:260px;">
+          <a href="<?php echo base_url('/Pesanan/id/').$data->id?>"> <button class="btn btn-info detail-dataPosisi" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-info-sign"></i> Detail</button></a>
           <button class="btn btn-warning update-dataPesanan" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-repeat"></i> Update</button>
           <button class="btn btn-danger konfirmasiHapus-pesanan" data-id="<?php echo $data->id; ?>" data-toggle="modal" data-target="#konfirmasiHapus"><i class="glyphicon glyphicon-remove-sign"></i> Cancel</button>
         </td>

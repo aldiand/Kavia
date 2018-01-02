@@ -11,7 +11,7 @@ class BahanPenolong extends AUTH_Controller {
     $data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all();
 
     $data['page'] = "bahan penolong";
-    $data['judul'] = "Data Bahan Penolonf";
+    $data['judul'] = "Data Bahan Penolong";
     $data['deskripsi'] = "Manage Data Bahan Penolong";
 
     $data['modal_tambah_bahanPenolong'] = show_my_modal('modals/modal_tambah_bahanPenolong', 'tambah-bahanPenolong', $data);

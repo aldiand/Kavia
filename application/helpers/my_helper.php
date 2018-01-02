@@ -121,4 +121,11 @@
 		$data = $ci->db->get($table);
 		return $data->num_rows();
 	}
+
+	function getStatusValue($table, $key,  $id) {
+		$ci =& get_instance();
+		$ci->db->where($key, $id);
+		$data = $ci->db->get($table)->result();
+		return $data[0]->status;
+	}
 ?>

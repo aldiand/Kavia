@@ -16,13 +16,13 @@ class Produksi extends AUTH_Controller {
   }
 
   public function index() {
-    $data['dataProduksi'] = $this->M_produksi->select_all_uncomplete();
+    $data['dataPesanan'] = $this->M_pesanan->select_all_uncomplete();
 
     $data['page'] = "produksi";
     $data['judul'] = "Data Produksi Aktif";
     $data['deskripsi'] = "Manage Data Produksi";
 
-    $data['modal_tambah_produksi'] = show_my_modal('modals/modal_tambah_produksi', 'tambah-produksi', $data);
+    $data['modal_tambah_produksi'] = show_my_modal('modals/modal_tambah_produksi_pure', 'tambah-produksi', $data);
 
     $this->template->views('produksi/home', $data);
   }

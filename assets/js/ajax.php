@@ -3,7 +3,7 @@
 		  "paging": true,
 		  "lengthChange": true,
 		  "searching": true,
-		  "ordering": true,
+		  "order": [],
 		  "info": true,
 		  "autoWidth": false
 		});
@@ -36,6 +36,7 @@
 		tampilBbTerpakai();
 		tampilBbp();
 		tampilBtkl();
+		tampilBahanMasuk();
 		<?php
 			if ($this->session->flashdata('msg') != '') {
 				echo "effect_msg();";
@@ -63,7 +64,7 @@
 
 	function tampilPegawai() {
 		$.get('<?php echo base_url('Pegawai/tampil'); ?>', function(data) {
-			MyTable.fnDestroy();
+
 			$('#data-pegawai').html(data);
 			refresh();
 		});
@@ -167,7 +168,7 @@
 
 	function tampilPesanan() {
 		$.get('<?php echo base_url('Pesanan/tampil'); ?>', function(data) {
-			MyTable.fnDestroy();
+
 			$('#data-pesanan').html(data);
 			refresh();
 		});
@@ -285,7 +286,7 @@
 
 	function tampilBahanBaku() {
 		$.get('<?php echo base_url('BahanBaku/tampil'); ?>', function(data) {
-			MyTable.fnDestroy();
+
 			$('#data-bahanBaku').html(data);
 			refresh();
 		});
@@ -388,7 +389,7 @@
 
 		function tampilBahanPenolong() {
 			$.get('<?php echo base_url('BahanPenolong/tampil'); ?>', function(data) {
-				MyTable.fnDestroy();
+
 				$('#data-bahanPenolong').html(data);
 				refresh();
 			});
@@ -492,7 +493,7 @@
 
 	function tampilOverhead() {
 		$.get('<?php echo base_url('Overhead/tampil'); ?>', function(data) {
-			MyTable.fnDestroy();
+
 			$('#data-overhead').html(data);
 			refresh();
 		});
@@ -596,14 +597,14 @@
 		function tampilProduksi() {
 			<?php if (!empty($this->uri->segment(3))): ?>
 			$.get('<?php echo base_url('Produksi/tampil/'.$this->uri->segment(3)); ?>', function(data) {
-				MyTable.fnDestroy();
+
 				$('#data-produksi').html(data);
 				refresh();
 			});
 
 			<?php else: ?>
 			$.get('<?php echo base_url('Produksi/tampil/'); ?>', function(data) {
-				MyTable.fnDestroy();
+
 				$('#data-produksi').html(data);
 				refresh();
 			});
@@ -611,7 +612,7 @@
 		}
 		function tampilProduksi2() {
 			$.get('<?php echo base_url('Produksi/tampil2'); ?>', function(data) {
-				MyTable.fnDestroy();
+
 				$('#data-produksi2').html(data);
 				refresh();
 			});
@@ -714,7 +715,7 @@
 
 		function tampilBbTerpakai() {
 			$.get('<?php echo base_url('BbTerpakai/tampil2/'.$this->uri->segment(3)); ?>', function(data) {
-				MyTable.fnDestroy();
+
 				$('#data-bbTerpakai').html(data);
 				refresh();
 			});
@@ -1059,4 +1060,113 @@
 								location.reload();
 							})
 						})
+
+
+						//BahanMasuk
+
+							function tampilBahanMasuk() {
+								$.get('<?php echo base_url('BahanMasuk/tampil'); ?>', function(data) {
+
+									$('#data-BahanMasuk').html(data);
+									refresh();
+								});
+							}
+
+							var id_BahanMasuk;
+							$(document).on("click", ".konfirmasiHapus-BahanMasuk", function() {
+								id_BahanMasuk = $(this).attr("data-id");
+							})
+							$(document).on("click", ".hapus-dataBahanMasuk", function() {
+								var id = id_BahanMasuk;
+
+								$.ajax({
+									method: "POST",
+									url: "<?php echo base_url('BahanMasuk/delete'); ?>",
+									data: "id=" +id
+								})
+								.done(function(data) {
+									$('#konfirmasiHapus').modal('hide');
+									tampilBahanMasuk();
+									$('.msg').html(data);
+									effect_msg();
+								})
+							})
+
+							$(document).on("click", ".update-dataBahanMasuk", function() {
+								var id = $(this).attr("data-id");
+
+								$.ajax({
+									method: "POST",
+									url: "<?php echo base_url('BahanMasuk/update'); ?>",
+									data: "id=" +id
+								})
+								.done(function(data) {
+									$('#tempat-modal').html(data);
+									$('#update-BahanMasuk').modal('show');
+								})
+							})
+
+							$('#form-tambah-BahanMasuk').submit(function(e) {
+								var data = $(this).serialize();
+
+								$.ajax({
+									method: 'POST',
+									url: '<?php echo base_url('BahanMasuk/prosesTambah'); ?>',
+									data: data
+								})
+								.done(function(data) {
+									var out = jQuery.parseJSON(data);
+
+									tampilBahanMasuk();
+									if (out.status == 'form') {
+										$('.form-msg').html(out.msg);
+										effect_msg_form();
+									} else {
+										document.getElementById("form-tambah-BahanMasuk").reset();
+										$('#tambah-BahanMasuk').modal('hide');
+										$('.msg').html(out.msg);
+										effect_msg();
+									}
+								})
+
+								e.preventDefault();
+							});
+
+							$(document).on('submit', '#form-update-BahanMasuk', function(e){
+								var data = $(this).serialize();
+
+								$.ajax({
+									method: 'POST',
+									url: '<?php echo base_url('BahanMasuk/prosesUpdate'); ?>',
+									data: data
+								})
+								.done(function(data) {
+									var out = jQuery.parseJSON(data);
+
+									tampilBahanMasuk();
+									if (out.status == 'form') {
+										$('.form-msg').html(out.msg);
+										effect_msg_form();
+									} else {
+										document.getElementById("form-update-BahanMasuk").reset();
+										$('#update-BahanMasuk').modal('hide');
+										$('.msg').html(out.msg);
+										effect_msg();
+									}
+								})
+
+								e.preventDefault();
+							});
+
+							$('#tambah-BahanMasuk').on('hidden.bs.modal', function () {
+							  $('.form-msg').html('');
+							})
+
+							$('#update-BahanMasuk').on('hidden.bs.modal', function () {
+							  $('.form-msg').html('');
+							})
+
+				function replaceOverview() {
+					$('#taboverview').replaceWith("<a href='<?php echo base_url('Produksi/id/'.$this->uri->segment(3)); ?>'>Overview</a>");
+				}
 </script>
