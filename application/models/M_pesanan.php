@@ -3,16 +3,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_pesanan extends CI_Model {
 	public function select_all() {
+    $this->db->order_by("id", "desc");
 		$data = $this->db->get('t_pesanan');
 		return $data->result();
 	}
 	public function select_all_uncomplete() {
+    $this->db->order_by("id", "desc");
     $this->db->where('status !=', 2);
 		$data = $this->db->get('t_pesanan');
 		return $data->result();
 	}
 
 	public function select_all_complete() {
+    $this->db->order_by("id", "desc");
 		$this->db->where('status', 2);
 		$data = $this->db->get('t_pesanan');
 		return $data->result();
@@ -44,6 +47,13 @@ class M_pesanan extends CI_Model {
 	public function setStatus($id, $status) {
 		$this->db->where('id', $id);
 		$data =  array('status' => $status);
+		$hasil=$this->db->update('t_pesanan', $data);
+    return $hasil;
+	}
+
+	public function setStatusSelesai($id) {
+		$this->db->where('id', $id);
+		$data =  array('status' => 2, 'tanggal_selesai' => Date('Y-m-d'));
 		$hasil=$this->db->update('t_pesanan', $data);
     return $hasil;
 	}

@@ -44,10 +44,10 @@ class BbTerpakai extends AUTH_Controller {
           $result = $this->M_bahanBaku->pakaiStok($data['id_bbb'], $data['jumlah']);
           if ($result > 0){
     				$out['status'] = '';
-    				$out['msg'] = show_err_msg('Data Bahan Baku Gagal di update', '20px');
+    				$out['msg'] = show_succ_msg('Data Biaya Bahan Baku Berhasil ditambahkan', '20px');
           } else {
     				$out['status'] = '';
-    				$out['msg'] = show_succ_msg('Data Biaya Bahan Baku Berhasil ditambahkan', '20px');
+    				$out['msg'] = show_err_msg('Data Bahan Baku Gagal di update', '20px');
           }
   			} else {
   				$out['status'] = '';

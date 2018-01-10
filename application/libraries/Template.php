@@ -17,7 +17,7 @@
 				$data['_header'] 				= $this->_ci->load->view('_layout/_header', $data, TRUE);
 
 				//Sidebar
-				$data['_sidebar'] 				= $this->_ci->load->view('_layout/_sidebar', $data, TRUE);
+				$data['_sidebar'] 				= $this->_ci->load->view('_layout/_sidebar1', $data, TRUE);
 
 				//Content
 					$data['_headerContent'] 	= $this->_ci->load->view('_layout/_headerContent', $data, TRUE);

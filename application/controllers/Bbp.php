@@ -30,18 +30,25 @@ class Bbp extends AUTH_Controller {
   }
 
   	public function prosesTambah() {
+  		$data = $this->input->post();
+      $jumlah = $this->M_bahanPenolong->get_stok_by_id($data['id_bahan_penolong']);
   		$this->form_validation->set_rules('tanggal', 'Tanggal', 'trim|required');
-  		$this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required');
+  		$this->form_validation->set_rules('jumlah', 'Jumlah', "trim|required|less_than_equal_to[$jumlah]");
   		$this->form_validation->set_rules('id_bahan_penolong', 'Bahan Penolong', 'trim|required');
   		$this->form_validation->set_rules('id_produksi', 'Produksi', 'trim|required');
 
-  		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
   			$result = $this->M_bbp->insert($data);
 
   			if ($result > 0) {
-  				$out['status'] = '';
-  				$out['msg'] = show_succ_msg('Data Biaya Bahan Penolong Berhasil ditambahkan', '20px');
+          $result = $this->M_bahanPenolong->pakaiStok($data['id_bahan_penolong'], $data['jumlah']);
+          if ($result > 0){
+    				$out['status'] = '';
+    				$out['msg'] = show_succ_msg('Data Biaya Bahan Baku Berhasil ditambahkan', '20px');
+          } else {
+    				$out['status'] = '';
+    				$out['msg'] = show_err_msg('Data Bahan Baku Gagal di update', '20px');
+          }
   			} else {
   				$out['status'] = '';
   				$out['msg'] = show_err_msg('Data Biaya Bahan Penolong Gagal ditambahkan', '20px');

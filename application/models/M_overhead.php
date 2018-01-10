@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_overhead extends CI_Model {
 	public function select_all() {
+    $this->db->order_by("id", "desc");
 		$data = $this->db->get('t_overhead');
 		return $data->result();
 	}

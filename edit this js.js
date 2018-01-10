@@ -1,66 +1,65 @@
+	//BpMasuk
 
-//Overhead
+	function tampilBpMasuk() {
+		$.get('<?php echo base_url('BpMasuk/tampil'); ?>', function(data) {
 
-	function tampilOverhead() {
-		$.get('<?php echo base_url('Overhead/tampil'); ?>', function(data) {
-			MyTable.fnDestroy();
-			$('#data-overhead').html(data);
+			$('#data-BpMasuk').html(data);
 			refresh();
 		});
 	}
 
-	var id_overhead;
-	$(document).on("click", ".konfirmasiHapus-overhead", function() {
-		id_overhead = $(this).attr("data-id");
+	var id_BpMasuk;
+	$(document).on("click", ".konfirmasiHapus-BpMasuk", function() {
+		id_BpMasuk = $(this).attr("data-id");
 	})
-	$(document).on("click", ".hapus-dataOverhead", function() {
-		var id = id_overhead;
+	$(document).on("click", ".hapus-dataBpMasuk", function() {
+		var id = id_BpMasuk;
 
 		$.ajax({
 			method: "POST",
-			url: "<?php echo base_url('Overhead/delete'); ?>",
+			url: "<?php echo base_url('BpMasuk/delete'); ?>",
 			data: "id=" +id
 		})
 		.done(function(data) {
 			$('#konfirmasiHapus').modal('hide');
-			tampilOverhead();
+			tampilBpMasuk();
 			$('.msg').html(data);
 			effect_msg();
 		})
 	})
 
-	$(document).on("click", ".update-dataOverhead", function() {
+	$(document).on("click", ".update-dataBpMasuk", function() {
 		var id = $(this).attr("data-id");
 
 		$.ajax({
 			method: "POST",
-			url: "<?php echo base_url('Overhead/update'); ?>",
+			url: "<?php echo base_url('BpMasuk/update'); ?>",
 			data: "id=" +id
 		})
 		.done(function(data) {
 			$('#tempat-modal').html(data);
-			$('#update-overhead').modal('show');
+			$('#update-BpMasuk').modal('show');
 		})
 	})
 
-	$('#form-tambah-overhead').submit(function(e) {
+	$('#form-tambah-BpMasuk').submit(function(e) {
 		var data = $(this).serialize();
 
 		$.ajax({
 			method: 'POST',
-			url: '<?php echo base_url('Overhead/prosesTambah'); ?>',
+			url: '<?php echo base_url('BpMasuk/prosesTambah'); ?>',
 			data: data
 		})
 		.done(function(data) {
 			var out = jQuery.parseJSON(data);
 
-			tampilOverhead();
+			tampilBpMasuk();
 			if (out.status == 'form') {
 				$('.form-msg').html(out.msg);
 				effect_msg_form();
 			} else {
-				document.getElementById("form-tambah-overhead").reset();
-				$('#tambah-overhead').modal('hide');
+				document.getElementById("form-tambah-BpMasuk").reset();
+				$('#tambah-BpMasuk').modal('hide');
 				$('.msg').html(out.msg);
 				effect_msg();
 			}
@@ -69,24 +68,24 @@
 		e.preventDefault();
 	});
 
-	$(document).on('submit', '#form-update-overhead', function(e){
+	$(document).on('submit', '#form-update-BpMasuk', function(e){
 		var data = $(this).serialize();
 
 		$.ajax({
 			method: 'POST',
-			url: '<?php echo base_url('Overhead/prosesUpdate'); ?>',
+			url: '<?php echo base_url('BpMasuk/prosesUpdate'); ?>',
 			data: data
 		})
 		.done(function(data) {
 			var out = jQuery.parseJSON(data);
 
-			tampilOverhead();
+			tampilBpMasuk();
 			if (out.status == 'form') {
 				$('.form-msg').html(out.msg);
 				effect_msg_form();
 			} else {
-				document.getElementById("form-update-overhead").reset();
-				$('#update-overhead').modal('hide');
+				document.getElementById("form-update-BpMasuk").reset();
+				$('#update-BpMasuk').modal('hide');
 				$('.msg').html(out.msg);
 				effect_msg();
 			}
@@ -95,10 +94,10 @@
 		e.preventDefault();
 	});
 
-	$('#tambah-overhead').on('hidden.bs.modal', function () {
+	$('#tambah-BpMasuk').on('hidden.bs.modal', function () {
 	  $('.form-msg').html('');
 	})
 
-	$('#update-overhead').on('hidden.bs.modal', function () {
+	$('#update-BpMasuk').on('hidden.bs.modal', function () {
 	  $('.form-msg').html('');
 	})

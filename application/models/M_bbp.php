@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_bbp extends CI_Model {
 	public function select_all() {
+    $this->db->order_by("id", "desc");
 		$data = $this->db->get('t_biaya_bahan_penolong');
 		return $data->result();
 	}

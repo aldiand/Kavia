@@ -66,8 +66,8 @@ class Pesanan extends AUTH_Controller {
     $data['dataOverhead'] = $this->M_produksi->select_overhead_by_pesanan($id);
 
     $data['page'] = "pesanan";
-    $data['judul'] = "Detail Biaya";
-    $data['deskripsi'] = "Detail Biaya";
+    $data['judul'] = "Harga Pokok Produksi";
+    $data['deskripsi'] = "Detail Harga Pokok Produksi";
 
       $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
       $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_pesanan($id);
@@ -164,7 +164,7 @@ class Pesanan extends AUTH_Controller {
 
   public function setSelesai() {
 		$id = $_POST['id'];
-		$result = $this->M_pesanan->setStatus($id, 2);
+		$result = $this->M_pesanan->setStatusSelesai($id);
   		if ($result > 0) {
   			echo show_succ_msg('Pesanan Selesai', '20px');
   		} else {

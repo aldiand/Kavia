@@ -1,29 +1,29 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class BahanMasuk extends AUTH_Controller {
+class BpMasuk extends AUTH_Controller {
   public function __construct() {
     parent::__construct();
-    $this->load->model('M_BahanMasuk');
-    $this->load->model('M_bahanBaku');
+    $this->load->model('M_bp_masuk');
+    $this->load->model('M_bahanPenolong');
     $this->load->model('M_report');
   }
 
   public function index() {
-    $data['dataBahanMasuk'] = $this->M_BahanMasuk->select_all();
-    $data['dataBahanBaku'] = $this->M_bahanBaku->select_all();
+    $data['dataBpMasuk'] = $this->M_bp_masuk->select_all();
+    $data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all();
 
     $data['page'] = "bahan Masuk";
     $data['judul'] = "Data Bahan Masuk";
     $data['deskripsi'] = "Manage Data Bahan Masuk";
 
-        $data['modal_tambah_bahanMasuk'] = show_my_modal('modals/modal_tambah_BahanMasuk', 'tambah-BahanMasuk', $data);
+        $data['modal_tambah_bpMasuk'] = show_my_modal('modals/modal_tambah_BpMasuk', 'tambah-BpMasuk', $data);
 
-    $this->template->views('BahanMasuk/home', $data);
+    $this->template->views('BpMasuk/home', $data);
   }
   public function tampil() {
-		$data['dataBahanMasuk'] = $this->M_BahanMasuk->select_all();
-		$this->load->view('BahanMasuk/list_data', $data);
+		$data['dataBpMasuk'] = $this->M_bp_masuk->select_all();
+		$this->load->view('BpMasuk/list_data', $data);
 	}
 
   	public function prosesTambah() {
@@ -32,22 +32,22 @@ class BahanMasuk extends AUTH_Controller {
 
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
-  			$result = $this->M_BahanMasuk->insert($data);
+  			$result = $this->M_bp_masuk->insert($data);
+
   			if ($result > 0) {
-				$result2 = $this->M_BahanMasuk->tambahStok($data['id_bbb'], $data['jumlah']);
-				if ($result2 > 0){
-					$this->M_report->insert_jurnal(112, $result, 'd', ($data['jumlah']*$data['harga_beli']));
+                $result = $this->M_bp_masuk->tambahStok($data['id_bahan_penolong'], $data['jumlah']);
+                if ($result > 0){
+					$this->M_report->insert_jurnal(113, $result, 'd', ($data['jumlah']*$data['harga_beli']));
 					$this->M_report->insert_jurnal(111, $result, 'c', ($data['jumlah']*$data['harga_beli']));
-					
-					$out['status'] = '';
-					$out['msg'] = show_succ_msg('Data Bahan Masuk Berhasil ditambahkan', '20px');
-				} else {
-					$out['status'] = '';
-					$out['msg'] = show_err_msg('Data Bahan Baku Gagal di update', '20px');
-				}
+                    $out['status'] = '';
+                    $out['msg'] = show_succ_msg('Data Bahan Masuk Berhasil ditambahkan', '20px');
+                } else {
+                    $out['status'] = '';
+                    $out['msg'] = show_err_msg('Data Bahan Penolong Gagal di update', '20px');
+                }
   			} else {
   				$out['status'] = '';
-  				$out['msg'] = show_err_msg('Data BahanMasuk Gagal ditambahkan', '20px');
+  				$out['msg'] = show_err_msg('Data Masuk Gagal ditambahkan', '20px');
   			}
   		} else {
   			$out['status'] = 'form';
@@ -60,8 +60,8 @@ class BahanMasuk extends AUTH_Controller {
 
 	public function update() {
 		$id = trim($_POST['id']);
-		$data['dataBahanMasuk'] = $this->M_BahanMasuk->select_by_id($id);
-		echo show_my_modal('modals/modal_update_BahanMasuk', 'update-BahanMasuk', $data);
+		$data['dataBpMasuk'] = $this->M_bp_masuk->select_by_id($id);
+		echo show_my_modal('modals/modal_update_BpMasuk', 'update-BpMasuk', $data);
 	}
 
   public function prosesUpdate() {
@@ -72,7 +72,7 @@ class BahanMasuk extends AUTH_Controller {
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
-			$result = $this->M_BahanMasuk->update($data, $this->input->post('id'));
+			$result = $this->M_bp_masuk->update($data, $this->input->post('id'));
 
 			if ($result > 0) {
 				$out['status'] = '';
@@ -91,12 +91,12 @@ class BahanMasuk extends AUTH_Controller {
 
 	public function delete() {
 		$id = $_POST['id'];
-		$result = $this->M_BahanMasuk->delete($id);
+		$result = $this->M_bp_masuk->delete($id);
 
 		if ($result > 0) {
-			echo show_succ_msg('Data BahanMasuk Berhasil dihapus', '20px');
+			echo show_succ_msg('Data BpMasuk Berhasil dihapus', '20px');
 		} else {
-			echo show_err_msg('Data BahanMasuk Gagal dihapus', '20px');
+			echo show_err_msg('Data BpMasuk Gagal dihapus', '20px');
 		}
 	}
 

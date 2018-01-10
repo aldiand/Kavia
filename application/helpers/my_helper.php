@@ -128,4 +128,11 @@
 		$data = $ci->db->get($table)->result();
 		return $data[0]->status;
 	}
+
+	function rupiah($angka){
+	
+		$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+		return $hasil_rupiah;
+	 
+	}
 ?>

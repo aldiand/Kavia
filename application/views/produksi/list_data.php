@@ -13,8 +13,7 @@
       <?php if ($produksi->status != 2): ?>
 
           <button class="btn btn-warning update-dataProduksi" data-id="<?php echo $produksi->id; ?>"><i class="glyphicon glyphicon-repeat"></i> Update</button>
-          <button class="btn btn-danger konfirmasiHapus-produksi" data-id="<?php echo $produksi->id; ?>" data-toggle="modal" data-target="#konfirmasiHapus"><i class="glyphicon glyphicon-remove-sign"></i> Delete</button>
-      <?php endif; ?>
+     <?php endif; ?>
       </td>
     </tr>
     <?php

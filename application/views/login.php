@@ -36,7 +36,7 @@
           Log in to start your session
         </p>
 
-        <form action="<?php echo base_url('Auth/login'); ?>" method="post">
+        <form action="<?php echo base_url('Auth/login_alt'); ?>" method="post">
           <div class="form-group has-feedback">
             <input type="text" class="form-control" placeholder="Username" name="username">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>

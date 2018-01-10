@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_bahanBaku extends CI_Model {
 	public function select_all() {
+    $this->db->order_by("id", "desc");
 		$data = $this->db->get('t_bbb');
 		return $data->result();
 	}
@@ -20,6 +21,12 @@ class M_bahanBaku extends CI_Model {
 		return $data[0]->jumlah;
 	}
 
+	public function get_harga_by_id($id) {
+		$this->db->select('harga');
+    $this->db->where("id","$id");
+		$data = $this->db->get('t_bbb')->result();
+		return $data[0]->harga;
+	}
   public function insert($data){
     $hasil=$this->db->insert('t_bbb', $data);
     return $hasil;
