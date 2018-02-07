@@ -6,6 +6,7 @@ class Bbp extends AUTH_Controller {
     parent::__construct();
     $this->load->model('M_bbp');
     $this->load->model('M_bahanPenolong');
+    $this->load->model('M_report');
   }
 
   public function index() {
@@ -39,10 +40,13 @@ class Bbp extends AUTH_Controller {
 
   		if ($this->form_validation->run() == TRUE) {
   			$result = $this->M_bbp->insert($data);
-
+				
   			if ($result > 0) {
-          $result = $this->M_bahanPenolong->pakaiStok($data['id_bahan_penolong'], $data['jumlah']);
-          if ($result > 0){
+          $result2 = $this->M_bahanPenolong->pakaiStok($data['id_bahan_penolong'], $data['jumlah']);
+          if ($result2 > 0){
+						$harga = $this->M_bahanPenolong->get_harga_by_id($data['id_bahan_penolong']);
+						$this->M_report->insert_jurnal(514, $result, 'd', ($data['jumlah']*$harga));
+						$this->M_report->insert_jurnal(113, $result, 'c', ($data['jumlah']*$harga));
     				$out['status'] = '';
     				$out['msg'] = show_succ_msg('Data Biaya Bahan Baku Berhasil ditambahkan', '20px');
           } else {

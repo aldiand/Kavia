@@ -50,7 +50,8 @@ class M_bbp extends CI_Model {
 	}
 
   public function insert($data){
-    $hasil=$this->db->insert('t_biaya_bahan_penolong', $data);
+		$this->db->insert('t_biaya_bahan_penolong', $data);
+		$hasil=$this->db->insert_id();
     return $hasil;
   }
 

@@ -147,7 +147,7 @@
           <td><?php echo $bbb->id; ?></td>
           <td><?php echo $bbb->gaji; ?></td>
           <td><?php echo $bbb->total_jam; ?></td>
-          <td><?php echo $bbb->biaya; ?></td>
+          <td><?php echo $bbb->biaya * getValueKesulitan($data->id); ?></td>
         </tr>
           <?php endforeach; ?>
         </tbody>
@@ -193,24 +193,24 @@
       <div class="table-responsive">
         <table class="table">
           <tr>
-            <th style="width:50%">Biaya Bahan Baku:</th>
-            <td><?php echo rupiah($total_biaya_bb); ?></td>
+            <th style="width:50%" class="text-right">Biaya Bahan Baku:</th>
+            <td class="text-right"><?php echo rupiah($total_biaya_bb); ?></td>
           </tr>
           <tr>
-            <th>Biaya Bahan Penolong</th>
-            <td><?php echo rupiah($total_biaya_bp) ?></td>
+            <th class="text-right">Biaya Bahan Penolong</th>
+            <td class="text-right"><?php echo rupiah($total_biaya_bp) ?></td>
           </tr>
           <tr>
-            <th>Biaya Tenaga Kerja Langsung</th>
-            <td><?php echo rupiah($total_biaya_tkl) ?></td>
+            <th class="text-right">Biaya Tenaga Kerja Langsung</th>
+            <td class="text-right"><?php echo rupiah($total_biaya_tkl) ?></td>
           </tr>
           <tr>
-            <th>Biaya Overhead Pabrik</th>
-            <td><?php echo rupiah($total_biaya_overhead) ?></td>
+            <th class="text-right">Biaya Overhead Pabrik</th>
+            <td class="text-right"><?php echo rupiah($total_biaya_overhead) ?></td>
           </tr>
           <tr>
-            <th><b>Total</b></th>
-            <td><?php echo rupiah($total_biaya) ?></td>
+            <th class="text-right"><b>Total</b></th>
+            <td class="text-right"><?php echo rupiah($total_biaya) ?></td>
           </tr>
         </table>
       </div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 02 Jan 2018 pada 15.08
+-- Generation Time: 30 Jan 2018 pada 04.36
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -26,11 +26,11 @@ SET time_zone = "+00:00";
 -- Struktur dari tabel `t_bahan_penolong`
 --
 
-DROP TABLE IF EXISTS `t_bahan_penolong`;
 CREATE TABLE `t_bahan_penolong` (
   `id` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `satuan` varchar(15) NOT NULL,
+  `jumlah` int(11) NOT NULL,
   `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -40,7 +40,6 @@ CREATE TABLE `t_bahan_penolong` (
 -- Struktur dari tabel `t_bbb`
 --
 
-DROP TABLE IF EXISTS `t_bbb`;
 CREATE TABLE `t_bbb` (
   `id` int(11) NOT NULL,
   `nama_bahan_baku` varchar(30) NOT NULL,
@@ -55,7 +54,6 @@ CREATE TABLE `t_bbb` (
 -- Struktur dari tabel `t_bb_masuk`
 --
 
-DROP TABLE IF EXISTS `t_bb_masuk`;
 CREATE TABLE `t_bb_masuk` (
   `id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
@@ -70,7 +68,6 @@ CREATE TABLE `t_bb_masuk` (
 -- Struktur dari tabel `t_bb_terpakai`
 --
 
-DROP TABLE IF EXISTS `t_bb_terpakai`;
 CREATE TABLE `t_bb_terpakai` (
   `id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
@@ -85,7 +82,6 @@ CREATE TABLE `t_bb_terpakai` (
 -- Struktur dari tabel `t_biaya_bahan_penolong`
 --
 
-DROP TABLE IF EXISTS `t_biaya_bahan_penolong`;
 CREATE TABLE `t_biaya_bahan_penolong` (
   `id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
@@ -100,7 +96,6 @@ CREATE TABLE `t_biaya_bahan_penolong` (
 -- Struktur dari tabel `t_bop`
 --
 
-DROP TABLE IF EXISTS `t_bop`;
 CREATE TABLE `t_bop` (
   `id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
@@ -112,10 +107,23 @@ CREATE TABLE `t_bop` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `t_bp_masuk`
+--
+
+CREATE TABLE `t_bp_masuk` (
+  `id` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `id_bahan_penolong` int(11) NOT NULL,
+  `harga_beli` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `t_btkl`
 --
 
-DROP TABLE IF EXISTS `t_btkl`;
 CREATE TABLE `t_btkl` (
   `id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
@@ -128,10 +136,49 @@ CREATE TABLE `t_btkl` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `t_coa`
+--
+
+CREATE TABLE `t_coa` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(10) NOT NULL,
+  `nama` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `t_coa`
+--
+
+INSERT INTO `t_coa` (`id`, `kode`, `nama`) VALUES
+(2, '112', 'Persediaan BB'),
+(3, '511', 'Gaji dan Upah'),
+(7, '111', 'Kas'),
+(8, '512', 'BDP - BBB'),
+(9, '513', 'BDP - BTKL'),
+(10, '514', 'BDP - BBP'),
+(11, '113', 'Persediaan BP');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_jurnal`
+--
+
+CREATE TABLE `t_jurnal` (
+  `id` int(11) NOT NULL,
+  `kode_akun` int(11) NOT NULL,
+  `reff` varchar(20) NOT NULL,
+  `tanggal` date NOT NULL,
+  `posisi` varchar(1) NOT NULL,
+  `nominal` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `t_overhead`
 --
 
-DROP TABLE IF EXISTS `t_overhead`;
 CREATE TABLE `t_overhead` (
   `id` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
@@ -145,7 +192,6 @@ CREATE TABLE `t_overhead` (
 -- Struktur dari tabel `t_pegawai`
 --
 
-DROP TABLE IF EXISTS `t_pegawai`;
 CREATE TABLE `t_pegawai` (
   `id` int(11) NOT NULL,
   `nama_pegawai` varchar(30) NOT NULL,
@@ -161,7 +207,6 @@ CREATE TABLE `t_pegawai` (
 -- Struktur dari tabel `t_pengerjaan`
 --
 
-DROP TABLE IF EXISTS `t_pengerjaan`;
 CREATE TABLE `t_pengerjaan` (
   `id` int(11) NOT NULL,
   `nama` varchar(11) NOT NULL,
@@ -175,7 +220,6 @@ CREATE TABLE `t_pengerjaan` (
 -- Struktur dari tabel `t_pesanan`
 --
 
-DROP TABLE IF EXISTS `t_pesanan`;
 CREATE TABLE `t_pesanan` (
   `id` int(11) NOT NULL,
   `nama_pemesan` varchar(30) NOT NULL,
@@ -184,10 +228,11 @@ CREATE TABLE `t_pesanan` (
   `pesanan` varchar(30) NOT NULL,
   `deskripsi_pesanan` text NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `harga_kisaran` int(11) NOT NULL,
+  `kesulitan` varchar(11) NOT NULL,
   `dp` int(11) NOT NULL,
   `status` int(1) NOT NULL,
-  `tanggal_pesanan` date NOT NULL
+  `tanggal_pesanan` date NOT NULL,
+  `tanggal_selesai` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -196,7 +241,6 @@ CREATE TABLE `t_pesanan` (
 -- Struktur dari tabel `t_produksi`
 --
 
-DROP TABLE IF EXISTS `t_produksi`;
 CREATE TABLE `t_produksi` (
   `id` int(11) NOT NULL,
   `tanggal_mulai` date NOT NULL,
@@ -257,12 +301,30 @@ ALTER TABLE `t_bop`
   ADD KEY `id_produksi` (`id_produksi`);
 
 --
+-- Indexes for table `t_bp_masuk`
+--
+ALTER TABLE `t_bp_masuk`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `t_btkl`
 --
 ALTER TABLE `t_btkl`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_pegawai` (`id_pegawai`),
   ADD KEY `id_produksi` (`id_produksi`);
+
+--
+-- Indexes for table `t_coa`
+--
+ALTER TABLE `t_coa`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `t_jurnal`
+--
+ALTER TABLE `t_jurnal`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `t_overhead`
@@ -318,27 +380,42 @@ ALTER TABLE `t_bbb`
 -- AUTO_INCREMENT for table `t_bb_masuk`
 --
 ALTER TABLE `t_bb_masuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `t_bb_terpakai`
 --
 ALTER TABLE `t_bb_terpakai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `t_biaya_bahan_penolong`
 --
 ALTER TABLE `t_biaya_bahan_penolong`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `t_bop`
 --
 ALTER TABLE `t_bop`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `t_bp_masuk`
+--
+ALTER TABLE `t_bp_masuk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `t_btkl`
 --
 ALTER TABLE `t_btkl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `t_coa`
+--
+ALTER TABLE `t_coa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `t_jurnal`
+--
+ALTER TABLE `t_jurnal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `t_overhead`
 --
@@ -358,12 +435,12 @@ ALTER TABLE `t_pengerjaan`
 -- AUTO_INCREMENT for table `t_pesanan`
 --
 ALTER TABLE `t_pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `t_produksi`
 --
 ALTER TABLE `t_produksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --

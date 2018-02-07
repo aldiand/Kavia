@@ -52,7 +52,7 @@
               <b>Deskripsi</b> <a class="pull-right"><?php echo $data->deskripsi_pesanan; ?></a>
             </li>
             <li class="list-group-item">
-            <b>Harga Kisaran</b> <a class="pull-right"><?php echo $data->harga_kisaran; ?></a>
+            <b>Kesulitan</b> <a class="pull-right"><?php echo $data->kesulitan; ?></a>
             </li>
             <li class="list-group-item">
             <b>Jumlah</b> <a class="pull-right"><?php echo $data->jumlah; ?></a>

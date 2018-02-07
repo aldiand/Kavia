@@ -48,10 +48,8 @@ class Pesanan extends AUTH_Controller {
 
       $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
       $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_pesanan($id);
-      $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id);
+      $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id) * getValueKesulitan($id);
       $data['total_biaya_overhead'] = $this->M_produksi->get_overhead_by_pesanan($id);
-
-    $data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];
 
     $data['modal_tambah_produksi'] = show_my_modal('modals/modal_tambah_produksi', 'tambah-produksi', $data);
 
@@ -93,7 +91,7 @@ class Pesanan extends AUTH_Controller {
   		$this->form_validation->set_rules('pesanan', 'Pesanan', 'trim|required');
   		$this->form_validation->set_rules('deskripsi_pesanan', 'Deskripsi', 'trim|required');
   		$this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required');
-  		$this->form_validation->set_rules('harga_kisaran', 'Harga', 'trim|required');
+  		$this->form_validation->set_rules('kesulitan', 'Kesulitan', 'trim|required');
   		$this->form_validation->set_rules('dp', 'DP', 'trim|required');
 
   		$data = $this->input->post();
@@ -129,7 +127,7 @@ class Pesanan extends AUTH_Controller {
     $this->form_validation->set_rules('pesanan', 'Pesanan', 'trim|required');
     $this->form_validation->set_rules('deskripsi_pesanan', 'Deskripsi', 'trim|required');
     $this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required');
-    $this->form_validation->set_rules('harga_kisaran', 'Harga', 'trim|required');
+    $this->form_validation->set_rules('kesulitan', 'Kesulitan', 'trim|required');
     $this->form_validation->set_rules('dp', 'DP', 'trim|required');
 
 		$data = $this->input->post();
@@ -169,7 +167,16 @@ class Pesanan extends AUTH_Controller {
   			echo show_succ_msg('Pesanan Selesai', '20px');
   		} else {
   			echo show_err_msg('Pesanan Gagal di Update', '20px');
-  		}
+			}
+		
+
+      $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
+      $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_pesanan($id);
+      $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id) * getValueKesulitan($id);
+      $data['total_biaya_overhead'] = $this->M_produksi->get_overhead_by_pesanan($id);
+
+			$data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];
+
   }
   public function setProses() {
 		$id = $_POST['id'];

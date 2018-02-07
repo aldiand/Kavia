@@ -9,6 +9,7 @@
     <ul class="sidebar-menu">
       <li class="header">LIST MENU</li>
       <!-- Optionally, you can add icons to the links -->
+      <?php if($jenis == "admin" || $jenis == "pemilik") { ?>
       <li class="treeview">
         <a href="#">
             <i class="fa fa-database"></i>
@@ -24,7 +25,7 @@
             <li><a href="<?php echo base_url(); ?>Pegawai/"><i class="fa fa-circle-o"></i> Pegawai</a></li>
           </ul>
         </li>
-
+      <?php }?>
       <li class="treeview">
         <a href="#">
             <i class="fa fa-edit"></i>
@@ -34,16 +35,19 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            <?php if($jenis == "admin" || $jenis == "pemilik") { ?>
             <li><a href="<?php echo base_url(); ?>Pesanan/"><i class="fa fa-circle-o"></i> Pesanan</a></li>
+          <?php } ?>
             <li><a href="<?php echo base_url(); ?>Produksi/"><i class="fa fa-circle-o"></i> Produksi</a></li>
+            <?php if($jenis == "admin" || $jenis == "pemilik") { ?>
             <li><a href="<?php echo base_url(); ?>Bahanmasuk/#"><i class="fa fa-circle-o"></i> Bahan Baku Masuk</a></li>
             <li><a href="<?php echo base_url(); ?>Bpmasuk/#"><i class="fa fa-circle-o"></i> Bahan Penolong Masuk</a></li>
-            
             <li><a href="<?php echo base_url(); ?>Pesanan/riwayat#"><i class="fa fa-circle-o"></i> Riwayat Pesanan</a></li>
-        
+          <?php }?>
           </ul>
         </li>
 
+      <?php if($jenis == "admin" || $jenis == "pemilik") { ?>
       <li class="treeview">
         <a href="#">
             <i class="fa fa-book"></i>
@@ -54,11 +58,12 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url(); ?>Report/KartuHPP/#"><i class="fa fa-circle-o"></i> Kartu Harga Pokok Pesanan</a></li>
-            <li><a href="<?php echo base_url(); ?>#"><i class="fa fa-circle-o"></i> Jurnal</a></li>
-            <li><a href="<?php echo base_url(); ?>#/"><i class="fa fa-circle-o"></i> Buku Besar</a></li>
-           
+            <li><a href="<?php echo base_url(); ?>Jurnal/#"><i class="fa fa-circle-o"></i> Jurnal</a></li>
+            <li><a href="<?php echo base_url(); ?>Jurnal/BukuBesar#"><i class="fa fa-circle-o"></i> Buku Besar</a></li>
+
           </ul>
         </li>
+        <?php }?>
     </ul>
     <!-- /.sidebar-menu -->
   </section>

@@ -32,6 +32,14 @@ class M_btkl extends CI_Model {
 			return $data->result();
 		}
 
+		public function get_totaljam_by_id($id) { 
+			$this->db->select('t_btkl.jam_keluar-t_btkl.jam_masuk AS total_jam');
+			$this->db->from('t_btkl');		
+			$this->db->where('id', $id);
+			$data = $this->db->get()->result();
+			return $data[0]->total_jam;
+		}
+
 	public function get_biaya_by_produksi($id_produksi) {
 		$this->db->select('SUM(t_pegawai.gaji*(t_btkl.jam_keluar-t_btkl.jam_masuk)) AS biaya');
 		$this->db->from('t_btkl');
@@ -60,7 +68,8 @@ class M_btkl extends CI_Model {
 	}
 
   public function insert($data){
-    $hasil=$this->db->insert('t_btkl', $data);
+    $this->db->insert('t_btkl', $data);
+		$hasil=$this->db->insert_id();
     return $hasil;
   }
 

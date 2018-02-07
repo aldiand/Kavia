@@ -1,4 +1,5 @@
 <?php
+$jenis = $this->session->userdata('jenis');
   foreach ($dataProduksi as $produksi) {
     ?>
 <div class="row">
@@ -14,9 +15,12 @@
     <div class="nav-tabs-custom">
       <ul class="nav nav-tabs">
         <li class="active"><a href="<?php echo base_url('Produksi/id/'.$this->uri->segment(3)); ?>" id="taboverview">Overview</a></li>
+        <?php if ($jenis == "produksi" ): ?>
         <li><a href="#btkl" data-toggle="tab">BTKL</a></li>
         <li><a href="#bb" data-toggle="tab">Bahan Baku</a></li>
         <li><a href="#bbp" data-toggle="tab">Bahan Penolong</a></li>
+
+        <?php endif; ?>
       </ul>
       <div class="tab-content">
         <div class="active tab-pane" id="overview">
@@ -66,7 +70,7 @@
                 </li>
 
                 <li class="list-group-item">
-                  <b>Total Biaya</b> <br> <a style="word-wrap: break-word;"><?php echo $total_biaya_tkl; ?></a>
+                  <b>Total Biaya</b> <br> <a style="word-wrap: break-word;"><?php echo $total_biaya_tkl * getValueKesulitan($produksi->id_pesanan); ?></a>
                 </li>
               </ul>
             </div>
@@ -142,10 +146,6 @@
                       <th>Jam Masuk</th>
                       <th>Jam Keluar</th>
                       <th>Biaya</th>
-                      <?php if ($produksi->status != 2): ?>
-
-                        <th style="text-align: center;">Aksi</th>
-                      <?php endif; ?>
                     </tr>
                   </thead>
                   <tbody id="data-btkl">
@@ -175,10 +175,6 @@
                         <th>Nama Bahan Baku</th>
                         <th>Jumlah</th>
                         <th>Harga</th>
-                        <?php if ($produksi->status != 2): ?>
-
-                          <th style="text-align: center;">Aksi</th>
-                        <?php endif; ?>
                       </tr>
                     </thead>
                     <tbody id="data-bbTerpakai">
@@ -208,10 +204,6 @@
                         <th>Nama Bahan Baku</th>
                         <th>Jumlah</th>
                         <th>Harga</th>
-                        <?php if ($produksi->status != 2): ?>
-
-                          <th style="text-align: center;">Aksi</th>
-                        <?php endif; ?>
                       </tr>
                     </thead>
                     <tbody id="data-bbp">

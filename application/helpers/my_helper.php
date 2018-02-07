@@ -129,6 +129,28 @@
 		return $data[0]->status;
 	}
 
+	function getValueKesulitan($id) {
+		$ci =& get_instance();
+		$ci->db->where('id', $id);
+		$data = $ci->db->get('t_pesanan')->result();
+		$kesulitan = $data[0]->kesulitan;
+		switch($kesulitan) {
+			case 'mudah':
+				return 1.0;
+				break;
+			case 'sedang':
+				return 1.5;
+				break;
+			case 'sulit':
+				return 2.0;
+				break;
+			default:
+				return 1.0;
+				break;
+		}
+
+	}
+
 	function rupiah($angka){
 	
 		$hasil_rupiah = "Rp " . number_format($angka,2,',','.');

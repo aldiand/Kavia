@@ -19,7 +19,7 @@
           <th>Alamat</th>
           <th>Pesanan</th>
           <th>Deskripsi</th>
-          <th>Harga Kisaran</th>
+          <th>Kesulitan</th>
           <th>Jumlah</th>
           <th>DP</th>
           <th>Status</th>

@@ -9,7 +9,7 @@ class M_coa extends CI_Model {
 	}
 
   public function select_by_id($id){
-    $this->db->where('id', $id);
+    $this->db->where('kode', $id);
 		$data = $this->db->get('t_coa');
 		return $data->result();
   }

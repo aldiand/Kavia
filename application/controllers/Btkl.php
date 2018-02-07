@@ -6,6 +6,7 @@ class Btkl extends AUTH_Controller {
     parent::__construct();
     $this->load->model('M_btkl');
     $this->load->model('M_pegawai');
+    $this->load->model('M_report');
   }
 
   public function index() {
@@ -40,6 +41,10 @@ class Btkl extends AUTH_Controller {
   			$result = $this->M_btkl->insert($data);
 
   			if ($result > 0) {
+					$harga = $this->M_pegawai->get_gaji_by_id($data['id_pegawai']);
+					$total_jam = $data['jam_keluar']-$data['jam_masuk'];
+					$this->M_report->insert_jurnal(513, $result, 'd', ($total_jam*$harga));
+					$this->M_report->insert_jurnal(511, $result, 'c', ($total_jam*$harga));
   				$out['status'] = '';
   				$out['msg'] = show_succ_msg('Data BTKL Berhasil ditambahkan', '20px');
   			} else {

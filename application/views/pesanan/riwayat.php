@@ -18,7 +18,7 @@
           <th>Alamat</th>
           <th>Pesanan</th>
           <th>Deskripsi</th>
-          <th>Harga Kisaran</th>
+          <th>Kesulitan</th>
           <th>Jumlah</th>
           <th>DP</th>
           <th>Aksi</th>
@@ -35,7 +35,7 @@
               <td><?php echo $data->alamat; ?></td>
               <td><?php echo $data->pesanan; ?></td>
               <td><?php echo $data->deskripsi_pesanan; ?></td>
-              <td><?php echo $data->harga_kisaran; ?></td>
+              <td><?php echo $data->kesulitan; ?></td>
               <td><?php echo $data->jumlah; ?></td>
               <td><?php echo $data->dp; ?></td>
               <td><a href="<?php echo base_url('/Pesanan/id/').$data->id?>"> <button class="btn btn-info detail-dataPosisi" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-info-sign"></i> Detail</button></a></td>

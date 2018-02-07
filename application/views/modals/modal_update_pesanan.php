@@ -32,8 +32,13 @@
             <input type="number" class="form-control" placeholder="Jumlah pesanan" name="jumlah" value="<?php echo $dataPesanan->jumlah; ?>" aria-describedby="sizing-addon2">
           </div>
           <div class="input-group form-group">
-            <label  class="control-label">Harga Kisaran</label>
-            <input type="number" class="form-control" placeholder="Harga Kisaran" name="harga_kisaran" value="<?php echo $dataPesanan->harga_kisaran; ?>" aria-describedby="sizing-addon2">
+            <label  class="control-label">Kesulitan</label>
+            <select name="kesulitan" class="form-control">
+              <option value="<?php echo $dataPesanan->kesulitan; ?>"><?php echo $dataPesanan->kesulitan; ?></option>
+              <option value="mudah">Mudah</option>
+              <option value="sedang">Sedang</option>
+              <option value="sulit">Sulits</option>
+            </select>
           </div>
           <div class="input-group form-group">
             <label  class="control-label">DP</label>

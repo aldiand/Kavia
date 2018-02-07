@@ -20,6 +20,13 @@ class M_pegawai extends CI_Model {
 		return $data->result();
   }
 
+  public function get_gaji_by_id($id) {
+		$this->db->select('gaji');
+    $this->db->where("id","$id");
+		$data = $this->db->get('t_pegawai')->result();
+		return $data[0]->gaji;
+  }
+  
   public function insert($data){
     $hasil=$this->db->insert('t_pegawai', $data);
     return $hasil;
