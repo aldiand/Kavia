@@ -27,20 +27,20 @@
 
 
 	window.onload = function() {
-		
-		tampilPegawai();
-		tampilPesanan();
-		tampilBahanPenolong();
+
 		tampilOverhead();
 		tampilProduksi();
 		tampilBbTerpakai();
 		tampilBbp();
 		tampilBtkl();
 		tampilBahanMasuk();
-		
-		<?php if ($this->uri->segment(1) == 'Bahanbaku') {echo "tampilBahanBaku();";}?>
+
+		<?php if ($this->uri->segment(1) == 'BahanPenolong') {echo "tampilBahanPenolong();";}?>
+		<?php if ($this->uri->segment(1) == 'Pesanan') {echo "tampilPesanan();";}?>
+		<?php if ($this->uri->segment(1) == 'Pegawai') {echo "tampilPegawai();";}?>
+		<?php if ($this->uri->segment(1) == 'BahanBaku') {echo "tampilBahanBaku();";}?>
 		<?php if ($this->uri->segment(1) == 'Coa') {echo "tampilCoa();";}?>
-		<?php if ($this->uri->segment(1) == 'Bpmasuk') {echo "tampilBpMasuk();";}?>
+		<?php if ($this->uri->segment(1) == 'BpMasuk') {echo "tampilBpMasuk();";}?>
 		<?php
 			if ($this->session->flashdata('msg') != '') {
 				echo "effect_msg();";

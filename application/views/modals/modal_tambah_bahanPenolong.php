@@ -14,7 +14,7 @@
     </div>
     <div class="input-group form-group">
       <label  class="control-label">Jumlah</label>
-      <input type="text" class="form-control" placeholder="satuan" name="jumlah" aria-describedby="sizing-addon2">
+      <input type="text" class="form-control" placeholder="jumlah" name="jumlah" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
       <label  class="control-label">Harga</label>

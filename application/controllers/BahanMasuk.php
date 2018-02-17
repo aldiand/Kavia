@@ -4,26 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class BahanMasuk extends AUTH_Controller {
   public function __construct() {
     parent::__construct();
-    $this->load->model('M_BahanMasuk');
+    $this->load->model('M_bahanMasuk');
     $this->load->model('M_bahanBaku');
     $this->load->model('M_report');
   }
 
   public function index() {
-    $data['dataBahanMasuk'] = $this->M_BahanMasuk->select_all();
+    $data['dataBahanMasuk'] = $this->M_bahanMasuk->select_all();
     $data['dataBahanBaku'] = $this->M_bahanBaku->select_all();
 
     $data['page'] = "bahan Masuk";
     $data['judul'] = "Data Bahan Masuk";
     $data['deskripsi'] = "Manage Data Bahan Masuk";
 
-        $data['modal_tambah_bahanMasuk'] = show_my_modal('modals/modal_tambah_BahanMasuk', 'tambah-BahanMasuk', $data);
+        $data['modal_tambah_bahanMasuk'] = show_my_modal('modals/modal_tambah_bahanMasuk', 'tambah-BahanMasuk', $data);
 
-    $this->template->views('BahanMasuk/home', $data);
+    $this->template->views('bahanMasuk/home', $data);
   }
   public function tampil() {
-		$data['dataBahanMasuk'] = $this->M_BahanMasuk->select_all();
-		$this->load->view('BahanMasuk/list_data', $data);
+		$data['dataBahanMasuk'] = $this->M_bahanMasuk->select_all();
+		$this->load->view('bahanMasuk/list_data', $data);
 	}
 
   	public function prosesTambah() {
@@ -32,13 +32,13 @@ class BahanMasuk extends AUTH_Controller {
 
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
-  			$result = $this->M_BahanMasuk->insert($data);
+  			$result = $this->M_bahanMasuk->insert($data);
   			if ($result > 0) {
-				$result2 = $this->M_BahanMasuk->tambahStok($data['id_bbb'], $data['jumlah']);
+				$result2 = $this->M_bahanMasuk->tambahStok($data['id_bbb'], $data['jumlah']);
 				if ($result2 > 0){
 					$this->M_report->insert_jurnal(112, $result, 'd', ($data['jumlah']*$data['harga_beli']));
 					$this->M_report->insert_jurnal(111, $result, 'c', ($data['jumlah']*$data['harga_beli']));
-					
+
 					$out['status'] = '';
 					$out['msg'] = show_succ_msg('Data Bahan Masuk Berhasil ditambahkan', '20px');
 				} else {
@@ -60,7 +60,7 @@ class BahanMasuk extends AUTH_Controller {
 
 	public function update() {
 		$id = trim($_POST['id']);
-		$data['dataBahanMasuk'] = $this->M_BahanMasuk->select_by_id($id);
+		$data['dataBahanMasuk'] = $this->M_bahanMasuk->select_by_id($id);
 		echo show_my_modal('modals/modal_update_BahanMasuk', 'update-BahanMasuk', $data);
 	}
 
@@ -72,7 +72,7 @@ class BahanMasuk extends AUTH_Controller {
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
-			$result = $this->M_BahanMasuk->update($data, $this->input->post('id'));
+			$result = $this->M_bahanMasuk->update($data, $this->input->post('id'));
 
 			if ($result > 0) {
 				$out['status'] = '';
@@ -91,7 +91,7 @@ class BahanMasuk extends AUTH_Controller {
 
 	public function delete() {
 		$id = $_POST['id'];
-		$result = $this->M_BahanMasuk->delete($id);
+		$result = $this->M_bahanMasuk->delete($id);
 
 		if ($result > 0) {
 			echo show_succ_msg('Data BahanMasuk Berhasil dihapus', '20px');

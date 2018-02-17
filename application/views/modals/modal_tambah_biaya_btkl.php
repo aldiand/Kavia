@@ -6,7 +6,7 @@
   <form id="form-tambah-btkl" method="POST">
     <div class="input-group form-group">
       <label  class="control-label">Tanggal</label>
-      <input type="date" class="form-control" value="<?php echo Date('Y-m-d');?>" name="tanggal" aria-describedby="sizing-addon2">
+      <input type="date" class="form-control" value="<?php echo Date('Y-m-d');?>" readonly="readonly" name="tanggal" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
       <label  class="control-label">Pegawai</label>
@@ -24,23 +24,7 @@
     </div>
     <div class="input-group form-group">
       <label  class="control-label">Jam Masuk</label>
-      <select name="jam_masuk" class="form-control select2" aria-describedby="sizing-addon2">
-        <?php
-        for ($i=1 ; $i <= 24 ; $i++ ) {
-          echo "<option value='$i'>$i</option>";
-        }
-        ?>
-      </select>
-    </div>
-    <div class="input-group form-group">
-      <label  class="control-label">Jam Keluar</label>
-      <select name="jam_keluar" class="form-control select2" aria-describedby="sizing-addon2">
-        <?php
-        for ($i=1 ; $i <= 24 ; $i++ ) {
-          echo "<option value='$i'>$i</option>";
-        }
-        ?>
-      </select>
+      <input type="text" class="form-control" value="<?php echo Date('h:i');?>" readonly="readonly" name="jam_masuk" aria-describedby="sizing-addon2">
     </div>
     <?php if (!empty($this->uri->segment(3))): ?>
       <input type="hidden" class="form-control" name="id_produksi" value="<?php echo $this->uri->segment(3);?>" aria-describedby="sizing-addon2">

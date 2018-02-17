@@ -20,8 +20,8 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url(); ?>Coa/#"><i class="fa fa-circle-o"></i> COA</a></li>
-            <li><a href="<?php echo base_url(); ?>Bahanbaku/#"><i class="fa fa-circle-o"></i> Bahan Baku</a></li>
-            <li><a href="<?php echo base_url(); ?>Bahanpenolong/#"><i class="fa fa-circle-o"></i> Bahan Penolong</a></li>
+            <li><a href="<?php echo base_url(); ?>BahanBaku/#"><i class="fa fa-circle-o"></i> Bahan Baku</a></li>
+            <li><a href="<?php echo base_url(); ?>BahanPenolong/#"><i class="fa fa-circle-o"></i> Bahan Penolong</a></li>
             <li><a href="<?php echo base_url(); ?>Pegawai/"><i class="fa fa-circle-o"></i> Pegawai</a></li>
           </ul>
         </li>
@@ -40,8 +40,8 @@
           <?php } ?>
             <li><a href="<?php echo base_url(); ?>Produksi/"><i class="fa fa-circle-o"></i> Produksi</a></li>
             <?php if($jenis == "admin" || $jenis == "pemilik") { ?>
-            <li><a href="<?php echo base_url(); ?>Bahanmasuk/#"><i class="fa fa-circle-o"></i> Bahan Baku Masuk</a></li>
-            <li><a href="<?php echo base_url(); ?>Bpmasuk/#"><i class="fa fa-circle-o"></i> Bahan Penolong Masuk</a></li>
+            <li><a href="<?php echo base_url(); ?>BahanMasuk/#"><i class="fa fa-circle-o"></i> Bahan Baku Masuk</a></li>
+            <li><a href="<?php echo base_url(); ?>BpMasuk/#"><i class="fa fa-circle-o"></i> Bahan Penolong Masuk</a></li>
             <li><a href="<?php echo base_url(); ?>Pesanan/riwayat#"><i class="fa fa-circle-o"></i> Riwayat Pesanan</a></li>
           <?php }?>
           </ul>

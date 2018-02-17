@@ -20,7 +20,7 @@
 			<td align = 'center'><b>DEBIT</b></td>
 			<td align = 'center'><b>KREDIT</b></td>
 		</tr>
-		<?php 
+		<?php
 		$total =0;
 		$total2 =0;
 			foreach ($jurnal as $data)
@@ -28,26 +28,26 @@
 				echo"
 					<tr>
 						<td align = 'center'>".$data['tanggal']."</td>";
-						
+
 				if ($data['posisi']=='d')
 				{
-					
+
 					echo"
-					
-					
-						<td>".$data['kode_akun']."</td>
+
+
+						<td>".$data['nama']."</td>
 						<td>".$data['reff']."</td>
 						<td align = 'right'>".rupiah($data['nominal'])."</td>
 						<td align = 'right'></td>";
 						$total = $total+$data['nominal'];
 				}else{
 					echo"
-						<td align='center'>".$data['kode_akun']."</td>
+						<td align='center'>".$data['nama']."</td>
 						<td>".$data['reff']."</td>
 						<td align = 'right'></td>
 						<td align = 'right'>".rupiah($data['nominal'])."</td>
 					</tr>
-					
+
 				";
 				$total2=$total2+$data['nominal'];
 				}

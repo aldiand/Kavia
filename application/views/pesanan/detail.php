@@ -122,6 +122,9 @@
                 <li class="list-group-item">
                 <b>Harga Jual </b> <a class="pull-right"><?php echo (120*$total_biaya/100); ?></a>
                 </li>
+                <li class="list-group-item">
+                <b>Total Bayar(Harga - DP)</b> <a class="pull-right"><?php echo (120*$total_biaya/100)-$data->dp; ?></a>
+                </li>
                 <a href="<?php echo base_url('/Pesanan/detail/').$data->id?>"><button class="btn btn-success" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-files"></i> Detail</button></a>
 
               <?php endif; ?>
@@ -136,6 +139,8 @@
   }
   ?>
 </ul>
+
+<!--
 <div class="box">
   <div class="box-header">
   <div class="col-md-12" style="padding: 0;">
@@ -145,7 +150,6 @@
         <button class="form-control btn btn-primary" data-toggle="modal" data-target="#tambah-produksi"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data</button>
     </div>
   </div>
-  <!-- /.box-header -->
   <div class="box-body">
     <table id="list-data" class="table table-bordered table-striped">
       <thead>
@@ -163,6 +167,7 @@
       </tbody>
     </table>
   </div>
+-->
 </div>
 
 <div id="tempat-modal"></div>

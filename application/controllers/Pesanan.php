@@ -13,6 +13,7 @@ class Pesanan extends AUTH_Controller {
     $this->load->model('M_bbb');
     $this->load->model('M_bbp');
     $this->load->model('M_btkl');
+    $this->load->model('M_report');
   }
 
   public function index() {
@@ -50,6 +51,8 @@ class Pesanan extends AUTH_Controller {
       $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_pesanan($id);
       $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id) * getValueKesulitan($id);
       $data['total_biaya_overhead'] = $this->M_produksi->get_overhead_by_pesanan($id);
+
+          $data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];
 
     $data['modal_tambah_produksi'] = show_my_modal('modals/modal_tambah_produksi', 'tambah-produksi', $data);
 
@@ -99,6 +102,9 @@ class Pesanan extends AUTH_Controller {
   			$result = $this->M_pesanan->insert($data);
 
   			if ($result > 0) {
+
+    $this->M_report->insert_jurnal(211, $result, 'd', $data['dp']);
+    $this->M_report->insert_jurnal(212, $result, 'c', $data['dp']);
   				$out['status'] = '';
   				$out['msg'] = show_succ_msg('Data Pesanan Berhasil ditambahkan', '20px');
   			} else {
@@ -164,11 +170,21 @@ class Pesanan extends AUTH_Controller {
 		$id = $_POST['id'];
 		$result = $this->M_pesanan->setStatusSelesai($id);
   		if ($result > 0) {
+    		$data['lengkap'] = $this->M_pesanan->select_by_id($id);
+        $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
+        $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_pesanan($id);
+        $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id) * getValueKesulitan($id);
+        $data['total_biaya_overhead'] = $this->M_produksi->get_overhead_by_pesanan($id);
+
+        $data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];
+
+    $this->M_report->insert_jurnal(113, $result, 'd', (120*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
+    $this->M_report->insert_jurnal(111, $result, 'c', (120*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
   			echo show_succ_msg('Pesanan Selesai', '20px');
   		} else {
   			echo show_err_msg('Pesanan Gagal di Update', '20px');
 			}
-		
+
 
       $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
       $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_pesanan($id);

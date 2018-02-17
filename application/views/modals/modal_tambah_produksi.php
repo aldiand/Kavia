@@ -12,7 +12,7 @@
   </div>
     <div class="input-group form-group">
       <label  class="control-label">Tanggal Mulai</label>
-      <input type="date" class="form-control" disabled value="<?php echo Date('Y-m-d');?>" name="tanggal_mulai" aria-describedby="sizing-addon2">
+      <input type="date" class="form-control" readonly="readonly" value="<?php echo Date('Y-m-d');?>" name="tanggal_mulai" aria-describedby="sizing-addon2">
     </div>
     <div class="form-group">
       <div class="col-md-12">

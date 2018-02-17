@@ -17,13 +17,13 @@ class BpMasuk extends AUTH_Controller {
     $data['judul'] = "Data Bahan Masuk";
     $data['deskripsi'] = "Manage Data Bahan Masuk";
 
-        $data['modal_tambah_bpMasuk'] = show_my_modal('modals/modal_tambah_BpMasuk', 'tambah-BpMasuk', $data);
+        $data['modal_tambah_bpMasuk'] = show_my_modal('modals/modal_tambah_bpMasuk', 'tambah-BpMasuk', $data);
 
-    $this->template->views('BpMasuk/home', $data);
+    $this->template->views('bpMasuk/home', $data);
   }
   public function tampil() {
 		$data['dataBpMasuk'] = $this->M_bp_masuk->select_all();
-		$this->load->view('BpMasuk/list_data', $data);
+		$this->load->view('bpMasuk/list_data', $data);
 	}
 
   	public function prosesTambah() {

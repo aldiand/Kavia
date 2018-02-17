@@ -34,17 +34,16 @@ class Btkl extends AUTH_Controller {
   		$this->form_validation->set_rules('tanggal', 'Tanggal', 'trim|required');
     	$this->form_validation->set_rules('id_pegawai', 'Pegawai', 'trim|required');
   		$this->form_validation->set_rules('jam_masuk', 'jam masuk', 'trim|required');
-  		$this->form_validation->set_rules('jam_keluar', 'jam keluar', 'trim|required');
 
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
   			$result = $this->M_btkl->insert($data);
 
   			if ($result > 0) {
-					$harga = $this->M_pegawai->get_gaji_by_id($data['id_pegawai']);
-					$total_jam = $data['jam_keluar']-$data['jam_masuk'];
-					$this->M_report->insert_jurnal(513, $result, 'd', ($total_jam*$harga));
-					$this->M_report->insert_jurnal(511, $result, 'c', ($total_jam*$harga));
+					//$harga = $this->M_pegawai->get_gaji_by_id($data['id_pegawai']);
+					//$total_jam = $data['jam_keluar']-$data['jam_masuk'];
+					//$this->M_report->insert_jurnal(513, $result, 'd', ($total_jam*$harga));
+					//$this->M_report->insert_jurnal(511, $result, 'c', ($total_jam*$harga));
   				$out['status'] = '';
   				$out['msg'] = show_succ_msg('Data BTKL Berhasil ditambahkan', '20px');
   			} else {
@@ -70,7 +69,6 @@ class Btkl extends AUTH_Controller {
   public function prosesUpdate() {
     $this->form_validation->set_rules('tanggal', 'Tanggal', 'trim|required');
     $this->form_validation->set_rules('id_pegawai', 'Pegawai', 'trim|required');
-    $this->form_validation->set_rules('jam_masuk', 'jam masuk', 'trim|required');
     $this->form_validation->set_rules('jam_keluar', 'jam keluar', 'trim|required');
 
 		$data = $this->input->post();
@@ -78,6 +76,10 @@ class Btkl extends AUTH_Controller {
 			$result = $this->M_btkl->update($data, $this->input->post('id'));
 
 			if ($result > 0) {
+        $harga = $this->M_pegawai->get_gaji_by_id($data['id_pegawai']);
+        $total_jam = substr($data['jam_keluar'],0,2)-substr($data['jam_masuk'],0,2) + 1;
+        $this->M_report->insert_jurnal(513, $result, 'd', ($total_jam*$harga));
+        $this->M_report->insert_jurnal(511, $result, 'c', ($total_jam*$harga));
 				$out['status'] = '';
 				$out['msg'] = show_succ_msg('Data BTKL Berhasil diupdate', '20px');
 			} else {

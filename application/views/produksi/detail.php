@@ -145,7 +145,6 @@ $jenis = $this->session->userdata('jenis');
                       <th>Nama Pegawai</th>
                       <th>Jam Masuk</th>
                       <th>Jam Keluar</th>
-                      <th>Biaya</th>
                     </tr>
                   </thead>
                   <tbody id="data-btkl">
