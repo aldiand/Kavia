@@ -4,10 +4,9 @@
     <tr>
       <td><?php echo $produksi->id; ?></a></td>
       <td><?php echo $produksi->tanggal_mulai; ?></td>
-      <td><?php echo $produksi->tanggal_selesai; ?></td>
       <td><?php echo $produksi->deskripsi; ?></td>
       <td><?php echo getStatus( $produksi->status  ); ?></td>
-      <td style="min-width:270px;">
+      <td style="max-width:70px;" align="center">
         <a href="<?php echo base_url('/Produksi/id/').$produksi->id?>"> <button class="btn btn-info detail-dataPosisi" data-id="<?php echo $produksi->id; ?>"><i class="glyphicon glyphicon-info-sign"></i> Detail</button></a>
 
       <?php if ($produksi->status != 2): ?>

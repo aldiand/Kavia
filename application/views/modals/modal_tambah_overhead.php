@@ -9,12 +9,27 @@
       <input type="text" class="form-control" placeholder="nama overhead" name="nama" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
-      <label  class="control-label">Satuan</label>
-      <input type="text" class="form-control" placeholder="satuan" name="satuan" aria-describedby="sizing-addon2">
+      <label  class="control-label">Harga per Bulan</label>
+      <input type="number" class="form-control" id="harga" placeholder="0" onchange="hitung()" name="harga_per_bulan" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
-      <label  class="control-label">Harga</label>
-      <input type="number" class="form-control" placeholder="Harga" name="harga" aria-describedby="sizing-addon2">
+      <label  class="control-label">Persen dibebankan</label>
+      <input type="number" class="form-control" placeholder="0" value="0" id="persen" onchange="hitung()" aria-describedby="sizing-addon2">
+    </div>
+    <script>
+    function hitung()
+    {
+      var cost = document.getElementById('harga').value;
+      var discount = document.getElementById('persen').value;
+      //do the math
+      var net = cost*(discount/100);
+      //update
+      document.getElementById('dibebankan').value = net;
+    }
+    </script>
+    <div class="input-group form-group">
+      <label  class="control-label">Dibebankan per produksi</label>
+      <input type="text" readonly="readonly" class="form-control" placeholder="0" id="dibebankan" name="dibebankan_per_produksi" aria-describedby="sizing-addon2">
     </div>
     <div class="form-group">
       <div class="col-md-12">

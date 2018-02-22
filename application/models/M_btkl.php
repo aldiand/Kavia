@@ -23,7 +23,7 @@ class M_btkl extends CI_Model {
 		return $data->result();
   }
 		public function select_by_pesanan($id_pesanan) {
-			$this->db->select('t_pegawai.*,SUM((LEFT(t_btkl.jam_keluar, 2)-LEFT(t_btkl.jam_masuk, 2)) AS total_jam, (t_pegawai.gaji*SUM((LEFT(t_btkl.jam_keluar, 2)-LEFT(t_btkl.jam_masuk, 2))) AS biaya');
+			$this->db->select('t_pegawai.*, SUM((LEFT(t_btkl.jam_keluar, 2)-LEFT(t_btkl.jam_masuk, 2))+1) AS total_jam, (t_pegawai.gaji*SUM((LEFT(t_btkl.jam_keluar, 2)-LEFT(t_btkl.jam_masuk, 2))+1)) AS biaya');
 			$this->db->from('t_btkl');
 			$this->db->join('t_pegawai', 't_pegawai.id = t_btkl.id_pegawai');
 	    $this->db->where_in("t_btkl.id_produksi","SELECT id AS id_produksi from t_produksi where id_pesanan=$id_pesanan", false);

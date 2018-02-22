@@ -9,7 +9,7 @@
         </div>
           <div class="input-group form-group">
             <label  class="control-label">Tanggal</label>
-            <input type="date" class="form-control" value="<?php echo $dataBbb->tanggal;?>" name="tanggal" aria-describedby="sizing-addon2">
+            <input type="date" readonly="readonly" class="form-control" value="<?php echo $dataBbb->tanggal;?>" name="tanggal" aria-describedby="sizing-addon2">
           </div>
           <div class="input-group form-group">
             <label  class="control-label">Bahan baku</label>

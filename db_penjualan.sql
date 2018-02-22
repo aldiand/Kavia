@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.7
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 30 Jan 2018 pada 04.36
--- Versi Server: 10.1.13-MariaDB
--- PHP Version: 7.0.6
+-- Host: localhost
+-- Waktu pembuatan: 22 Feb 2018 pada 10.43
+-- Versi server: 10.1.30-MariaDB
+-- Versi PHP: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -31,7 +33,8 @@ CREATE TABLE `t_bahan_penolong` (
   `nama` varchar(30) NOT NULL,
   `satuan` varchar(15) NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
+  `harga` int(11) NOT NULL,
+  `active` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -43,9 +46,10 @@ CREATE TABLE `t_bahan_penolong` (
 CREATE TABLE `t_bbb` (
   `id` int(11) NOT NULL,
   `nama_bahan_baku` varchar(30) NOT NULL,
-  `satuan` varchar(10) NOT NULL,
+  `satuan` varchar(20) NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
+  `harga` int(11) NOT NULL,
+  `active` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -99,7 +103,6 @@ CREATE TABLE `t_biaya_bahan_penolong` (
 CREATE TABLE `t_bop` (
   `id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
-  `jumlah` int(11) NOT NULL,
   `id_overhead` int(11) NOT NULL,
   `id_produksi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -127,8 +130,8 @@ CREATE TABLE `t_bp_masuk` (
 CREATE TABLE `t_btkl` (
   `id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
-  `jam_masuk` int(2) NOT NULL,
-  `jam_keluar` int(2) NOT NULL,
+  `jam_masuk` varchar(5) NOT NULL,
+  `jam_keluar` varchar(5) NOT NULL,
   `id_pegawai` int(11) NOT NULL,
   `id_produksi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -142,21 +145,24 @@ CREATE TABLE `t_btkl` (
 CREATE TABLE `t_coa` (
   `id` int(11) NOT NULL,
   `kode` varchar(10) NOT NULL,
-  `nama` varchar(20) NOT NULL
+  `nama` varchar(20) NOT NULL,
+  `active` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `t_coa`
 --
 
-INSERT INTO `t_coa` (`id`, `kode`, `nama`) VALUES
-(2, '112', 'Persediaan BB'),
-(3, '511', 'Gaji dan Upah'),
-(7, '111', 'Kas'),
-(8, '512', 'BDP - BBB'),
-(9, '513', 'BDP - BTKL'),
-(10, '514', 'BDP - BBP'),
-(11, '113', 'Persediaan BP');
+INSERT INTO `t_coa` (`id`, `kode`, `nama`, `active`) VALUES
+(2, '112', 'Persediaan BB', 1),
+(3, '511', 'Gaji dan Upah', 1),
+(7, '111', 'Kas', 1),
+(8, '512', 'BDP - BBB', 1),
+(9, '513', 'BDP - BTKL', 1),
+(10, '514', 'BDP - BBP', 1),
+(11, '113', 'Persediaan BP', 1),
+(12, '211', 'Utang Dagang', 1),
+(13, '212', 'Pendapatan', 1);
 
 -- --------------------------------------------------------
 
@@ -182,8 +188,9 @@ CREATE TABLE `t_jurnal` (
 CREATE TABLE `t_overhead` (
   `id` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
-  `satuan` varchar(15) NOT NULL,
-  `harga` int(11) NOT NULL
+  `harga_per_bulan` int(11) NOT NULL,
+  `dibebankan_per_produksi` int(11) NOT NULL,
+  `active` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -198,7 +205,8 @@ CREATE TABLE `t_pegawai` (
   `alamat` varchar(100) NOT NULL,
   `tipe_gaji` varchar(15) NOT NULL,
   `gaji` int(11) NOT NULL,
-  `no_telp` varchar(15) NOT NULL
+  `no_telp` varchar(15) NOT NULL,
+  `active` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -255,28 +263,28 @@ CREATE TABLE `t_produksi` (
 --
 
 --
--- Indexes for table `t_bahan_penolong`
+-- Indeks untuk tabel `t_bahan_penolong`
 --
 ALTER TABLE `t_bahan_penolong`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `t_bbb`
+-- Indeks untuk tabel `t_bbb`
 --
 ALTER TABLE `t_bbb`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `t_bb_masuk`
+-- Indeks untuk tabel `t_bb_masuk`
 --
 ALTER TABLE `t_bb_masuk`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_bbb` (`id_bbb`);
 
 --
--- Indexes for table `t_bb_terpakai`
+-- Indeks untuk tabel `t_bb_terpakai`
 --
 ALTER TABLE `t_bb_terpakai`
   ADD PRIMARY KEY (`id`),
@@ -284,7 +292,7 @@ ALTER TABLE `t_bb_terpakai`
   ADD KEY `id_bbb` (`id_bbb`);
 
 --
--- Indexes for table `t_biaya_bahan_penolong`
+-- Indeks untuk tabel `t_biaya_bahan_penolong`
 --
 ALTER TABLE `t_biaya_bahan_penolong`
   ADD PRIMARY KEY (`id`),
@@ -292,7 +300,7 @@ ALTER TABLE `t_biaya_bahan_penolong`
   ADD KEY `id_produksi` (`id_produksi`);
 
 --
--- Indexes for table `t_bop`
+-- Indeks untuk tabel `t_bop`
 --
 ALTER TABLE `t_bop`
   ADD PRIMARY KEY (`id`),
@@ -301,13 +309,13 @@ ALTER TABLE `t_bop`
   ADD KEY `id_produksi` (`id_produksi`);
 
 --
--- Indexes for table `t_bp_masuk`
+-- Indeks untuk tabel `t_bp_masuk`
 --
 ALTER TABLE `t_bp_masuk`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `t_btkl`
+-- Indeks untuk tabel `t_btkl`
 --
 ALTER TABLE `t_btkl`
   ADD PRIMARY KEY (`id`),
@@ -315,45 +323,45 @@ ALTER TABLE `t_btkl`
   ADD KEY `id_produksi` (`id_produksi`);
 
 --
--- Indexes for table `t_coa`
+-- Indeks untuk tabel `t_coa`
 --
 ALTER TABLE `t_coa`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `t_jurnal`
+-- Indeks untuk tabel `t_jurnal`
 --
 ALTER TABLE `t_jurnal`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `t_overhead`
+-- Indeks untuk tabel `t_overhead`
 --
 ALTER TABLE `t_overhead`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `t_pegawai`
+-- Indeks untuk tabel `t_pegawai`
 --
 ALTER TABLE `t_pegawai`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `t_pengerjaan`
+-- Indeks untuk tabel `t_pengerjaan`
 --
 ALTER TABLE `t_pengerjaan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `t_pesanan`
+-- Indeks untuk tabel `t_pesanan`
 --
 ALTER TABLE `t_pesanan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `t_produksi`
+-- Indeks untuk tabel `t_produksi`
 --
 ALTER TABLE `t_produksi`
   ADD PRIMARY KEY (`id`),
@@ -363,84 +371,99 @@ ALTER TABLE `t_produksi`
   ADD KEY `id_pesanan` (`id_pesanan`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `t_bahan_penolong`
+-- AUTO_INCREMENT untuk tabel `t_bahan_penolong`
 --
 ALTER TABLE `t_bahan_penolong`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `t_bbb`
+-- AUTO_INCREMENT untuk tabel `t_bbb`
 --
 ALTER TABLE `t_bbb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT for table `t_bb_masuk`
+-- AUTO_INCREMENT untuk tabel `t_bb_masuk`
 --
 ALTER TABLE `t_bb_masuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `t_bb_terpakai`
+-- AUTO_INCREMENT untuk tabel `t_bb_terpakai`
 --
 ALTER TABLE `t_bb_terpakai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `t_biaya_bahan_penolong`
+-- AUTO_INCREMENT untuk tabel `t_biaya_bahan_penolong`
 --
 ALTER TABLE `t_biaya_bahan_penolong`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `t_bop`
+-- AUTO_INCREMENT untuk tabel `t_bop`
 --
 ALTER TABLE `t_bop`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `t_bp_masuk`
+-- AUTO_INCREMENT untuk tabel `t_bp_masuk`
 --
 ALTER TABLE `t_bp_masuk`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT for table `t_btkl`
+-- AUTO_INCREMENT untuk tabel `t_btkl`
 --
 ALTER TABLE `t_btkl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
 --
--- AUTO_INCREMENT for table `t_coa`
+-- AUTO_INCREMENT untuk tabel `t_coa`
 --
 ALTER TABLE `t_coa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
--- AUTO_INCREMENT for table `t_jurnal`
+-- AUTO_INCREMENT untuk tabel `t_jurnal`
 --
 ALTER TABLE `t_jurnal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+
 --
--- AUTO_INCREMENT for table `t_overhead`
+-- AUTO_INCREMENT untuk tabel `t_overhead`
 --
 ALTER TABLE `t_overhead`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `t_pegawai`
+-- AUTO_INCREMENT untuk tabel `t_pegawai`
 --
 ALTER TABLE `t_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
--- AUTO_INCREMENT for table `t_pengerjaan`
+-- AUTO_INCREMENT untuk tabel `t_pengerjaan`
 --
 ALTER TABLE `t_pengerjaan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `t_pesanan`
+-- AUTO_INCREMENT untuk tabel `t_pesanan`
 --
 ALTER TABLE `t_pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
--- AUTO_INCREMENT for table `t_produksi`
+-- AUTO_INCREMENT untuk tabel `t_produksi`
 --
 ALTER TABLE `t_produksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
@@ -483,6 +506,7 @@ ALTER TABLE `t_btkl`
 --
 ALTER TABLE `t_produksi`
   ADD CONSTRAINT `t_produksi_ibfk_1` FOREIGN KEY (`id_pesanan`) REFERENCES `t_pesanan` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

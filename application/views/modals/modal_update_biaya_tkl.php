@@ -6,10 +6,11 @@
       <form method="POST" id="form-update-btkl">
         <div class="input-group form-group">
         <input type="hidden" name="id" value="<?php echo $dataBtkl->id; ?>">
+        <input type="hidden" name="id_produksi" value="<?php echo $dataBtkl->id_produksi; ?>">
         <input type="hidden" name="jam_masuk" value="<?php echo $dataBtkl->jam_masuk; ?>">
           <div class="input-group form-group">
             <label  class="control-label">Tanggal</label>
-            <input type="date" class="form-control" value="<?php echo $dataBtkl->tanggal;?>" name="tanggal" aria-describedby="sizing-addon2">
+            <input type="date" readonly="readonly"  class="form-control" value="<?php echo $dataBtkl->tanggal;?>" name="tanggal" aria-describedby="sizing-addon2">
           </div>
           <div class="input-group form-group">
             <label  class="control-label">Pegawai</label>
@@ -17,7 +18,9 @@
               <?php
               foreach ($dataPegawai as $bb) {
                 ?>
-                <option value="<?php echo $bb->id; ?>">
+                <option value="<?php echo $bb->id; ?>" <?php if ($bb->id == $dataBtkl->id_pegawai) {
+                  echo "selected='selected'";
+                }else{ echo "disabled='disabled'"; } ?>>
                   <?php echo $bb->nama_pegawai; ?>
                 </option>
                 <?php

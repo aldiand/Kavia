@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_pegawai extends CI_Model {
 	public function select_all() {
     $this->db->order_by("id", "desc");
+	  $this->db->where('active', 1);
 		$data = $this->db->get('t_pegawai');
 		return $data->result();
 	}
@@ -26,7 +27,7 @@ class M_pegawai extends CI_Model {
 		$data = $this->db->get('t_pegawai')->result();
 		return $data[0]->gaji;
   }
-  
+
   public function insert($data){
     $hasil=$this->db->insert('t_pegawai', $data);
     return $hasil;
@@ -34,13 +35,15 @@ class M_pegawai extends CI_Model {
 
   public function update($data, $id){
     $this->db->where('id', $id);
-    $hasil=$this->db->update('t_pegawai', $data);
+    $hasil=$this->db->update('t_pegawai', array('active' => 0));
+		$data['id'] = null;
+    $hasil=$this->db->insert('t_pegawai', $data);
     return $hasil;
   }
 
 	public function delete($id){
     $this->db->where('id', $id);
-    $hasil=$this->db->delete('t_pegawai');
+    $hasil=$this->db->update('t_pegawai', array('active' => 0));
     return $hasil;
   }
 

@@ -72,7 +72,7 @@ class Pesanan extends AUTH_Controller {
 
       $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
       $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_pesanan($id);
-      $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id);
+      $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id)  * getValueKesulitan($id);
       $data['total_biaya_overhead'] = $this->M_produksi->get_overhead_by_pesanan($id);
 
     $data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];
@@ -178,8 +178,8 @@ class Pesanan extends AUTH_Controller {
 
         $data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];
 
-    $this->M_report->insert_jurnal(113, $result, 'd', (120*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
-    $this->M_report->insert_jurnal(111, $result, 'c', (120*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
+    $this->M_report->insert_jurnal(111, $id, 'd', (120*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
+    $this->M_report->insert_jurnal(211, $id, 'c', (120*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
   			echo show_succ_msg('Pesanan Selesai', '20px');
   		} else {
   			echo show_err_msg('Pesanan Gagal di Update', '20px');

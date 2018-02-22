@@ -47,10 +47,6 @@ $jenis = $this->session->userdata('jenis');
                   <li class="list-group-item">
                     <b>Tanggal Selesai</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->tanggal_selesai; ?></a>
                   </li>
-                  <li class="list-group-item">
-                    <b>Biaya Overhead</b> <br> <a style="word-wrap: break-word;"><?php echo (20000*(date_create($produksi->tanggal_selesai)->diff(date_create($produksi->tanggal_mulai)))->format('%d')); ?></a>
-                  </li>
-
                   <?php endif; ?>
                 </ul>
               </div>

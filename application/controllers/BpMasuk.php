@@ -35,8 +35,8 @@ class BpMasuk extends AUTH_Controller {
   			$result = $this->M_bp_masuk->insert($data);
 
   			if ($result > 0) {
-                $result = $this->M_bp_masuk->tambahStok($data['id_bahan_penolong'], $data['jumlah']);
-                if ($result > 0){
+                $result2 = $this->M_bp_masuk->tambahStok($data['id_bahan_penolong'], $data['jumlah']);
+                if ($result2 > 0){
 					$this->M_report->insert_jurnal(113, $result, 'd', ($data['jumlah']*$data['harga_beli']));
 					$this->M_report->insert_jurnal(111, $result, 'c', ($data['jumlah']*$data['harga_beli']));
                     $out['status'] = '';

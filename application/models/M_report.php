@@ -48,8 +48,7 @@ class M_report extends CI_Model {
 		$this->db->select('a.kode_akun, reff, tanggal, nama, a.posisi, nominal');
 		$this->db->from('t_jurnal a');
 		$this->db->join('t_coa b', 'b.kode = a.kode_akun');
-		$this->db->order_by('reff');
-		$this->db->order_by('kode_akun');
+		$this->db->order_by('tanggal');
 		$query = $this->db->get();
 		return $query->result_array();
 	}

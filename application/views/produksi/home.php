@@ -14,8 +14,7 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Tanggal Mulai</th>
-          <th>Tanggal Selesai</th>
+          <th>Tanggal</th>
           <th>Deskripsi</th>
           <th>Status</th>
           <th style="text-align: center;">Aksi</th>

@@ -78,8 +78,8 @@ class Btkl extends AUTH_Controller {
 			if ($result > 0) {
         $harga = $this->M_pegawai->get_gaji_by_id($data['id_pegawai']);
         $total_jam = substr($data['jam_keluar'],0,2)-substr($data['jam_masuk'],0,2) + 1;
-        $this->M_report->insert_jurnal(513, $result, 'd', ($total_jam*$harga));
-        $this->M_report->insert_jurnal(511, $result, 'c', ($total_jam*$harga));
+        $this->M_report->insert_jurnal(513, $this->input->post('id'), 'd', ($total_jam*$harga*getValueKesulitanByProduksi($this->input->post('id_produksi'))));
+        $this->M_report->insert_jurnal(511, $this->input->post('id'), 'c', ($total_jam*$harga*getValueKesulitanByProduksi($this->input->post('id_produksi'))));
 				$out['status'] = '';
 				$out['msg'] = show_succ_msg('Data BTKL Berhasil diupdate', '20px');
 			} else {

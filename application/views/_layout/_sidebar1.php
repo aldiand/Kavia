@@ -22,6 +22,7 @@
             <li><a href="<?php echo base_url(); ?>Coa/#"><i class="fa fa-circle-o"></i> COA</a></li>
             <li><a href="<?php echo base_url(); ?>BahanBaku/#"><i class="fa fa-circle-o"></i> Bahan Baku</a></li>
             <li><a href="<?php echo base_url(); ?>BahanPenolong/#"><i class="fa fa-circle-o"></i> Bahan Penolong</a></li>
+            <li><a href="<?php echo base_url(); ?>Overhead/#"><i class="fa fa-circle-o"></i> Overhead</a></li>
             <li><a href="<?php echo base_url(); ?>Pegawai/"><i class="fa fa-circle-o"></i> Pegawai</a></li>
           </ul>
         </li>

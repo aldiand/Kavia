@@ -34,7 +34,8 @@ class M_pesanan extends CI_Model {
   }
 
   public function insert($data){
-    $hasil=$this->db->insert('t_pesanan', $data);
+    $this->db->insert('t_pesanan', $data);
+		$hasil=$this->db->insert_id();
     return $hasil;
   }
 

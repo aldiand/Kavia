@@ -6,7 +6,7 @@
   <form id="form-tambah-bb" method="POST">
     <div class="input-group form-group">
       <label  class="control-label">Tanggal</label>
-      <input type="date" class="form-control" value="<?php echo Date('Y-m-d');?>" name="tanggal" aria-describedby="sizing-addon2">
+      <input type="date" class="form-control" readonly="readonly" value="<?php echo Date('Y-m-d');?>" name="tanggal" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
       <label  class="control-label">Bahan baku</label>

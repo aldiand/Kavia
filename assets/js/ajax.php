@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	var MyTable = $('#list-data').dataTable({
+	var MyTable = $('#list-data').DataTable({
 		  "paging": true,
 		  "lengthChange": true,
 		  "searching": true,
@@ -7,7 +7,7 @@
 		  "info": true,
 		  "autoWidth": false
 		});
-	var MyTable2 = $('#list-data2').dataTable({
+	var MyTable2 = $('#list-data2').DataTable({
 		  "paging": true,
 		  "lengthChange": true,
 		  "searching": true,
@@ -15,7 +15,7 @@
 		  "info": true,
 		  "autoWidth": false
 		});
-	var MyTable3 = $('#list-data3').dataTable({
+	var MyTable3 = $('#list-data3').DataTable({
 		  "paging": true,
 		  "lengthChange": true,
 		  "searching": true,
@@ -49,9 +49,33 @@
 	}
 
 	function refresh() {
-		MyTable = $('#list-data').dataTable();
-		MyTable2 = $('#list-data2').dataTable();
-		MyTable3 = $('#list-data3').dataTable();
+		MyTable = $('#list-data').DataTable({
+			"destroy": true,
+			  "paging": true,
+			  "lengthChange": true,
+			  "searching": true,
+			  "order": [],
+			  "info": true,
+			  "autoWidth": false
+			});
+		MyTable2 = $('#list-data2').DataTable({
+			"destroy": true,
+			  "paging": true,
+			  "lengthChange": true,
+			  "searching": true,
+			  "order": [],
+			  "info": true,
+			  "autoWidth": false
+			});
+		MyTable3 = $('#list-data3').DataTable({
+			"destroy": true,
+			  "paging": true,
+			  "lengthChange": true,
+			  "searching": true,
+			  "order": [],
+			  "info": true,
+			  "autoWidth": false
+			});
 	}
 
 	function effect_msg_form() {
@@ -68,7 +92,7 @@
 
 	function tampilPegawai() {
 		$.get('<?php echo base_url('Pegawai/tampil'); ?>', function(data) {
-			MyTable.fnDestroy();
+			MyTable.destroy();
 			$('#data-pegawai').html(data);
 			refresh();
 		});
@@ -172,7 +196,7 @@
 
 	function tampilPesanan() {
 		$.get('<?php echo base_url('Pesanan/tampil'); ?>', function(data) {
-			MyTable.fnDestroy();
+			MyTable.destroy();
 			$('#data-pesanan').html(data);
 			refresh();
 		});
@@ -290,7 +314,7 @@
 
 	function tampilBahanBaku() {
 		$.get('<?php echo base_url('BahanBaku/tampil'); ?>', function(data) {
-			MyTable.fnDestroy();
+			MyTable.destroy();
 			$('#data-bahanBaku').html(data);
 			refresh();
 		});
@@ -393,7 +417,7 @@
 
 		function tampilBahanPenolong() {
 			$.get('<?php echo base_url('BahanPenolong/tampil'); ?>', function(data) {
-				MyTable.fnDestroy();
+				MyTable.destroy();
 				$('#data-bahanPenolong').html(data);
 				refresh();
 			});
@@ -497,7 +521,7 @@
 
 	function tampilOverhead() {
 		$.get('<?php echo base_url('Overhead/tampil'); ?>', function(data) {
-			MyTable.fnDestroy();
+			MyTable.destroy();
 			$('#data-overhead').html(data);
 			refresh();
 		});
@@ -601,14 +625,14 @@
 		function tampilProduksi() {
 			<?php if (!empty($this->uri->segment(3))): ?>
 			$.get('<?php echo base_url('Produksi/tampil/'.$this->uri->segment(3)); ?>', function(data) {
-				MyTable.fnDestroy();
+				MyTable.destroy();
 				$('#data-produksi').html(data);
 				refresh();
 			});
 
 			<?php else: ?>
 			$.get('<?php echo base_url('Produksi/tampil/'); ?>', function(data) {
-				MyTable.fnDestroy();
+				MyTable.destroy();
 				$('#data-produksi').html(data);
 				refresh();
 			});
@@ -616,7 +640,7 @@
 		}
 		function tampilProduksi2() {
 			$.get('<?php echo base_url('Produksi/tampil2'); ?>', function(data) {
-				MyTable.fnDestroy();
+				MyTable.destroy();
 				$('#data-produksi2').html(data);
 				refresh();
 			});
@@ -719,7 +743,7 @@
 
 		function tampilBbTerpakai() {
 			$.get('<?php echo base_url('BbTerpakai/tampil2/'.$this->uri->segment(3)); ?>', function(data) {
-				MyTable.fnDestroy();
+				MyTable.destroy();
 				$('#data-bbTerpakai').html(data);
 				refresh();
 			});
@@ -822,7 +846,7 @@
 
 			function tampilBbp() {
 				$.get('<?php echo base_url('Bbp/tampil2/'.$this->uri->segment(3)); ?>', function(data) {
-					MyTable2.fnDestroy();
+					MyTable2.destroy();
 					$('#data-bbp').html(data);
 					refresh();
 				});
@@ -924,7 +948,7 @@
 
 			function tampilBtkl() {
 				$.get('<?php echo base_url('Btkl/tampil2/'.$this->uri->segment(3)); ?>', function(data) {
-					MyTable2.fnDestroy();
+					MyTable3.destroy();
 					$('#data-btkl').html(data);
 					refresh();
 				});
@@ -1070,7 +1094,7 @@
 
 							function tampilBahanMasuk() {
 								$.get('<?php echo base_url('BahanMasuk/tampil'); ?>', function(data) {
-									MyTable.fnDestroy();
+									MyTable.destroy();
 									$('#data-BahanMasuk').html(data);
 									refresh();
 								});
@@ -1176,7 +1200,7 @@
 
 function tampilCoa() {
 	$.get('<?php echo base_url('Coa/tampil'); ?>', function(data) {
-		MyTable.fnDestroy();
+		MyTable.destroy();
 		$('#data-coa').html(data);
 		refresh();
 	});
@@ -1280,7 +1304,7 @@ $('#update-coa').on('hidden.bs.modal', function () {
 
 	function tampilBpMasuk() {
 		$.get('<?php echo base_url('BpMasuk/tampil'); ?>', function(data) {
-			MyTable.fnDestroy();
+			MyTable.destroy();
 			$('#data-BpMasuk').html(data);
 			refresh();
 		});

@@ -45,7 +45,7 @@ class BbTerpakai extends AUTH_Controller {
           $result2 = $this->M_bahanBaku->pakaiStok($data['id_bbb'], $data['jumlah']);
           if ($result2 > 0){
 						$harga = $this->M_bahanBaku->get_harga_by_id($data['id_bbb']);
-						$this->M_report->insert_jurnal(514, $result, 'd', ($data['jumlah']*$harga));
+						$this->M_report->insert_jurnal(512, $result, 'd', ($data['jumlah']*$harga));
 						$this->M_report->insert_jurnal(112, $result, 'c', ($data['jumlah']*$harga));
     				$out['status'] = '';
     				$out['msg'] = show_succ_msg('Data Biaya Bahan Baku Berhasil ditambahkan', '20px');

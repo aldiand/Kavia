@@ -132,7 +132,7 @@
           <td><?php echo $bbb->nama_pegawai; ?></td>
           <td><?php echo $bbb->gaji; ?></td>
           <td><?php echo $bbb->total_jam; ?></td>
-          <td><?php echo $bbb->biaya; ?></td>
+          <td><?php echo $bbb->biaya * getValueKesulitan($data->id); ?></td>
         </tr>
           <?php endforeach; ?>
         </tbody>

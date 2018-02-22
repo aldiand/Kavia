@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_bahanPenolong extends CI_Model {
 	public function select_all() {
     $this->db->order_by("id", "desc");
+	  $this->db->where('active', 1);
 		$data = $this->db->get('t_bahan_penolong');
 		return $data->result();
 	}
@@ -20,7 +21,7 @@ class M_bahanPenolong extends CI_Model {
 		$data = $this->db->get('t_bahan_penolong')->result();
 		return $data[0]->jumlah;
   }
-	
+
 	public function get_harga_by_id($id) {
 		$this->db->select('harga');
     $this->db->where("id","$id");
@@ -50,13 +51,15 @@ class M_bahanPenolong extends CI_Model {
 
   public function update($data, $id){
     $this->db->where('id', $id);
-    $hasil=$this->db->update('t_bahan_penolong', $data);
+    $hasil=$this->db->update('t_bahan_penolong', array('active' => 0));
+		$data['id'] = null;
+    $hasil=$this->db->insert('t_bahan_penolong', $data);
     return $hasil;
   }
 
 	public function delete($id){
     $this->db->where('id', $id);
-    $hasil=$this->db->delete('t_bahan_penolong');
+    $hasil=$this->db->update('t_bahan_penolong', array('active' => 0));
     return $hasil;
   }
 

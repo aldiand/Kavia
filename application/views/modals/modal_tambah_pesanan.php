@@ -35,7 +35,7 @@
       <select name="kesulitan" class="form-control" aria-describedby="sizing-addon2">
         <option value="mudah">Mudah</option>
         <option value="sedang">Sedang</option>
-        <option value="sulit">Sulits</option>
+        <option value="sulit">Sulit</option>
       </select>
     </div>
     <div class="input-group form-group">

@@ -42,7 +42,7 @@
 						$total = $total+$data['nominal'];
 				}else{
 					echo"
-						<td align='center'>".$data['nama']."</td>
+						<td align='right'>".$data['nama']."</td>
 						<td>".$data['reff']."</td>
 						<td align = 'right'></td>
 						<td align = 'right'>".rupiah($data['nominal'])."</td>

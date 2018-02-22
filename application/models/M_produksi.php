@@ -45,13 +45,12 @@ class M_produksi extends CI_Model {
 		return $data->result();
 	}
 	public function select_overhead_by_pesanan($id) {
-		$this->db->select('t_produksi.*, (DATEDIFF(`tanggal_selesai`, `tanggal_mulai`)+1) AS hari, ((DATEDIFF(`tanggal_selesai`, `tanggal_mulai`)+1)*20000) AS biaya');
+		$this->db->select('t_produksi.*, (DATEDIFF(`tanggal_selesai`, `tanggal_mulai`)+1) AS hari, ((DATEDIFF(`tanggal_selesai`, `tanggal_mulai`)+1)*(SELECT SUM(dibebankan_per_produksi) FROM t_overhead WHERE active=1)) AS biaya');
     $this->db->where_in("id","SELECT id AS id_produksi from t_produksi where id_pesanan=$id", false);
 
 		$data = $this->db->get('t_produksi');
 		return $data->result();
 	}
-
 
   public function insert($data){
     $hasil=$this->db->insert('t_produksi', $data);
@@ -72,9 +71,16 @@ class M_produksi extends CI_Model {
 		return $data[0]->hasil;
 	}
 
+	// public function get_overhead_by_pesanan($id) {
+	// 	$this->db->select('SUM((DATEDIFF(`tanggal_selesai`, `tanggal_mulai`)+1)*20000) AS hasil');
+  //   $this->db->where_in("id","SELECT id AS id_produksi from t_produksi where id_pesanan=$id", false);
+	// 	$data = $this->db->get('t_produksi')->result();
+	// 	return $data[0]->hasil;
+	// }
+
 	public function get_overhead_by_pesanan($id) {
-		$this->db->select('SUM((DATEDIFF(`tanggal_selesai`, `tanggal_mulai`)+1)*20000) AS hasil');
-    $this->db->where_in("id","SELECT id AS id_produksi from t_produksi where id_pesanan=$id", false);
+		$this->db->select("SUM((DATEDIFF(`tanggal_selesai`, `tanggal_mulai`)+1)*(SELECT SUM(dibebankan_per_produksi) FROM t_overhead WHERE active=1)) AS hasil");
+		$this->db->where_in("id","SELECT id AS id_produksi from t_produksi where id_pesanan=$id", false);
 		$data = $this->db->get('t_produksi')->result();
 		return $data[0]->hasil;
 	}
