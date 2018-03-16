@@ -6,3 +6,5 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/select2.min.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/iCheck/all.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.css">
+
+<script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.bundle.js"></script>

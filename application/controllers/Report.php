@@ -13,6 +13,9 @@ class Report extends AUTH_Controller {
         $this->load->model('M_bbb');
         $this->load->model('M_bbp');
         $this->load->model('M_btkl');
+        $this->load->model('M_grafik');
+        $this->load->model('M_bahanMasuk');
+        $this->load->model('M_bbb');
 	}
 
 	public function index() {
@@ -64,6 +67,132 @@ class Report extends AUTH_Controller {
         $this->template->views('report/lihatkartuhpp', $data);
 
     }
+
+    public function Bahan() {
+
+        $data['page'] = "report bahan";
+        $data['judul'] = "Laporan Bahan";
+        $data['deskripsi'] = "Laporan Data Bahan";
+        $data['modal_grafik_bahan'] = show_my_modal('modals/modal_grafik_bahan', 'info-grafik', $data);
+
+        $this->template->views('report/bahan.php', $data);
+    }
+
+     public function tampilBb() {
+		$data['dataBahanBaku'] = $this->M_bahanBaku->select_all();
+		$this->load->view('report/list_data_bb', $data);
+	}
+
+      public function tampilBp() {
+		$data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all();
+		$this->load->view('report/list_data_bp', $data);
+    }
+    
+    public function reportBb($id) {
+
+        $data['dataChart'] = $this->getGrafikBbData($id, Date('Y'));
+
+        $data['page'] = "report bahan";
+        $data['judul'] = "Laporan Bahan";
+        $data['deskripsi'] = "Laporan Data Bahan Baku";
+
+        $data['dataBahanMasuk'] = $this->M_bahanMasuk->select_by_id_bbb($id);
+        $data['dataBbb'] = $this->M_bbb->select_by_id_bbb($id);
+        
+        $data['dataBahan'] = $this->M_bahanBaku->select_by_id($id);
+
+        $this->template->views('report/bahanBaku_detail', $data);
+    }
+
+    public function reportBp($id) {        
+        $data['dataChart'] = $this->getGrafikBpData($id, Date('Y'));
+
+        $data['page'] = "report bahan";
+        $data['judul'] = "Laporan Bahan";
+        $data['deskripsi'] = "Laporan Data Bahan Penolong";
+
+
+        $data['dataBahan'] = $this->M_bahanPenolong->select_by_id($id);
+
+        $this->template->views('report/bahanPenolong_detail', $data);
+    }
+
+    public function getGrafikBbData ($id, $year) {
+        foreach($this->M_grafik->grafikBbMasuk($id,$year) as $row)
+            {
+            $data['grafikMasuk'][]=(float)$row['Januari'];
+            $data['grafikMasuk'][]=(float)$row['Februari'];
+            $data['grafikMasuk'][]=(float)$row['Maret'];
+            $data['grafikMasuk'][]=(float)$row['April'];
+            $data['grafikMasuk'][]=(float)$row['Mei'];
+            $data['grafikMasuk'][]=(float)$row['Juni'];
+            $data['grafikMasuk'][]=(float)$row['Juli'];
+            $data['grafikMasuk'][]=(float)$row['Agustus'];
+            $data['grafikMasuk'][]=(float)$row['September'];
+            $data['grafikMasuk'][]=(float)$row['Oktober'];
+            $data['grafikMasuk'][]=(float)$row['November'];
+            $data['grafikMasuk'][]=(float)$row['Desember'];
+        }
+        foreach($this->M_grafik->grafikBbKeluar($id,$year) as $row)
+            {
+            $data['grafikKeluar'][]=(float)$row['Januari'];
+            $data['grafikKeluar'][]=(float)$row['Februari'];
+            $data['grafikKeluar'][]=(float)$row['Maret'];
+            $data['grafikKeluar'][]=(float)$row['April'];
+            $data['grafikKeluar'][]=(float)$row['Mei'];
+            $data['grafikKeluar'][]=(float)$row['Juni'];
+            $data['grafikKeluar'][]=(float)$row['Juli'];
+            $data['grafikKeluar'][]=(float)$row['Agustus'];
+            $data['grafikKeluar'][]=(float)$row['September'];
+            $data['grafikKeluar'][]=(float)$row['Oktober'];
+            $data['grafikKeluar'][]=(float)$row['November'];
+            $data['grafikKeluar'][]=(float)$row['Desember'];
+        }
+        $json =  json_encode($data);
+        if($this->input->method()=="post"){
+            echo($json);
+        }
+        return $json;
+    }
+    
+    public function getGrafikBpData ($id, $year) {
+        foreach($this->M_grafik->grafikBpMasuk($id,$year) as $row)
+            {
+            $data['grafikMasuk'][]=(float)$row['Januari'];
+            $data['grafikMasuk'][]=(float)$row['Februari'];
+            $data['grafikMasuk'][]=(float)$row['Maret'];
+            $data['grafikMasuk'][]=(float)$row['April'];
+            $data['grafikMasuk'][]=(float)$row['Mei'];
+            $data['grafikMasuk'][]=(float)$row['Juni'];
+            $data['grafikMasuk'][]=(float)$row['Juli'];
+            $data['grafikMasuk'][]=(float)$row['Agustus'];
+            $data['grafikMasuk'][]=(float)$row['September'];
+            $data['grafikMasuk'][]=(float)$row['Oktober'];
+            $data['grafikMasuk'][]=(float)$row['November'];
+            $data['grafikMasuk'][]=(float)$row['Desember'];
+        }
+        foreach($this->M_grafik->grafikBpKeluar($id,$year) as $row)
+            {
+            $data['grafikKeluar'][]=(float)$row['Januari'];
+            $data['grafikKeluar'][]=(float)$row['Februari'];
+            $data['grafikKeluar'][]=(float)$row['Maret'];
+            $data['grafikKeluar'][]=(float)$row['April'];
+            $data['grafikKeluar'][]=(float)$row['Mei'];
+            $data['grafikKeluar'][]=(float)$row['Juni'];
+            $data['grafikKeluar'][]=(float)$row['Juli'];
+            $data['grafikKeluar'][]=(float)$row['Agustus'];
+            $data['grafikKeluar'][]=(float)$row['September'];
+            $data['grafikKeluar'][]=(float)$row['Oktober'];
+            $data['grafikKeluar'][]=(float)$row['November'];
+            $data['grafikKeluar'][]=(float)$row['Desember'];
+        }
+        $json =  json_encode($data);
+        if($this->input->method()=="post"){
+            echo($json);
+        }
+        return $json;
+    }
+
 }
 
 /* End of file Home.php */

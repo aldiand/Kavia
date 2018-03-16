@@ -14,6 +14,13 @@ class M_bb_keluar extends CI_Model {
 		return $data->result();
   }
 
+  public function select_by_id_bbb($id){
+    $this->db->where('id_bbb', $id);
+    $this->db->order_by("id", "desc");
+		$data = $this->db->get('t_bb_keluar');
+		return $data->result();
+  }
+
   public function select_by_produksi($id_produksi) {
     $this->db->where('id_produksi', $id_produksi);
 		$data = $this->db->get('t_bb_keluar');

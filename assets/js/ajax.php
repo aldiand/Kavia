@@ -40,6 +40,7 @@
 		<?php if ($this->uri->segment(1) == 'Pegawai') {echo "tampilPegawai();";}?>
 		<?php if ($this->uri->segment(1) == 'BahanBaku') {echo "tampilBahanBaku();";}?>
 		<?php if ($this->uri->segment(1) == 'Coa') {echo "tampilCoa();";}?>
+		<?php if ($this->uri->segment(1) == 'Report') {echo "tampilReportBahan();";}?>
 		<?php if ($this->uri->segment(1) == 'BpMasuk') {echo "tampilBpMasuk();";}?>
 		<?php
 			if ($this->session->flashdata('msg') != '') {
@@ -1403,5 +1404,52 @@ $('#update-coa').on('hidden.bs.modal', function () {
 	$('#update-BpMasuk').on('hidden.bs.modal', function () {
 	  $('.form-msg').html('');
 	})
+
+	//report
+	<?php if ($this->uri->segment(1) == 'Report') { ?>
+	function tampilReportBahan() {
+		$.get('<?php echo base_url('Report/tampilBb'); ?>', function(data) {
+			MyTable.destroy();
+			$('#report-bb').html(data);
+			refresh();
+		});
+
+		$.get('<?php echo base_url('Report/tampilBp'); ?>', function(data) {
+				MyTable2.destroy();
+				$('#report-bp').html(data);
+				refresh();
+		});
+	}
+
+	// $(document).on("click", ".info-dataBahanPenolong", function() {
+	// 	var id = $(this).attr("data-id");
+
+	// 	$.ajax({
+	// 		method: "POST",
+	// 		url: "<?php echo base_url('report/infoBp'); ?>",
+	// 		data: "id=" +id
+	// 	})
+	// 	.done(function(data) {
+	// 		$('#tempat-modal').html(data);
+	// 		$('#info-grafik').modal('show');
+	// 	})
+	// })
+
+
+	// $(document).on("click", ".info-dataBahanBaku", function() {
+	// 	var id = $(this).attr("data-id");
+
+	// 	$.ajax({
+	// 		method: "POST",
+	// 		url: "<?php echo base_url('report/infoBb'); ?>",
+	// 		data: "id=" +id
+	// 	})
+	// 	.done(function(data) {
+	// 		$('#tempat-modal').html(data);
+	// 		$('#info-grafik').modal('show');
+	// 	})
+	// })
+	<?php } ?>
+	//end of report
 
 </script>

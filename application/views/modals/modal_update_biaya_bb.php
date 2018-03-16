@@ -26,8 +26,7 @@
             </select>
           </div>
           <div class="input-group form-group">
-            <label  class="control-label">Jumlah</label>
-            <input type="number" class="form-control" value="<?php echo $dataBbb->jumlah;?>" name="jumlah" aria-describedby="sizing-addon2">
+            <input type="hidden" class="form-control" value="<?php echo $dataBbb->jumlah;?>" name="jumlah" aria-describedby="sizing-addon2">
           </div>
         <div class="form-group">
           <div class="col-md-12">

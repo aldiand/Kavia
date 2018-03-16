@@ -61,6 +61,7 @@
             <li><a href="<?php echo base_url(); ?>Report/KartuHPP/#"><i class="fa fa-circle-o"></i> Kartu Harga Pokok Pesanan</a></li>
             <li><a href="<?php echo base_url(); ?>Jurnal/#"><i class="fa fa-circle-o"></i> Jurnal</a></li>
             <li><a href="<?php echo base_url(); ?>Jurnal/BukuBesar#"><i class="fa fa-circle-o"></i> Buku Besar</a></li>
+            <li><a href="<?php echo base_url(); ?>Report/Bahan#"><i class="fa fa-circle-o"></i> Report Bahan</a></li>
 
           </ul>
         </li>

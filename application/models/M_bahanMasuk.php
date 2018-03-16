@@ -13,6 +13,14 @@ class M_bahanMasuk extends CI_Model {
 
   public function select_by_id($id){
     $this->db->where('id', $id);
+    $this->db->order_by("t_bb_masuk.id", "desc");
+		$data = $this->db->get('t_bb_masuk');
+		return $data->result();
+  }
+
+  public function select_by_id_bbb($id){
+    $this->db->where('id_bbb', $id);
+    $this->db->order_by("t_bb_masuk.id", "desc");
 		$data = $this->db->get('t_bb_masuk');
 		return $data->result();
   }

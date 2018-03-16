@@ -12,6 +12,13 @@ class M_bbb extends CI_Model {
     $this->db->where('id', $id);
 		$data = $this->db->get('t_bb_terpakai');
 		return $data->result();
+	}
+	
+  public function select_by_id_bbb($id){
+    $this->db->where('id_bbb', $id);
+    $this->db->order_by("id", "desc");
+		$data = $this->db->get('t_bb_terpakai');
+		return $data->result();
   }
 
   public function select_by_produksi($id_produksi) {
