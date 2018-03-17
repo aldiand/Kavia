@@ -62,7 +62,6 @@ $jenis = $this->session->userdata('jenis');
                                 <tr>
                                 <th>Id</th>
                                 <th>Tanggal</th>
-                                <th>Nama Bahan</th>
                                 <th>Harga Beli</th>
                                 <th>Jumlah</th>
                                 </tr>
@@ -74,7 +73,6 @@ $jenis = $this->session->userdata('jenis');
                                     <tr>
                                     <td><?php echo $bahanBaku->id; ?></td>
                                     <td><?php echo $bahanBaku->tanggal; ?></td>
-                                    <td><?php echo $bahanBaku->nama_bahan_baku; ?></td>
                                     <td><?php echo $bahanBaku->harga_beli; ?></td>
                                     <td><?php echo $bahanBaku->jumlah; ?></td>
                                     </tr>
@@ -96,9 +94,8 @@ $jenis = $this->session->userdata('jenis');
                                 <tr>
                                 <th>Id</th>
                                 <th>Tanggal</th>
-                                <th>Nama Bahan</th>
-                                <th>Harga</th>
                                 <th>Jumlah</th>
+                                <th>Id Produksi</th>
                                 </tr>
                             </thead>
                             <tbody id="data-bbkeluar">
@@ -108,9 +105,8 @@ $jenis = $this->session->userdata('jenis');
                                 <tr>
                                 <td><?php echo $bbb->id; ?></td>
                                 <td><?php echo $bbb->tanggal; ?></td>
-                                <td><?php echo $bbb->nama_bahan_baku; ?></td>
-                                <td><?php echo $bbb->harga; ?></td>
                                 <td><?php echo $bbb->jumlah; ?></td>
+                                <td><?php echo $bbb->id_produksi; ?></td>
                                 </tr>
                                 <?php
                             }
@@ -144,7 +140,15 @@ $(document).ready(function() {
     $('#report-list-data').DataTable( {
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+            'excel', 'print'
+        ]
+    } );
+} );
+$(document).ready(function() {
+    $('#report-list-data2').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'print'
         ]
     } );
 } );

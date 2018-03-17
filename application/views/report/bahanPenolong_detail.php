@@ -54,7 +54,66 @@ $jenis = $this->session->userdata('jenis');
                 <div class="tab-pane" id="history">
                     <div class="row">
                         <div class="col-md-12">
-                        ...
+                        <h2> Riwayat Barang Masuk </h2>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="report-list-data" class="table table-bordered table-striped" >
+                            <thead>
+                                <tr>
+                                <th>Id</th>
+                                <th>Tanggal</th>
+                                <th>Harga Beli</th>
+                                <th>Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data-bbmasuk">
+                                <?php
+                                foreach ($dataBahanMasuk as $bahanBaku) {
+                                    ?>
+                                    <tr>
+                                    <td><?php echo $bahanBaku->id; ?></td>
+                                    <td><?php echo $bahanBaku->tanggal; ?></td>
+                                    <td><?php echo $bahanBaku->harga_beli; ?></td>
+                                    <td><?php echo $bahanBaku->jumlah; ?></td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
+                            </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                        <h2> Riwayat Barang Keluar </h2>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="report-list-data2" class="table table-bordered table-striped" >
+                            <thead>
+                                <tr>
+                                <th>Id</th>
+                                <th>Tanggal</th>
+                                <th>Jumlah</th>
+                                <th>Id Produksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data-bbkeluar">
+                            <?php
+                            foreach ($dataBbp as $bbb) {
+                                ?>
+                                <tr>
+                                <td><?php echo $bbb->id; ?></td>
+                                <td><?php echo $bbb->tanggal; ?></td>
+                                <td><?php echo $bbb->jumlah; ?></td>
+                                <td><?php echo $bbb->id_produksi; ?></td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                            </tbody>
+                            </table>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -63,6 +122,8 @@ $jenis = $this->session->userdata('jenis');
     <div>
 </div>
 </div>
+
+<script src="<?php echo base_url(); ?>assets/plugins/datatable/datatables.min.js"></script>
 
 <script>
 
@@ -75,6 +136,23 @@ window.chartColors = {
 	purple: 'rgb(153, 102, 255)',
 	grey: 'rgb(201, 203, 207)'
 };
+
+$(document).ready(function() {
+    $('#report-list-data').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'print'
+        ]
+    } );
+} );
+$(document).ready(function() {
+    $('#report-list-data2').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'print'
+        ]
+    } );
+} );
 
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {

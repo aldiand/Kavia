@@ -17,6 +17,13 @@ class M_bp_Masuk extends CI_Model {
 		return $data->result();
   }
 
+  public function select_by_id_bahan($id){
+    $this->db->where('id_bahan_penolong', $id);
+    $this->db->order_by("t_bp_masuk.id", "desc");
+		$data = $this->db->get('t_bp_masuk');
+		return $data->result();
+  }
+
   public function insert($data){
     $this->db->insert('t_bp_masuk', $data);
     $hasil=$this->db->insert_id();

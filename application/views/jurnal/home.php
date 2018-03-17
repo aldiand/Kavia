@@ -10,6 +10,7 @@
     </form>
     </div>
   </div>
+  <h1 align="center">Jurnal Umum</h1>
   <?php if(isset($jurnal)) { ?>
   <div class="box-body">
   <table class ="table table-bordered table-striped">

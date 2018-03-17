@@ -14,6 +14,13 @@ class M_bbp extends CI_Model {
 		return $data->result();
   }
 
+  public function select_by_id_bahan($id){
+    $this->db->where('id_bahan_penolong', $id);
+    $this->db->order_by("id", "desc");
+		$data = $this->db->get('t_biaya_bahan_penolong');
+		return $data->result();
+  }
+
   public function select_by_produksi($id_produksi) {
 			$this->db->select('t_biaya_bahan_penolong.*, t_bahan_penolong.nama, (t_biaya_bahan_penolong.jumlah*t_bahan_penolong.harga) AS harga');
 		$this->db->from('t_biaya_bahan_penolong');

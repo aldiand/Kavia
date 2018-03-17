@@ -16,6 +16,8 @@ class Report extends AUTH_Controller {
         $this->load->model('M_grafik');
         $this->load->model('M_bahanMasuk');
         $this->load->model('M_bbb');
+        $this->load->model('M_bp_masuk');
+        $this->load->model('M_bbp');
 	}
 
 	public function index() {
@@ -111,6 +113,8 @@ class Report extends AUTH_Controller {
         $data['judul'] = "Laporan Bahan";
         $data['deskripsi'] = "Laporan Data Bahan Penolong";
 
+        $data['dataBahanMasuk'] = $this->M_bp_masuk->select_by_id_bahan($id);
+        $data['dataBbp'] = $this->M_bbp->select_by_id_bahan($id);
 
         $data['dataBahan'] = $this->M_bahanPenolong->select_by_id($id);
 
