@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 22 Feb 2018 pada 10.43
+-- Waktu pembuatan: 17 Mar 2018 pada 15.38
 -- Versi server: 10.1.30-MariaDB
 -- Versi PHP: 7.2.1
 
@@ -384,25 +384,25 @@ ALTER TABLE `t_bahan_penolong`
 -- AUTO_INCREMENT untuk tabel `t_bbb`
 --
 ALTER TABLE `t_bbb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_bb_masuk`
 --
 ALTER TABLE `t_bb_masuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_bb_terpakai`
 --
 ALTER TABLE `t_bb_terpakai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_biaya_bahan_penolong`
 --
 ALTER TABLE `t_biaya_bahan_penolong`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_bop`
@@ -414,13 +414,13 @@ ALTER TABLE `t_bop`
 -- AUTO_INCREMENT untuk tabel `t_bp_masuk`
 --
 ALTER TABLE `t_bp_masuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_btkl`
 --
 ALTER TABLE `t_btkl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_coa`
@@ -432,7 +432,7 @@ ALTER TABLE `t_coa`
 -- AUTO_INCREMENT untuk tabel `t_jurnal`
 --
 ALTER TABLE `t_jurnal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_overhead`
@@ -462,7 +462,7 @@ ALTER TABLE `t_pesanan`
 -- AUTO_INCREMENT untuk tabel `t_produksi`
 --
 ALTER TABLE `t_produksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
