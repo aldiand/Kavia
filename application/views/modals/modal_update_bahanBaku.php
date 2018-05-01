@@ -4,7 +4,11 @@
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <h3 style="display:block; text-align:center;">Update Data BahanBaku</h3>
       <form method="POST" id="form-update-bahanBaku">
-
+  
+        <div class="input-group form-group">
+          <label  class="control-label">ID</label>
+          <input type="text" class="form-control" placeholder="ID" name="sid" value="<?php echo $dataBahanBaku->sid; ?>" aria-describedby="sizing-addon2">
+        </div>
         <div class="input-group form-group">
         <input type="hidden" name="id" value="<?php echo $dataBahanBaku->id; ?>">
           <label  class="control-label">Nama Bahan Baku</label>

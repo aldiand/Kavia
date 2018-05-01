@@ -24,6 +24,7 @@ class Pegawai extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
+    	$this->form_validation->set_rules('sid', 'ID', 'trim|required');
   		$this->form_validation->set_rules('nama_pegawai', 'Nama', 'trim|required');
   		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
   		$this->form_validation->set_rules('tipe_gaji', 'Tipe Gaji', 'trim|required');
@@ -56,6 +57,7 @@ class Pegawai extends AUTH_Controller {
 	}
 
   public function prosesUpdate() {
+    	$this->form_validation->set_rules('sid', 'ID', 'trim|required');
 		$this->form_validation->set_rules('nama_pegawai', 'Nama', 'trim|required');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('tipe_gaji', 'Tipe Gaji', 'trim|required');

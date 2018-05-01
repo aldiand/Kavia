@@ -5,6 +5,10 @@
 
   <form id="form-tambah-bahanPenolong" method="POST">
     <div class="input-group form-group">
+      <label  class="control-label">ID</label>
+      <input type="text" class="form-control" placeholder="ID" name="sid" aria-describedby="sizing-addon2">
+    </div>
+    <div class="input-group form-group">
       <label  class="control-label">Nama Bahan Penolong</label>
       <input type="text" class="form-control" placeholder="nama bahan penolong" name="nama" aria-describedby="sizing-addon2">
     </div>

@@ -4,6 +4,11 @@
   <h3 style="display:block; text-align:center;">Tambah Data Overhead</h3>
 
   <form id="form-tambah-overhead" method="POST">
+
+    <div class="input-group form-group">
+      <label  class="control-label">ID</label>
+      <input type="text" class="form-control" placeholder="ID" name="sid" aria-describedby="sizing-addon2">
+    </div>
     <div class="input-group form-group">
       <label  class="control-label">Nama Overhead</label>
       <input type="text" class="form-control" placeholder="nama overhead" name="nama" aria-describedby="sizing-addon2">

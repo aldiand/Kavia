@@ -2,7 +2,7 @@
   foreach ($dataBahanPenolong as $bahanPenolong) {
     ?>
     <tr>
-      <td><?php echo $bahanPenolong->id; ?></td>
+      <td><?php echo $bahanPenolong->sid; ?></td>
       <td><?php echo $bahanPenolong->nama; ?></td>
       <td><?php echo $bahanPenolong->satuan; ?></td>
       <td><?php echo $bahanPenolong->harga; ?></td>

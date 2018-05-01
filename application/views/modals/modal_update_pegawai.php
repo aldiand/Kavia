@@ -6,6 +6,10 @@
       <form method="POST" id="form-update-pegawai">
         <input type="hidden" name="id" value="<?php echo $dataPegawai->id; ?>">
         <div class="input-group form-group">
+          <label  class="control-label">ID</label>
+          <input type="text" class="form-control" placeholder="ID" name="sid" value="<?php echo $dataPegawai->sid; ?>" aria-describedby="sizing-addon2">
+        </div>
+        <div class="input-group form-group">
           <label  class="control-label">Nama</label>
           <input type="text" class="form-control" placeholder="Nama" name="nama_pegawai" value="<?php echo $dataPegawai->nama_pegawai; ?>" aria-describedby="sizing-addon2">
         </div>

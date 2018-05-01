@@ -24,6 +24,7 @@ class Overhead extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
+    	$this->form_validation->set_rules('sid', 'ID', 'trim|required');
       $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
       $this->form_validation->set_rules('harga_per_bulan', 'Harga', 'trim|required');
       $this->form_validation->set_rules('dibebankan_per_produksi', 'Dibebankan', 'trim|required');
@@ -55,6 +56,7 @@ class Overhead extends AUTH_Controller {
 	}
 
   public function prosesUpdate() {
+    	$this->form_validation->set_rules('sid', 'ID', 'trim|required');
     $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
     $this->form_validation->set_rules('harga_per_bulan', 'Harga', 'trim|required');
     $this->form_validation->set_rules('dibebankan_per_produksi', 'Dibebankan', 'trim|required');

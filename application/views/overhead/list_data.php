@@ -2,7 +2,7 @@
   foreach ($dataOverhead as $overhead) {
     ?>
     <tr>
-      <td><?php echo $overhead->id; ?></td>
+      <td><?php echo $overhead->sid; ?></td>
       <td><?php echo $overhead->nama; ?></td>
       <td><?php echo $overhead->harga_per_bulan; ?></td>
       <td><?php echo $overhead->dibebankan_per_produksi; ?></td>
