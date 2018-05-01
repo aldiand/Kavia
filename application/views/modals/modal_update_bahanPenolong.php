@@ -16,11 +16,11 @@
         </div>
         <div class="input-group form-group">
           <label  class="control-label">Jumlah</label>
-          <input type="text" class="form-control" placeholder="satuan" name="jumlah" value="<?php echo $dataBahanPenolong->satuan; ?>" aria-describedby="sizing-addon2">
+          <input type="text" class="form-control" placeholder="satuan" name="jumlah" value="<?php echo $dataBahanPenolong->jumlah; ?>" aria-describedby="sizing-addon2">
         </div>
         <div class="input-group form-group">
           <label  class="control-label">Harga</label>
-          <input type="number" class="form-control" placeholder="harga" name="harga" value="<?php echo $dataBahanPenolong->harga; ?>" aria-describedby="sizing-addon2">
+          <input type="text" class="form-control" placeholder="harga" name="harga" value="<?php echo $dataBahanPenolong->harga; ?>" aria-describedby="sizing-addon2">
         </div>
         <div class="form-group">
           <div class="col-md-12">

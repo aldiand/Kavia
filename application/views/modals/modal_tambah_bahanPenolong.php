@@ -13,11 +13,12 @@
       <input type="text" class="form-control" placeholder="satuan" name="satuan" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
-      <label  class="control-label">Jumlah</label>
-      <input type="text" class="form-control" placeholder="jumlah" name="jumlah" aria-describedby="sizing-addon2">
+      <label  class="control-label">Harga</label>
+      <input type="text" class="form-control" placeholder="Harga" name="harga" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
-      <input type="hidden" class="form-control" placeholder="Harga" name="harga" aria-describedby="sizing-addon2">
+      <label  class="control-label">Jumlah</label>
+      <input type="text" class="form-control" placeholder="jumlah" name="jumlah" aria-describedby="sizing-addon2">
     </div>
     <div class="form-group">
       <div class="col-md-12">

@@ -14,11 +14,15 @@
     </div>
     <div class="input-group form-group">
       <label  class="control-label">Harga</label>
-      <input type="number" class="form-control" placeholder="Harga" name="harga" aria-describedby="sizing-addon2">
+      <input type="text" class="form-control" placeholder="Harga" name="harga" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
-      <input type="hidden" class="form-control" placeholder="Jumlah" value="0" name="jumlah" aria-describedby="sizing-addon2">
+      <label  class="control-label">Jumlah</label>
+      <input type="text" class="form-control" placeholder="Jumlah" name="jumlah" aria-describedby="sizing-addon2">
     </div>
+    <!-- <div class="input-group form-group">
+      <input type="hidden" class="form-control" placeholder="Jumlah" value="0" name="jumlah" aria-describedby="sizing-addon2">
+    </div> -->
     <div class="form-group">
       <div class="col-md-12">
           <button type="submit" class="form-control btn btn-primary"> <i class="glyphicon glyphicon-ok"></i> Tambah Data</button>

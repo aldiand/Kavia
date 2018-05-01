@@ -27,8 +27,8 @@ class BahanMasuk extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
-  		$this->form_validation->set_rules('harga_beli', 'Harga', 'trim|required');
-  		$this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required');
+  		$this->form_validation->set_rules('harga_beli', 'Harga', 'trim|required|numeric');
+  		$this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required|numeric');
 
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
@@ -67,8 +67,8 @@ class BahanMasuk extends AUTH_Controller {
   public function prosesUpdate() {
     $this->form_validation->set_rules('nama_bahan_Masuk', 'Nama', 'trim|required');
     $this->form_validation->set_rules('satuan', 'Satuan', 'trim|required');
-    $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
-    $this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required');
+    $this->form_validation->set_rules('harga', 'Harga', 'trim|required|numeric');
+    $this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required|numeric');
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
