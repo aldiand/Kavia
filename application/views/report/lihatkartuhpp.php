@@ -67,15 +67,15 @@
   <!-- /.row -->
 
   <!-- Table row -->
-  <div class="col-sm-3">
+  <div class="col-sm-6">
   <center><h3>Biaya Bahan Baku</h3></center>
   <div class="row">
     <div class="col-xs-12 table-responsive">
       <table class="table table-bordered" >
         <thead>
         <tr>
-          <th>Jumlah</th>
           <th>ID BB</th>
+          <th>Jumlah</th>
           <th>Harga</th>
           <th>Subtotal</th>
         </tr>
@@ -83,10 +83,10 @@
         <tbody>
           <?php foreach ($dataBbb as $bbb): ?>
         <tr>
-          <td><?php echo $bbb->jumlah; ?></td>
-          <td><?php echo $bbb->id; ?></td>
-          <td><?php echo $bbb->harga; ?></td>
-          <td><?php echo $bbb->total; ?></td>
+          <td><?php echo getSid($bbb->id_bbb, 't_bbb'); ?></td>
+          <td align="right"><?php echo $bbb->jumlah; ?></td>
+          <td align="right"><?php echo rupiah($bbb->harga); ?></td>
+          <td align="right"><?php echo rupiah($bbb->total); ?></td>
         </tr>
 
           <?php endforeach; ?>
@@ -98,15 +98,15 @@
   </div>
   <!-- /.row -->
   <!-- Table row -->
-  <div class="col-sm-3">
+  <div class="col-sm-6">
   <center><h3>Biaya Bahan Penolong</h3></center>
   <div class="row">
     <div class="col-xs-12 table-responsive">
       <table class="table table-bordered">
         <thead>
         <tr>
-          <th>Jumlah</th>
           <th>ID BP</th>
+          <th>Jumlah</th>
           <th>Harga</th>
           <th>Subtotal</th>
         </tr>
@@ -114,10 +114,10 @@
         <tbody>
           <?php foreach ($dataBbp as $bbb): ?>
         <tr>
-          <td><?php echo $bbb->jumlah; ?></td>
-          <td><?php echo $bbb->id; ?></td>
-          <td><?php echo $bbb->harga; ?></td>
-          <td><?php echo $bbb->total; ?></td>
+          <td><?php echo getSid($bbb->id, 't_bahan_penolong'); ?></td>
+          <td align="right"><?php echo $bbb->jumlah; ?></td>
+          <td align="right"><?php echo rupiah($bbb->harga); ?></td>
+          <td align="right"><?php echo rupiah($bbb->total); ?></td>
         </tr>
           <?php endforeach; ?>
         </tbody>
@@ -128,7 +128,7 @@
   </div>
   <!-- /.row -->
   <!-- Table row -->
-  <div class="col-sm-3">
+  <div class="col-sm-6">
   <center><h3>Biaya TKL</h3></center>
   <div class="row">
     <div class="col-xs-12 table-responsive">
@@ -144,10 +144,10 @@
         <tbody>
           <?php foreach ($dataBtkl as $bbb): ?>
         <tr>
-          <td><?php echo $bbb->id; ?></td>
-          <td><?php echo $bbb->gaji; ?></td>
-          <td><?php echo $bbb->total_jam; ?></td>
-          <td><?php echo $bbb->biaya * getValueKesulitan($data->id); ?></td>
+          <td><?php echo getSid($bbb->id, 't_pegawai'); ?></td>
+          <td align="right"><?php echo $bbb->total_jam; ?></td>
+          <td align="right"><?php echo rupiah($bbb->gaji); ?></td>
+          <td align="right"><?php echo rupiah($bbb->biaya * getValueKesulitan($data->id)); ?></td>
         </tr>
           <?php endforeach; ?>
         </tbody>
@@ -158,7 +158,7 @@
   </div>
   <!-- /.row -->
   <!-- Table row -->
-  <div class="col-sm-3">
+  <div class="col-sm-6">
   <center><h3>Biaya Overhead Pabrik</h3></center>
   <div class="row">
     <div class="col-xs-12 table-responsive">
@@ -173,9 +173,9 @@
             <tbody>
             <?php foreach ($dataOverhead as $bbb): ?>
             <tr>
-            <td><?php echo $bbb->id; ?></td>
-            <td><?php echo $bbb->hari; ?></td>
-            <td><?php echo $bbb->biaya; ?></td>
+            <td><?php echo $bbb->deskripsi; ?></td>
+            <td align="right"><?php echo $bbb->hari; ?></td>
+            <td align="right"><?php echo rupiah($bbb->biaya); ?></td>
         </tr>
           <?php endforeach; ?>
         </tbody>

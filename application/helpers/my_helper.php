@@ -174,9 +174,14 @@
 		}
 
 	function rupiah($angka){
-
 		$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
 		return $hasil_rupiah;
+	}
 
+	function getSid($id, $table) {
+		$ci =& get_instance();
+		$ci->db->where('id', $id);
+		$data = $ci->db->get($table)->result();
+		return $data[0]->sid;
 	}
 ?>
