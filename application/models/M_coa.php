@@ -14,6 +14,12 @@ class M_coa extends CI_Model {
 		return $data->result();
   }
 
+  public function select_by_real_id($id){
+    $this->db->where('id', $id);
+		$data = $this->db->get('t_coa');
+		return $data->result();
+  }
+
 
   public function insert($data){
     $hasil=$this->db->insert('t_coa', $data);

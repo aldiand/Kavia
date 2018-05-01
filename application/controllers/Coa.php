@@ -49,7 +49,7 @@ class Coa extends AUTH_Controller {
 
 	public function update() {
 		$id = trim($_POST['id']);
-		$data['dataCoa'] = $this->M_coa->select_by_id($id);
+		$data['dataCoa'] = $this->M_coa->select_by_real_id($id);
 		echo show_my_modal('modals/modal_update_coa', 'update-coa', $data);
 	}
 
