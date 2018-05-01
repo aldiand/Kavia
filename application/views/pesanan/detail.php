@@ -58,7 +58,7 @@
             <b>Jumlah</b> <a class="pull-right"><?php echo $data->jumlah; ?></a>
             </li>
             <li class="list-group-item">
-            <b>DP</b> <a class="pull-right"><?php echo $data->dp; ?></a>
+            <b>DP</b> <a class="pull-right"><?php echo rupiah($data->dp); ?></a>
             </li>
         </div>
       </div>
@@ -104,28 +104,28 @@
             <p class="text-muted text-center">Detail Biaya</p>
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Biaya Bahan Baku </b> <a class="pull-right"><?php echo $total_biaya_bb; ?></a>
+                <b>Biaya Bahan Baku </b> <a class="pull-right"><?php echo rupiah($total_biaya_bb); ?></a>
               </li>
               <li class="list-group-item">
-                <b>Biaya Bahan Penolong </b> <a class="pull-right"><?php echo $total_biaya_bp; ?></a>
+                <b>Biaya Bahan Penolong </b> <a class="pull-right"><?php echo rupiah($total_biaya_bp); ?></a>
               </li>
               <li class="list-group-item">
-              <b>Biaya BTKL</b> <a class="pull-right"><?php echo $total_biaya_tkl; ?></a>
+              <b>Biaya BTKL</b> <a class="pull-right"><?php echo rupiah($total_biaya_tkl); ?></a>
               </li>
               <?php if ($data->status == 2): ?>
                 <li class="list-group-item">
-                <b>Biaya Overhead Pabrik</b> <a class="pull-right"><?php echo $total_biaya_overhead; ?></a>
+                <b>Biaya Overhead Pabrik</b> <a class="pull-right"><?php echo rupiah($total_biaya_overhead); ?></a>
                 </li>
                 <li class="list-group-item">
-                <b>Total Biaya </b> <a class="pull-right"><?php echo $total_biaya; ?></a>
+                <b>Total Biaya </b> <a class="pull-right"><?php echo rupiah($total_biaya); ?></a>
                 </li>
                 <li class="list-group-item">
-                <b>Harga Jual </b> <a class="pull-right"><?php echo (120*$total_biaya/100); ?></a>
+                <b>Harga Jual </b> <a class="pull-right"><?php echo rupiah((120*$total_biaya/100)); ?></a>
                 </li>
                 <li class="list-group-item">
-                <b>Total Bayar(Harga - DP)</b> <a class="pull-right"><?php echo (120*$total_biaya/100)-$data->dp; ?></a>
+                <b>Total Bayar(Harga - DP)</b> <a class="pull-right"><?php echo rupiah((120*$total_biaya/100)-$data->dp); ?></a>
                 </li>
-                <a href="<?php echo base_url('/Pesanan/detail/').$data->id?>"><button class="btn btn-success" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-files"></i> Detail</button></a>
+                <!-- <a href="<?php echo base_url('/Pesanan/detail/').$data->id?>"><button class="btn btn-success" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-files"></i> Detail</button></a> -->
 
               <?php endif; ?>
 

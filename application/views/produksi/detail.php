@@ -33,72 +33,73 @@ $jenis = $this->session->userdata('jenis');
                 <ul class="list-group list-group-unbordered">
                   <li class="list-group-item">
                   <li class="list-group-item">
-                    <b>ID Pesanan</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->id_pesanan; ?></a>
-                  </li>
-                    <b>Status</b> <br> <a style="word-wrap: break-word;"><?php echo getStatus($produksi->status); ?></a>
+                    <b>ID Pesanan</b> <a style="word-wrap: break-word; float:right;"><?php echo $produksi->id_pesanan; ?></a>
                   </li>
                   <li class="list-group-item">
-                    <b>Deskripsi</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->deskripsi; ?></a>
+                    <b>Status</b> <a style="word-wrap: break-word; float:right;"><?php echo getStatus($produksi->status); ?></a>
                   </li>
                   <li class="list-group-item">
-                    <b>Tanggal Mulai</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->tanggal_mulai; ?></a>
+                    <b>Deskripsi</b>  <a style="word-wrap: break-word; float:right;"><?php echo $produksi->deskripsi; ?></a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Tanggal Mulai</b> <a style="word-wrap: break-word; float:right;"><?php echo $produksi->tanggal_mulai; ?></a>
                   </li>
                   <?php if ($produksi->status==2): ?>
                   <li class="list-group-item">
-                    <b>Tanggal Selesai</b> <br> <a style="word-wrap: break-word;"><?php echo $produksi->tanggal_selesai; ?></a>
+                    <b>Tanggal Selesai</b> <a style="word-wrap: break-word; float:right;"><?php echo $produksi->tanggal_selesai; ?></a>
                   </li>
                   <?php endif; ?>
                 </ul>
               </div>
           </div>
         </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <!-- Profile Image -->
             <div class="box">
             <div class="box-body box-profile">
                 <p class="text-muted text-center">Detail BTKL</p>
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Jumlah Tenaga Kerja</b> <br> <a style="word-wrap: break-word;"><?php echo getRowCountTablebyProduksi('t_btkl', $produksi->id); ?></a>
+                  <b>Jumlah Tenaga Kerja</b><a style="word-wrap: break-word; float:right;"><?php echo getRowCountTablebyProduksi('t_btkl', $produksi->id); ?></a>
                 </li>
                 <li class="list-group-item">
-                  <b>Total Jam</b> <br> <a style="word-wrap: break-word;"><?php echo $total_jam_tkl ; ?></a>
+                  <b>Total Jam</b> <a style="word-wrap: break-word; float:right;"><?php echo $total_jam_tkl ; ?></a>
                 </li>
 
                 <li class="list-group-item">
-                  <b>Total Biaya</b> <br> <a style="word-wrap: break-word;"><?php echo $total_biaya_tkl * getValueKesulitan($produksi->id_pesanan); ?></a>
+                  <b>Total Biaya</b> <a style="word-wrap: break-word; float:right;"><?php echo rupiah($total_biaya_tkl * getValueKesulitan($produksi->id_pesanan)); ?></a>
                 </li>
               </ul>
             </div>
         </div>
       </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
           <!-- Profile Image -->
           <div class="box">
           <div class="box-body box-profile">
               <p class="text-muted text-center">Detail Bahan Baku</p>
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Jumlah Bahan Baku</b> <br> <a style="word-wrap: break-word;"><?php echo getRowCountTablebyProduksi('t_bb_terpakai', $produksi->id); ?></a>
+                <b>Jumlah Bahan Baku</b> <a style="word-wrap: break-word; float:right;"><?php echo getRowCountTablebyProduksi('t_bb_terpakai', $produksi->id); ?></a>
               </li>
               <li class="list-group-item">
-                <b>Total Biaya</b> <br> <a style="word-wrap: break-word;"><?php echo $total_biaya_bb; ?></a>
+                <b>Total Biaya</b> <a style="word-wrap: break-word; float:right;"><?php echo rupiah($total_biaya_bb); ?></a>
               </li>
             </ul>
           </div>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <!-- Profile Image -->
       <div class="box">
       <div class="box-body box-profile">
           <p class="text-muted text-center">Detail Bahan Penolong</p>
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
-            <b>Jumlah Bahan Penolong</b> <br> <a style="word-wrap: break-word;"><?php echo getRowCountTablebyProduksi('t_biaya_bahan_penolong', $produksi->id); ?></a>
+            <b>Jumlah Bahan Penolong</b>  <a style="word-wrap: break-word; float:right;"><?php echo getRowCountTablebyProduksi('t_biaya_bahan_penolong', $produksi->id); ?></a>
           </li>
           <li class="list-group-item">
-            <b>Total Biaya</b> <br> <a style="word-wrap: break-word;"><?php echo $total_biaya_bp; ?></a>
+            <b>Total Biaya</b><a style="word-wrap: break-word; float:right;"><?php echo rupiah($total_biaya_bp); ?></a>
           </li>
         </ul>
       </div>
