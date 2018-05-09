@@ -81,12 +81,12 @@ class Report extends AUTH_Controller {
     }
 
      public function tampilBb() {
-		$data['dataBahanBaku'] = $this->M_bahanBaku->select_all();
+		$data['dataBahanBaku'] = $this->M_bahanBaku->select_all_with_unactive();
 		$this->load->view('report/list_data_bb', $data);
 	}
 
       public function tampilBp() {
-		$data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all();
+		$data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all_with_unactive();
 		$this->load->view('report/list_data_bp', $data);
     }
     

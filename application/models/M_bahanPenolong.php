@@ -9,6 +9,12 @@ class M_bahanPenolong extends CI_Model {
 		return $data->result();
 	}
 
+	public function select_all_with_unactive() {
+    $this->db->order_by("id", "desc");
+		$data = $this->db->get('t_bahan_penolong');
+		return $data->result();
+	}
+
   public function select_by_id($id){
     $this->db->where('id', $id);
 		$data = $this->db->get('t_bahan_penolong');
@@ -51,7 +57,7 @@ class M_bahanPenolong extends CI_Model {
 
   public function update($data, $id){
     $this->db->where('id', $id);
-    $hasil=$this->db->update('t_bahan_penolong', array('active' => 0));
+    $hasil=$this->db->update('t_bahan_penolong', array('active' => 0, 'last_active' => Date('Y-m-d')));
 		$data['id'] = null;
     $hasil=$this->db->insert('t_bahan_penolong', $data);
     return $hasil;
@@ -59,7 +65,7 @@ class M_bahanPenolong extends CI_Model {
 
 	public function delete($id){
     $this->db->where('id', $id);
-    $hasil=$this->db->update('t_bahan_penolong', array('active' => 0));
+    $hasil=$this->db->update('t_bahan_penolong', array('active' => 0, 'last_active' => Date('Y-m-d')));
     return $hasil;
   }
 

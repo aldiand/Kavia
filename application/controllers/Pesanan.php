@@ -104,7 +104,7 @@ class Pesanan extends AUTH_Controller {
   			if ($result > 0) {
 
     $this->M_report->insert_jurnal(211, $result, 'd', $data['dp']);
-    $this->M_report->insert_jurnal(212, $result, 'c', $data['dp']);
+    $this->M_report->insert_jurnal(213, $result, 'c', $data['dp']);
   				$out['status'] = '';
   				$out['msg'] = show_succ_msg('Data Pesanan Berhasil ditambahkan', '20px');
   			} else {
@@ -179,7 +179,10 @@ class Pesanan extends AUTH_Controller {
         $data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];
 
     $this->M_report->insert_jurnal(111, $id, 'd', (120*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
-    $this->M_report->insert_jurnal(211, $id, 'c', (120*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
+    $this->M_report->insert_jurnal(214, $id, 'c', (120*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
+
+    // $this->M_report->insert_jurnal(111, $id, 'd', (120*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
+    // $this->M_report->insert_jurnal(411, $id, 'c', (120*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
   			echo show_succ_msg('Pesanan Selesai', '20px');
   		} else {
   			echo show_err_msg('Pesanan Gagal di Update', '20px');

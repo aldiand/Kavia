@@ -17,7 +17,7 @@
                             <th>Nama Bahan Baku</th>
                             <th>Satuan</th>
                             <th>Harga</th>
-                            <th>Stok</th>
+                            <th>Last Active</th>
                             <th style="text-align: center;">Aksi</th>
                             </tr>
                         </thead>
@@ -39,7 +39,7 @@
                                 <th>Nama Bahan Penolong</th>
                                 <th>Satuan</th>
                                 <th>Harga</th>
-                                <th>Stok</th>
+                                <th>Last Active</th>
                                 <th style="text-align: center;">Aksi</th>
                                 </tr>
                             </thead>
