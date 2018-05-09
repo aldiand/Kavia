@@ -7,6 +7,10 @@
 
         <div class="input-group form-group">
         <input type="hidden" name="id" value="<?php echo $dataOverhead->id; ?>">
+        <div class="input-group form-group">
+          <label  class="control-label">ID</label>
+          <input type="text" class="form-control" placeholder="ID" name="sid" value="<?php echo $dataOverhead->sid; ?>" aria-describedby="sizing-addon2">
+        </div>
           <label  class="control-label">Nama Data Overhead</label>
           <input type="text" class="form-control" placeholder="nama overhead" name="nama" value="<?php echo $dataOverhead->nama; ?>" aria-describedby="sizing-addon2">
         </div>
