@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 17 Mar 2018 pada 15.38
+-- Waktu pembuatan: 09 Bulan Mei 2018 pada 15.38
 -- Versi server: 10.1.30-MariaDB
 -- Versi PHP: 7.2.1
 
@@ -30,11 +30,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `t_bahan_penolong` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `nama` varchar(30) NOT NULL,
   `satuan` varchar(15) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT '1'
+  `active` int(1) NOT NULL DEFAULT '1',
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -45,11 +47,13 @@ CREATE TABLE `t_bahan_penolong` (
 
 CREATE TABLE `t_bbb` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `nama_bahan_baku` varchar(30) NOT NULL,
   `satuan` varchar(20) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT '1'
+  `active` int(1) NOT NULL DEFAULT '1',
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -60,10 +64,12 @@ CREATE TABLE `t_bbb` (
 
 CREATE TABLE `t_bb_masuk` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `tanggal` date NOT NULL,
   `jumlah` int(11) NOT NULL,
   `harga_beli` int(11) NOT NULL,
-  `id_bbb` int(11) NOT NULL
+  `id_bbb` int(11) NOT NULL,
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -74,10 +80,12 @@ CREATE TABLE `t_bb_masuk` (
 
 CREATE TABLE `t_bb_terpakai` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `tanggal` date NOT NULL,
   `jumlah` int(11) NOT NULL,
   `id_bbb` int(11) NOT NULL,
-  `id_produksi` int(11) NOT NULL
+  `id_produksi` int(11) NOT NULL,
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -88,10 +96,12 @@ CREATE TABLE `t_bb_terpakai` (
 
 CREATE TABLE `t_biaya_bahan_penolong` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `tanggal` date NOT NULL,
   `jumlah` int(11) NOT NULL,
   `id_bahan_penolong` int(11) NOT NULL,
-  `id_produksi` int(11) NOT NULL
+  `id_produksi` int(11) NOT NULL,
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -102,9 +112,11 @@ CREATE TABLE `t_biaya_bahan_penolong` (
 
 CREATE TABLE `t_bop` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `tanggal` date NOT NULL,
   `id_overhead` int(11) NOT NULL,
-  `id_produksi` int(11) NOT NULL
+  `id_produksi` int(11) NOT NULL,
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -115,10 +127,12 @@ CREATE TABLE `t_bop` (
 
 CREATE TABLE `t_bp_masuk` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `tanggal` date NOT NULL,
   `jumlah` int(11) NOT NULL,
   `id_bahan_penolong` int(11) NOT NULL,
-  `harga_beli` int(11) NOT NULL
+  `harga_beli` int(11) NOT NULL,
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -129,11 +143,13 @@ CREATE TABLE `t_bp_masuk` (
 
 CREATE TABLE `t_btkl` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `tanggal` date NOT NULL,
   `jam_masuk` varchar(5) NOT NULL,
   `jam_keluar` varchar(5) NOT NULL,
   `id_pegawai` int(11) NOT NULL,
-  `id_produksi` int(11) NOT NULL
+  `id_produksi` int(11) NOT NULL,
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -144,25 +160,30 @@ CREATE TABLE `t_btkl` (
 
 CREATE TABLE `t_coa` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `kode` varchar(10) NOT NULL,
-  `nama` varchar(20) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT '1'
+  `nama` varchar(50) NOT NULL,
+  `active` int(1) NOT NULL DEFAULT '1',
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `t_coa`
 --
 
-INSERT INTO `t_coa` (`id`, `kode`, `nama`, `active`) VALUES
-(2, '112', 'Persediaan BB', 1),
-(3, '511', 'Gaji dan Upah', 1),
-(7, '111', 'Kas', 1),
-(8, '512', 'BDP - BBB', 1),
-(9, '513', 'BDP - BTKL', 1),
-(10, '514', 'BDP - BBP', 1),
-(11, '113', 'Persediaan BP', 1),
-(12, '211', 'Utang Dagang', 1),
-(13, '212', 'Pendapatan', 1);
+INSERT INTO `t_coa` (`id`, `sid`, `kode`, `nama`, `active`, `last_active`) VALUES
+(2, NULL, '112', 'Persediaan BB', 1, NULL),
+(3, NULL, '511', 'Gaji dan Upah', 1, NULL),
+(7, NULL, '111', 'Kass', 1, NULL),
+(8, NULL, '512', 'BDP - BBB', 1, NULL),
+(9, NULL, '513', 'BDP - BTKL', 1, NULL),
+(10, NULL, '514', 'BDP - BBP', 1, NULL),
+(11, NULL, '113', 'Persediaan BP', 1, NULL),
+(12, NULL, '211', 'Utang Dagang', 1, NULL),
+(13, NULL, '212', 'Pendapatan', 1, NULL),
+(14, NULL, '213', 'Pendapatan Diterima Dimuka', 1, NULL),
+(15, NULL, '214', 'Piutang Dagang', 1, NULL),
+(16, NULL, '411', 'Penjualan', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -172,11 +193,13 @@ INSERT INTO `t_coa` (`id`, `kode`, `nama`, `active`) VALUES
 
 CREATE TABLE `t_jurnal` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `kode_akun` int(11) NOT NULL,
   `reff` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
   `posisi` varchar(1) NOT NULL,
-  `nominal` float NOT NULL
+  `nominal` float NOT NULL,
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -187,10 +210,12 @@ CREATE TABLE `t_jurnal` (
 
 CREATE TABLE `t_overhead` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `nama` varchar(30) NOT NULL,
   `harga_per_bulan` int(11) NOT NULL,
   `dibebankan_per_produksi` int(11) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT '1'
+  `active` int(1) NOT NULL DEFAULT '1',
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -201,12 +226,14 @@ CREATE TABLE `t_overhead` (
 
 CREATE TABLE `t_pegawai` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `nama_pegawai` varchar(30) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `tipe_gaji` varchar(15) NOT NULL,
   `gaji` int(11) NOT NULL,
   `no_telp` varchar(15) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT '1'
+  `active` int(1) NOT NULL DEFAULT '1',
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -217,9 +244,11 @@ CREATE TABLE `t_pegawai` (
 
 CREATE TABLE `t_pengerjaan` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `nama` varchar(11) NOT NULL,
   `status` int(1) NOT NULL,
-  `id_produksi` int(11) NOT NULL
+  `id_produksi` int(11) NOT NULL,
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -230,6 +259,7 @@ CREATE TABLE `t_pengerjaan` (
 
 CREATE TABLE `t_pesanan` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `nama_pemesan` varchar(30) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `no_telp` int(13) NOT NULL,
@@ -240,7 +270,8 @@ CREATE TABLE `t_pesanan` (
   `dp` int(11) NOT NULL,
   `status` int(1) NOT NULL,
   `tanggal_pesanan` date NOT NULL,
-  `tanggal_selesai` date NOT NULL
+  `tanggal_selesai` date NOT NULL,
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -251,11 +282,13 @@ CREATE TABLE `t_pesanan` (
 
 CREATE TABLE `t_produksi` (
   `id` int(11) NOT NULL,
+  `sid` varchar(30) DEFAULT NULL,
   `tanggal_mulai` date NOT NULL,
   `tanggal_selesai` date DEFAULT NULL,
   `deskripsi` text NOT NULL,
   `status` int(1) NOT NULL,
-  `id_pesanan` int(11) NOT NULL
+  `id_pesanan` int(11) NOT NULL,
+  `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -378,19 +411,19 @@ ALTER TABLE `t_produksi`
 -- AUTO_INCREMENT untuk tabel `t_bahan_penolong`
 --
 ALTER TABLE `t_bahan_penolong`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_bbb`
 --
 ALTER TABLE `t_bbb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_bb_masuk`
 --
 ALTER TABLE `t_bb_masuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_bb_terpakai`
@@ -420,19 +453,19 @@ ALTER TABLE `t_bp_masuk`
 -- AUTO_INCREMENT untuk tabel `t_btkl`
 --
 ALTER TABLE `t_btkl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_coa`
 --
 ALTER TABLE `t_coa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_jurnal`
 --
 ALTER TABLE `t_jurnal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_overhead`
@@ -456,13 +489,13 @@ ALTER TABLE `t_pengerjaan`
 -- AUTO_INCREMENT untuk tabel `t_pesanan`
 --
 ALTER TABLE `t_pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_produksi`
 --
 ALTER TABLE `t_produksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
