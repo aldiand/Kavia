@@ -151,12 +151,12 @@
           <td align="right"><?php echo rupiah($bbb->total); ?></td>
         </tr>
           <?php endforeach; ?>
-            <?php foreach ($dataOverhead as $bbb): ?>
+            <?php foreach ($dataOverhead2 as $bbb): ?>
             <tr>
-            <td><?php echo "PR".$bbb->id; ?></td>
-            <td align="right"><?php echo 1;?></td>
-            <td align="right"><?php echo rupiah($bbb->biaya); ?></td>
-            <td align="right"><?php echo rupiah($bbb->biaya); ?></td>
+            <td><?php echo $bbb->id; ?></td>
+            <td align="right"><?php echo $bbb->jumlah;?></td>
+            <td align="right"><?php echo rupiah($bbb->dibebankan_per_produksi); ?></td>
+            <td align="right"><?php echo rupiah($bbb->dibebankan_per_produksi*$bbb->jumlah); ?></td>
         </tr>
           <?php endforeach; ?>
         </tbody>

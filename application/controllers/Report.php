@@ -52,6 +52,7 @@ class Report extends AUTH_Controller {
         $data['dataBbp'] = $this->M_bbp->select_by_pesanan($id);
         $data['dataBtkl'] = $this->M_btkl->select_by_pesanan($id);
         $data['dataOverhead'] = $this->M_produksi->select_overhead_by_pesanan($id);
+        $data['dataOverhead2'] = $this->M_pesanan->getOverhead($id);
     
         $data['page'] = "pesanan";
 

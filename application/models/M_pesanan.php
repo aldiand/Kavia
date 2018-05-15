@@ -69,4 +69,11 @@ class M_pesanan extends CI_Model {
 		$data = $this->db->get('t_pesanan');
 		return $data->num_rows();
 	}
+
+	public function getOverhead($id) {
+		$this->db->select("t_overhead.*, (SELECT COUNT(*) FROM t_produksi WHERE id_pesanan=$id) as jumlah");
+	  $this->db->where('active', 1);
+		$data = $this->db->get('t_overhead');
+		return $data->result();
+	}
 }
