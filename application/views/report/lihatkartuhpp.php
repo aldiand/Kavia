@@ -67,14 +67,14 @@
   <!-- /.row -->
 
   <!-- Table row -->
-  <div class="col-sm-6">
+  <div class="col-sm-4">
   <center><h3>Biaya Bahan Baku</h3></center>
   <div class="row">
     <div class="col-xs-12 table-responsive">
       <table class="table table-bordered" >
         <thead>
         <tr>
-          <th>ID BB</th>
+          <th>ID</th>
           <th>Jumlah</th>
           <th>Harga</th>
           <th>Subtotal</th>
@@ -98,44 +98,14 @@
   </div>
   <!-- /.row -->
   <!-- Table row -->
-  <div class="col-sm-6">
-  <center><h3>Biaya Bahan Penolong</h3></center>
-  <div class="row">
-    <div class="col-xs-12 table-responsive">
-      <table class="table table-bordered">
-        <thead>
-        <tr>
-          <th>ID BP</th>
-          <th>Jumlah</th>
-          <th>Harga</th>
-          <th>Subtotal</th>
-        </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($dataBbp as $bbb): ?>
-        <tr>
-          <td><?php echo getSid($bbb->id_bahan_penolong, 't_bahan_penolong'); ?></td>
-          <td align="right"><?php echo $bbb->jumlah; ?></td>
-          <td align="right"><?php echo rupiah($bbb->harga); ?></td>
-          <td align="right"><?php echo rupiah($bbb->total); ?></td>
-        </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
-    </div>
-  </div>    
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
-  <!-- Table row -->
-  <div class="col-sm-6">
+  <div class="col-sm-4">
   <center><h3>Biaya TKL</h3></center>
   <div class="row">
     <div class="col-xs-12 table-responsive">
       <table class="table table-bordered">
         <thead>
         <tr>
-          <th>ID PG</th>
+          <th>ID</th>
           <th>Gaji/Jam</th>
           <th>Total Jam</th>
           <th>Subtotal</th>
@@ -158,23 +128,34 @@
   </div>
   <!-- /.row -->
   <!-- Table row -->
-  <div class="col-sm-6">
+  <div class="col-sm-4">
   <center><h3>Biaya Overhead Pabrik</h3></center>
   <div class="row">
     <div class="col-xs-12 table-responsive">
       <table class="table table-bordered">
         <thead>
         <tr>
-          <th>ID Produksi</th>
-          <th>Hari</th>
-          <th>Biaya</th>
-            </tr>
+          <th>ID</th>
+          <th>Jumlah</th>
+          <th>Harga</th>
+          <th>Subtotal</th>
+        </tr>
             </thead>
             <tbody>
+
+          <?php foreach ($dataBbp as $bbb): ?>
+        <tr>
+          <td><?php echo getSid($bbb->id_bahan_penolong, 't_bahan_penolong'); ?></td>
+          <td align="right"><?php echo $bbb->jumlah; ?></td>
+          <td align="right"><?php echo rupiah($bbb->harga); ?></td>
+          <td align="right"><?php echo rupiah($bbb->total); ?></td>
+        </tr>
+          <?php endforeach; ?>
             <?php foreach ($dataOverhead as $bbb): ?>
             <tr>
-            <td><?php echo $bbb->deskripsi; ?></td>
-            <td align="right"><?php echo $bbb->hari; ?></td>
+            <td><?php echo "PR".$bbb->id; ?></td>
+            <td align="right"><?php echo 1;?></td>
+            <td align="right"><?php echo rupiah($bbb->biaya); ?></td>
             <td align="right"><?php echo rupiah($bbb->biaya); ?></td>
         </tr>
           <?php endforeach; ?>
