@@ -114,7 +114,7 @@
         <tbody>
           <?php foreach ($dataBbp as $bbb): ?>
         <tr>
-          <td><?php echo getSid($bbb->id, 't_bahan_penolong'); ?></td>
+          <td><?php echo getSid($bbb->id_bahan_penolong, 't_bahan_penolong'); ?></td>
           <td align="right"><?php echo $bbb->jumlah; ?></td>
           <td align="right"><?php echo rupiah($bbb->harga); ?></td>
           <td align="right"><?php echo rupiah($bbb->total); ?></td>
