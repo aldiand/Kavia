@@ -19,8 +19,8 @@
     <div class="input-group form-group">
       <label  class="control-label">Jenis Pegawai</label>
       <select name="tipe_gaji" class="form-control select2" aria-describedby="sizing-addon2">
-          <option value="tetap">
-            Tetap
+          <option value="project">
+            Project
           </option>
           <option value="btkl">
             BTKL

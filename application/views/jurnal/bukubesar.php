@@ -30,9 +30,13 @@
         <h2 align="center"><?php echo 'DATA TIDAK DITEMUKAN'?></h2>
     <?php endif; ?>
 		<table class="table table-bordered table-striped">
+			<tr class="info" >
+				<td align="center" style="vertical-align:middle;" align='center' rowspan="2"><b>TANGGAL</b></td>
+				<td align="center" style="vertical-align:middle;" align='center' rowspan="2"><b>KETERANGAN</b></td>
+				<td align="center" style="vertical-align:middle;" align='center' rowspan="2"><b>REFF</b></td>
+				<td align="center" align='center' colspan="2"><b>SALDO</b></td>
+			</tr>
 			<tr class="info">
-				<td align="center"><b>TANGGAL</b></td>
-				<td align="center"><b>KETERANGAN</b></td>
 				<td align="center"><b>DEBIT</b></td>
 				<td align="center"><b>KREDIT</b></td>
 			</tr>
@@ -48,6 +52,7 @@
 					    <tr>
 							<td align='center'>".$data['tanggal']."</td>
 							<td>".$data['nama']."</td>
+							<td align='right'>".$data['kode_akun']."</td>
 							<td align='right'>".rupiah($data['nominal'])."</td>
 							<td></td>
 						";
@@ -60,6 +65,7 @@
 					    <tr>
 							<td align='center'>".$data['tanggal']."</td>
 							<td>".$data['nama']."</td>
+							<td align='right'>".$data['kode_akun']."</td>
 							<td></td>
 							<td align='right'>".rupiah($data['nominal'])."</td>
 						";

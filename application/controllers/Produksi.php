@@ -148,6 +148,21 @@ class Produksi extends AUTH_Controller {
     			echo show_succ_msg('Produksi Selesai', '20px');
     		} else {
     			echo show_err_msg('Produksi Gagal di Update', '20px');
-    		}
+			}
+			
+		$bbb = $this->M_bbb->get_biaya_by_produksi($id);
+		$bbp = $this->M_bbp->get_biaya_by_produksi($id);
+		$btkl = $this->M_btkl->get_biaya_by_produksi($id);
+		$bop = $this->M_produksi->get_overhead_by_produksi($id);
+
+		$this->M_report->insert_jurnal(114, $result, 'd', $bbb + $bbp + $btkl + $bop);
+		$this->M_report->insert_jurnal(512, $result, 'c', $bbb);
+		$this->M_report->insert_jurnal(513, $result, 'c', $btkl);
+		$this->M_report->insert_jurnal(514, $result, 'c', $bbp + $bop);
+
+
+		$this->M_report->insert_jurnal(412, $result, 'c', $bbb);
+		$this->M_report->insert_jurnal(114, $result, 'd', $bbb);
+
     }
 }

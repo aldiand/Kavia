@@ -23,8 +23,8 @@
               <option value="<?php echo $dataPegawai->tipe_gaji; ?>">
                 <?php echo $dataPegawai->tipe_gaji; ?>
               </option>
-              <option value="tetap">
-                Tetap
+              <option value="project">
+                Project
               </option>
               <option value="btkl">
                 BTKL

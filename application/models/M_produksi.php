@@ -84,6 +84,12 @@ class M_produksi extends CI_Model {
 		$data = $this->db->get('t_produksi')->result();
 		return $data[0]->hasil;
 	}
+	public function get_overhead_by_produksi($id) {
+		$this->db->select("SUM((DATEDIFF(`tanggal_selesai`, `tanggal_mulai`)+1)*(SELECT SUM(dibebankan_per_produksi) FROM t_overhead WHERE active=1)) AS hasil");
+		$this->db->where("id", $id);
+		$data = $this->db->get('t_produksi')->result();
+		return $data[0]->hasil;
+	}
 
   public function update($data, $id){
     $this->db->where('id', $id);
