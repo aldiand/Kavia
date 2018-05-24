@@ -81,6 +81,33 @@ class Report extends AUTH_Controller {
         $this->template->views('report/bahan.php', $data);
     }
 
+    public function Penjualan() {
+            
+        $data['page'] = "Report Penjualan";
+        $data['judul'] = "Laporan Penjualan";
+        $data['deskripsi'] = "Laporan Data Penjualan";
+        
+        $this->template->views('report/penjualan.php', $data);
+    }
+    public function view_penjualan() {
+        if(!empty($_POST['bulan']) && !empty($_POST['tahun'])) {
+            $data['bulan_ke'] = $_POST['bulan'];
+            $data['tahun_ke'] = $_POST['tahun'];
+            $data['dataPesanan'] = $this->M_pesanan->select_by_month_year($_POST['bulan'], $_POST['tahun']);
+        } else if (!empty($_POST['bulan'])) {
+            $data['bulan_ke'] = $_POST['bulan'];
+            $data['dataPesanan'] = $this->M_pesanan->select_by_month($_POST['bulan']);
+        } else if (!empty($_POST['tahun'])) {
+            $data['tahun_ke'] = $_POST['tahun'];
+            $data['dataPesanan'] = $this->M_pesanan->select_by_year($_POST['tahun']);
+        }
+        $data['page'] = "Report Penjualan";
+        $data['judul'] = "Laporan Penjualan";
+        $data['deskripsi'] = "Laporan Data Penjualan";
+
+        $this->template->views('report/penjualan.php', $data);
+    }
+
      public function tampilBb() {
 		$data['dataBahanBaku'] = $this->M_bahanBaku->select_all_with_unactive();
 		$this->load->view('report/list_data_bb', $data);

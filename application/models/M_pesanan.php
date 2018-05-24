@@ -7,6 +7,25 @@ class M_pesanan extends CI_Model {
 		$data = $this->db->get('t_pesanan');
 		return $data->result();
 	}
+	public function select_by_year($year) {
+		$this->db->where("YEAR(tanggal_pesanan)", $year);
+    $this->db->order_by("id", "desc");
+		$data = $this->db->get('t_pesanan');
+		return $data->result();
+	}
+	public function select_by_month($month) {
+		$this->db->where("MONTH(tanggal_pesanan)", $month);
+    $this->db->order_by("id", "desc");
+		$data = $this->db->get('t_pesanan');
+		return $data->result();
+	}
+	public function select_by_month_year($month, $year) {
+		$this->db->where("YEAR(tanggal_pesanan)", $year);
+		$this->db->where("MONTH(tanggal_pesanan)", $month);
+    $this->db->order_by("id", "desc");
+		$data = $this->db->get('t_pesanan');
+		return $data->result();
+	}
 	public function select_all_uncomplete() {
     $this->db->order_by("id", "desc");
     $this->db->where('status !=', 2);
