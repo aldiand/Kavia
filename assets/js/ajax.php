@@ -1083,10 +1083,10 @@
 								data: "id=" +id
 							})
 							.done(function(data) {
+								location.reload();
 								$('#konfirmasiSelesai').modal('hide');
 								$('.msg').html(data);
 								effect_msg();
-								location.reload();
 							})
 						})
 
