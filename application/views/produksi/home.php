@@ -13,7 +13,7 @@
     <table id="list-data" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>ID Pesanan</th>
           <th>Tanggal</th>
           <th>Deskripsi</th>
           <th>Status</th>

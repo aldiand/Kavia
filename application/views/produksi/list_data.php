@@ -2,7 +2,7 @@
   foreach ($dataProduksi as $produksi) {
     ?>
     <tr>
-      <td><?php echo $produksi->id; ?></a></td>
+      <td><?php echo $produksi->id_pesanan; ?></a></td>
       <td><?php echo $produksi->tanggal_mulai; ?></td>
       <td><?php echo $produksi->deskripsi; ?></td>
       <td><?php echo getStatus( $produksi->status  ); ?></td>
