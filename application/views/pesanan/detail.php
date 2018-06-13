@@ -110,11 +110,11 @@
                 <b>Biaya Bahan Penolong </b> <a class="pull-right"><?php echo rupiah($total_biaya_bp); ?></a>
               </li>
               <li class="list-group-item">
-              <b>Biaya BTKL</b> <a class="pull-right"><?php echo rupiah($total_biaya_tkl); ?></a>
+              <b>Beban BTKL</b> <a class="pull-right"><?php echo rupiah($total_biaya_tkl); ?></a>
               </li>
               <?php if ($data->status == 2): ?>
                 <li class="list-group-item">
-                <b>Biaya Overhead Pabrik</b> <a class="pull-right"><?php echo rupiah($total_biaya_overhead); ?></a>
+                <b>Beban BOP</b> <a class="pull-right"><?php echo rupiah($total_biaya_overhead); ?></a>
                 </li>
                 <li class="list-group-item">
                 <b>Total Biaya </b> <a class="pull-right"><?php echo rupiah($total_biaya); ?></a>
