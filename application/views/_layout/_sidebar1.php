@@ -39,7 +39,9 @@
             <?php if($jenis == "admin" || $jenis == "pemilik") { ?>
             <li><a href="<?php echo base_url(); ?>Pesanan/"><i class="fa fa-circle-o"></i> Pesanan</a></li>
           <?php } ?>
+            <?php if($jenis == "produksi") { ?>
             <li><a href="<?php echo base_url(); ?>Produksi/"><i class="fa fa-circle-o"></i> Produksi</a></li>
+            <?php }?>
             <?php if($jenis == "admin" || $jenis == "pemilik") { ?>
             <li><a href="<?php echo base_url(); ?>BahanMasuk/#"><i class="fa fa-circle-o"></i> Bahan Baku Masuk</a></li>
             <li><a href="<?php echo base_url(); ?>BpMasuk/#"><i class="fa fa-circle-o"></i> Bahan Penolong Masuk</a></li>
