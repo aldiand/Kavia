@@ -206,7 +206,7 @@
         <table class="table">
           <tr>
             <th style="width:50%">Harga Jual:</th>
-            <td><?php echo (120*$total_biaya/100); ?></td>
+            <td><?php echo (130*$total_biaya/100); ?></td>
           </tr>
         </table>
       </div>

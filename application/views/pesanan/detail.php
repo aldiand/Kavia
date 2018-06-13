@@ -120,10 +120,10 @@
                 <b>Total Biaya </b> <a class="pull-right"><?php echo rupiah($total_biaya); ?></a>
                 </li>
                 <li class="list-group-item">
-                <b>Harga Jual </b> <a class="pull-right"><?php echo rupiah((120*$total_biaya/100)); ?></a>
+                <b>Harga Jual </b> <a class="pull-right"><?php echo rupiah((130*$total_biaya/100)); ?></a>
                 </li>
                 <li class="list-group-item">
-                <b>Total Bayar(Harga - DP)</b> <a class="pull-right"><?php echo rupiah((120*$total_biaya/100)-$data->dp); ?></a>
+                <b>Total Bayar(Harga - DP)</b> <a class="pull-right"><?php echo rupiah((130*$total_biaya/100)-$data->dp); ?></a>
                 </li>
                 <!-- <a href="<?php echo base_url('/Pesanan/detail/').$data->id?>"><button class="btn btn-success" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-files"></i> Detail</button></a> -->
 
