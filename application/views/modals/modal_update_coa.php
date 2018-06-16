@@ -7,8 +7,7 @@
 
         <div class="input-group form-group">
         <input type="hidden" name="id" value="<?php echo $dataCoa->id; ?>">
-          <label  class="control-label">Kode</label>
-          <input type="text" class="form-control" placeholder="Kode akun" name="kode" value="<?php echo $dataCoa->kode; ?>" aria-describedby="sizing-addon2">
+          <input type="hidden" class="form-control" placeholder="Kode akun" name="kode" value="<?php echo $dataCoa->kode; ?>" aria-describedby="sizing-addon2">
         </div>
         <div class="input-group form-group">
           <label  class="control-label">Nama</label>

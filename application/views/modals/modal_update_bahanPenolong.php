@@ -5,8 +5,7 @@
   <h3 style="display:block; text-align:center;">Update Data BahanPenolong</h3>
       <form method="POST" id="form-update-bahanPenolong">
       <div class="input-group form-group">
-          <label  class="control-label">ID</label>
-          <input type="text" class="form-control" placeholder="ID" name="sid" value="<?php echo $dataBahanPenolong->sid; ?>" aria-describedby="sizing-addon2">
+          <input type="hidden" class="form-control" placeholder="ID" name="sid" value="<?php echo $dataBahanPenolong->sid; ?>" aria-describedby="sizing-addon2">
         </div>
         <div class="input-group form-group">
         <input type="hidden" name="id" value="<?php echo $dataBahanPenolong->id; ?>">

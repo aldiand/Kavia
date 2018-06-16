@@ -35,6 +35,10 @@ class Btkl extends AUTH_Controller {
     	$this->form_validation->set_rules('id_pegawai', 'Pegawai', 'trim|required');
   		$this->form_validation->set_rules('jam_masuk', 'jam masuk', 'trim|required');
 
+			$this->form_validation->set_message('is_unique', '%s sudah ada di database');
+			$this->form_validation->set_message('required', '%s tidak boleh kosong');
+			$this->form_validation->set_message('numeric', '%s hanya boleh berisi Angka 1-9');
+			
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
   			$result = $this->M_btkl->insert($data);
@@ -71,6 +75,10 @@ class Btkl extends AUTH_Controller {
     $this->form_validation->set_rules('id_pegawai', 'Pegawai', 'trim|required');
     $this->form_validation->set_rules('jam_keluar', 'jam keluar', 'trim|required');
 
+		$this->form_validation->set_message('is_unique', '%s sudah ada di database');
+		$this->form_validation->set_message('required', '%s tidak boleh kosong');
+		$this->form_validation->set_message('numeric', '%s hanya boleh berisi Angka 1-9');
+		
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->M_btkl->update($data, $this->input->post('id'));

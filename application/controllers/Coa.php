@@ -24,9 +24,12 @@ class Coa extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
-  		$this->form_validation->set_rules('kode', 'kode', 'trim|required');
+  		$this->form_validation->set_rules('kode', 'kode', 'trim|required|is_unique[t_coa.kode]');
   		$this->form_validation->set_rules('nama', 'nama', 'trim|required');
 
+		$this->form_validation->set_message('is_unique', '%s sudah ada di database');
+		$this->form_validation->set_message('required', '%s tidak boleh kosong');
+		$this->form_validation->set_message('numeric', '%s hanya boleh berisi Angka 1-9');
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
   			$result = $this->M_coa->insert($data);
@@ -54,7 +57,6 @@ class Coa extends AUTH_Controller {
 	}
 
   public function prosesUpdate() {
-    $this->form_validation->set_rules('kode', 'kode', 'trim|required');
     $this->form_validation->set_rules('nama', 'nama', 'trim|required');
 
 		$data = $this->input->post();
