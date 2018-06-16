@@ -55,8 +55,8 @@
             <td><?php echo $data->tanggal_pesanan; ?></td>
           </tr>
           <tr>
-            <td style="width:50%">Tanggal Lunas</td>
-            <td><?php echo $data->tanggal_selesai; ?></td>
+            <td style="width:50%">Tanggal Selesai</td>
+            <td><?php echo getTanggalSelesaiProduksiByIdPesanan($data->id); ?></td>
           </tr>
         </table>
     </div>

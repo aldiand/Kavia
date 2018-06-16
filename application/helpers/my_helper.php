@@ -184,4 +184,12 @@
 		$data = $ci->db->get($table)->result();
 		return $data[0]->sid;
 	}
+
+	function getTanggalSelesaiProduksiByIdPesanan($id){
+		$ci =& get_instance();
+		$ci->db->where('id_pesanan', $id);
+		$ci->db->order_by("id", "desc");
+		$data = $ci->db->get('t_produksi')->result();
+		return $data[0]->tanggal_selesai;
+	}
 ?>
