@@ -93,6 +93,7 @@ class Pesanan extends AUTH_Controller {
   		$this->form_validation->set_rules('no_telp', 'Nomer Telp', 'trim|required');
   		$this->form_validation->set_rules('pesanan', 'Pesanan', 'trim|required');
   		$this->form_validation->set_rules('deskripsi_pesanan', 'Deskripsi', 'trim|required');
+  		$this->form_validation->set_rules('sifat_pemesanan', 'Sifat Pemesanan', 'trim|required');
   		$this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required|numeric');
   		$this->form_validation->set_rules('kesulitan', 'Kesulitan', 'trim|required');
   		$this->form_validation->set_rules('dp', 'DP', 'trim|required|numeric');

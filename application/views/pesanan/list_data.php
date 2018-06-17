@@ -12,6 +12,7 @@
       <td><?php echo $data->alamat; ?></td>
       <td><?php echo $data->pesanan; ?></td>
       <td><?php echo $data->deskripsi_pesanan; ?></td>
+      <td><?php echo $data->sifat_pemesanan; ?></td>
       <td><?php echo $data->kesulitan; ?></td>
       <td><?php echo $data->jumlah; ?></td>
       <td><?php echo $data->dp; ?></td>

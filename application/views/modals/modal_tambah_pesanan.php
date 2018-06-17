@@ -26,6 +26,13 @@
       <label  class="control-label">Deskripsi</label>
       <textarea class="form-control" placeholder="Deskripsi pesanan" name="deskripsi_pesanan" aria-describedby="sizing-addon2"></textarea>
     </div>
+    <div class="input-group form-group" >
+      <label  class="control-label">Sifat Pemesanan</label>
+      <select name="sifat_pemesanan" class="form-control" aria-describedby="sizing-addon2">
+        <option value="perorangan">Perorangan</option>
+        <option value="project">Project</option>
+      </select>
+    </div>
     <div class="input-group form-group">
       <label  class="control-label">Jumlah</label>
       <input type="number" class="form-control" placeholder="Jumlah pesanan" name="jumlah" aria-describedby="sizing-addon2">

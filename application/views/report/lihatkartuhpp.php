@@ -14,7 +14,8 @@
   <div class="row">
     <div class="col-xs-12">
       <h2 class="page-header">
-        <i class="fa fa-globe"></i> ID Pesanan :  #<?php echo $data->id;?>.
+        <?php echo ucwords($data->nama_pemesan); ?>. <br>
+        <?php echo ucwords($data->alamat); ?>.
         <small class="pull-right">Tanggal: <?php echo Date('d-m-Y'); ?></small>
       </h2>
     </div>
@@ -27,20 +28,20 @@
       <div class="table-responsive">
         <table class="table" >
           <tr>
-            <td style="width:50%">Nama Pemesan</td>
-            <td><?php echo $data->nama_pemesan; ?></td>
+            <td style="width:50%">Nomor Pesanan</td>
+            <td><?php echo ucwords($data->id); ?></td>
           </tr>
           <tr>
-            <td style="width:50%">Nama Produk</td>
-            <td><?php echo $data->pesanan; ?></td>
+            <td style="width:50%">Jenis Produk</td>
+            <td><?php echo ucwords($data->pesanan); ?></td>
           </tr>
           <tr>
-            <td style="width:50%">Kuantitas</td>
-            <td><?php echo $data->jumlah; ?></td>
+            <td style="width:50%">Tanggal Pesan</td>
+            <td><?php echo $data->tanggal_pesanan; ?></td>
           </tr>
           <tr>
-            <td style="width:50%">Deskripsi</td>
-            <td><?php echo $data->deskripsi_pesanan; ?></td>
+            <td style="width:50%">Tanggal Selesai</td>
+            <td><?php echo getTanggalSelesaiProduksiByIdPesanan($data->id); ?></td>
           </tr>
         </table>
     </div>
@@ -51,12 +52,20 @@
       <div class="table-responsive">
         <table class="table">
           <tr>
-            <td style="width:50%">Tanggal Pesan</td>
-            <td><?php echo $data->tanggal_pesanan; ?></td>
+            <td style="width:50%">Pemesan</td>
+            <td><?php echo ucwords($data->nama_pemesan); ?></td>
           </tr>
           <tr>
-            <td style="width:50%">Tanggal Selesai</td>
-            <td><?php echo getTanggalSelesaiProduksiByIdPesanan($data->id); ?></td>
+            <td style="width:50%">Sifat Pemesanan</td>
+            <td><?php echo $data->sifat_pemesanan; ?></td>
+          </tr>
+          <tr>
+            <td style="width:50%">Jumlah</td>
+            <td><?php echo $data->jumlah; ?></td>
+          </tr>
+          <tr>
+            <td style="width:50%">Harga Jual</td>
+            <td><?php echo rupiah(130*$total_biaya/100); ?></td>
           </tr>
         </table>
     </div>
@@ -74,18 +83,20 @@
       <table class="table table-bordered" >
         <thead>
         <tr>
+          <th>Tanggal</th>
           <th>ID</th>
           <th>Jumlah</th>
-          <th>Harga</th>
+          <!-- <th>Harga</th> -->
           <th>Subtotal</th>
         </tr>
         </thead>
         <tbody>
           <?php foreach ($dataBbb as $bbb): ?>
         <tr>
+          <td align="right"><?php echo $bbb->tanggal; ?></td>
           <td><?php echo getSid($bbb->id_bbb, 't_bbb'); ?></td>
           <td align="right"><?php echo $bbb->jumlah; ?></td>
-          <td align="right"><?php echo rupiah($bbb->harga); ?></td>
+          <!-- <td align="right"><?php echo rupiah($bbb->harga); ?></td> -->
           <td align="right"><?php echo rupiah($bbb->total); ?></td>
         </tr>
 
@@ -106,17 +117,16 @@
         <thead>
         <tr>
           <th>ID</th>
-          <th>Gaji/Jam</th>
           <th>Total Jam</th>
           <th>Subtotal</th>
         </tr>
         </thead>
         <tbody>
           <?php foreach ($dataBtkl as $bbb): ?>
-        <tr>
+        <tr>    
           <td><?php echo getSid($bbb->id, 't_pegawai'); ?></td>
+          <!-- <td align="right"><?php echo rupiah($bbb->gaji); ?></td> -->
           <td align="right"><?php echo $bbb->total_jam; ?></td>
-          <td align="right"><?php echo rupiah($bbb->gaji); ?></td>
           <td align="right"><?php echo rupiah($bbb->biaya * getValueKesulitan($data->id)); ?></td>
         </tr>
           <?php endforeach; ?>
@@ -137,7 +147,7 @@
         <tr>
           <th>ID</th>
           <th>Jumlah</th>
-          <th>Harga</th>
+          <!-- <th>Harga</th> -->
           <th>Subtotal</th>
         </tr>
             </thead>
@@ -147,15 +157,15 @@
         <tr>
           <td><?php echo getSid($bbb->id_bahan_penolong, 't_bahan_penolong'); ?></td>
           <td align="right"><?php echo $bbb->jumlah; ?></td>
-          <td align="right"><?php echo rupiah($bbb->harga); ?></td>
+          <!-- <td align="right"><?php echo rupiah($bbb->harga); ?></td> -->
           <td align="right"><?php echo rupiah($bbb->total); ?></td>
         </tr>
           <?php endforeach; ?>
             <?php foreach ($dataOverhead2 as $bbb): ?>
             <tr>
-            <td><?php echo $bbb->id; ?></td>
+            <td><?php echo getSid($bbb->id, 't_overhead'); ?></td>
             <td align="right"><?php echo $bbb->jumlah;?></td>
-            <td align="right"><?php echo rupiah($bbb->dibebankan_per_produksi); ?></td>
+            <!-- <td align="right"><?php echo rupiah($bbb->dibebankan_per_produksi); ?></td> -->
             <td align="right"><?php echo rupiah($bbb->dibebankan_per_produksi*$bbb->jumlah); ?></td>
         </tr>
           <?php endforeach; ?>

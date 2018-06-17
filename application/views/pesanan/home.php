@@ -19,6 +19,7 @@
           <th>Alamat</th>
           <th>Pesanan</th>
           <th>Deskripsi</th>
+          <th>Sifat Pemesanan</th>
           <th>Kesulitan</th>
           <th>Jumlah</th>
           <th>DP</th>
