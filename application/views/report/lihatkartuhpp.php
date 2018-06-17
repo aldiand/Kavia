@@ -57,7 +57,7 @@
           </tr>
           <tr>
             <td style="width:50%">Sifat Pemesanan</td>
-            <td><?php echo $data->sifat_pemesanan; ?></td>
+            <td><?php echo ucwords($data->sifat_pemesanan); ?></td>
           </tr>
           <tr>
             <td style="width:50%">Jumlah</td>
