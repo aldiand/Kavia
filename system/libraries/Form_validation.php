@@ -1123,6 +1123,24 @@ class CI_Form_validation {
 			: FALSE;
 	}
 
+	/**
+	 * Is Unique
+	 *
+	 * Check if the input value doesn't already exist
+	 * in the specified database field.
+	 *
+	 * @param	string	$str
+	 * @param	string	$field
+	 * @return	bool
+	 */
+	public function is_unique_active($str, $field)
+	{
+		sscanf($field, '%[^.].%[^.]', $table, $field);
+		return isset($this->CI->db)
+			? ($this->CI->db->limit(1)->where(array($field => $str, 'active'=>1))->get($table)->num_rows() === 0)
+			: FALSE;
+	}
+
 	// --------------------------------------------------------------------
 
 	/**

@@ -24,7 +24,7 @@ class BahanBaku extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
-    	$this->form_validation->set_rules('sid', 'ID', 'trim|required|is_unique[t_bbb.sid]');
+    	$this->form_validation->set_rules('sid', 'ID', 'trim|required|is_unique_active[t_bbb.sid]');
   		$this->form_validation->set_rules('nama_bahan_baku', 'Nama', 'trim|required');
   		$this->form_validation->set_rules('satuan', 'Satuan', 'trim|required');
   		$this->form_validation->set_rules('harga', 'Harga', 'trim|required|numeric');

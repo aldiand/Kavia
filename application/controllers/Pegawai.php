@@ -24,7 +24,7 @@ class Pegawai extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
-    	$this->form_validation->set_rules('sid', 'ID', 'trim|required|is_unique[t_pegawai.sid]');
+    	$this->form_validation->set_rules('sid', 'ID', 'trim|required|is_unique_active[t_pegawai.sid]');
   		$this->form_validation->set_rules('nama_pegawai', 'Nama', 'trim|required');
   		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
   		$this->form_validation->set_rules('tipe_gaji', 'Tipe Gaji', 'trim|required');
