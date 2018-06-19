@@ -37,6 +37,17 @@ class Report extends AUTH_Controller {
     
         $this->template->views('report/kartuhpp', $data);
     }
+    
+    public function LaporanPerhitunganHargaJual() { 
+        $data['dataPesanan'] = $this->M_pesanan->select_all_complete();
+
+        $data['page'] = "Perhitungan Harga Jual";
+        $data['judul'] = "Laporan Perhitungan Harga Jual";
+        $data['deskripsi'] = "Lihat Pesanan";
+    
+    
+        $this->template->views('report/laporanperhitunganhargajual', $data);
+    }
 
     public function Jurnal() { 
         $data['page'] = "jurnal";
@@ -68,6 +79,29 @@ class Report extends AUTH_Controller {
         $data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];
     
         $this->template->views('report/lihatkartuhpp', $data);
+
+    }
+
+    public function LihatLaporanPerhitunganHargaJual($id){ 
+        $data['dataPesanan'] = $this->M_pesanan->select_by_id($id);
+        $data['dataBbb'] = $this->M_bbb->select_by_pesanan($id);
+        $data['dataBbp'] = $this->M_bbp->select_by_pesanan($id);
+        $data['dataBtkl'] = $this->M_btkl->select_by_pesanan($id);
+        $data['dataOverhead'] = $this->M_produksi->select_overhead_by_pesanan($id);
+        $data['dataOverhead2'] = $this->M_pesanan->getOverhead($id);
+
+        $data['page'] = "Perhitungan Harga Jual";
+        $data['judul'] = "Laporan Perhitungan Harga Jual";
+        $data['deskripsi'] = "";
+    
+          $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
+          $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_pesanan($id);
+          $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id) * getValueKesulitan($id);
+          $data['total_biaya_overhead'] = $this->M_produksi->get_overhead_by_pesanan($id);
+    
+        $data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];
+    
+        $this->template->views('report/lihatlaporanperhitunganhargajual', $data);
 
     }
 
