@@ -35,6 +35,10 @@ class Pegawai extends AUTH_Controller {
 
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
+			if($data['tipe_gaji'] == 'tetap') {
+				$data['beban_gaji'] = $data['gaji'];
+			}
+
   			$result = $this->M_pegawai->insert($data);
 
   			if ($result > 0) {
@@ -71,6 +75,9 @@ class Pegawai extends AUTH_Controller {
 		
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
+			if($data['tipe_gaji'] == 'tetap') {
+				$data['beban_gaji'] = $data['gaji'];
+			}
 			$result = $this->M_pegawai->update($data, $this->input->post('id'));
 
 			if ($result > 0) {

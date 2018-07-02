@@ -13,11 +13,13 @@
     <table id="list-data" class="table table-bordered table-striped">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nama</th>
+          <th>Karyawan</th>
           <th>Alamat</th>
-          <th>Tipe Gaji</th>
-          <th>Gaji</th>
           <th>Telp</th>
+          <th>Gaji</th>
+          <th>Beban Gaji</th>
           <th style="text-align: center;">Aksi</th>
         </tr>
       </thead>

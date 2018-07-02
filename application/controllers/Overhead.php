@@ -35,6 +35,7 @@ class Overhead extends AUTH_Controller {
 
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
+			$data['jumlah'] = $data['harga_per_bulan'];
   			$result = $this->M_overhead->insert($data);
 
   			if ($result > 0) {

@@ -95,4 +95,16 @@ class M_pesanan extends CI_Model {
 		$data = $this->db->get('t_overhead');
 		return $data->result();
 	}
+
+	public function getTotal($id) {
+    $this->load->model('M_bbb');
+    $this->load->model('M_bbp');
+    $this->load->model('M_btkl');
+		$this->load->model('M_produksi');
+		$total = ($this->M_bbb->get_biaya_by_pesanan($id) 
+			+ $this->M_bbp->get_biaya_by_pesanan($id) 
+			+ ($this->M_btkl->get_biaya_by_pesanan($id) * getValueKesulitan($id)) 
+			+ $this->M_produksi->get_overhead_by_pesanan($id));
+		return $total;
+	}
 }

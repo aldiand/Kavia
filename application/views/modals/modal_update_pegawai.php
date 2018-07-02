@@ -22,11 +22,14 @@
               <option value="<?php echo $dataPegawai->tipe_gaji; ?>">
                 <?php echo $dataPegawai->tipe_gaji; ?>
               </option>
-              <option value="project">
-                Project
+              <option value="perproject">
+                Perproject
               </option>
-              <option value="btkl">
-                BTKL
+              <option value="tetap">
+                Tetap
+              </option>
+              <option value="perpesanan">
+                Perpesanan
               </option>
           </select>
         </div>

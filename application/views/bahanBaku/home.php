@@ -15,9 +15,10 @@
         <tr>
           <th>Id</th>
           <th>Nama Bahan Baku</th>
+          <th>Jumlah</th>
           <th>Satuan</th>
           <th>Harga</th>
-          <th>Jumlah</th>
+          <th>Total Keseluruhan</th>
           <th style="text-align: center;">Aksi</th>
         </tr>
       </thead>

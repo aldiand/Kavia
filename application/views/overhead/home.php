@@ -15,8 +15,10 @@
         <tr>
           <th>Id</th>
           <th>Nama Overhead</th>
-          <th>harga/bulan</th>
-          <th>dibebankan</th>
+          <th>Beban/bulan</th>
+          <th>Dibebankan</th>
+          <th>Nominal</th>
+          <th>Jumlah</th>
           <th style="text-align: center;">Aksi</th>
         </tr>
       </thead>

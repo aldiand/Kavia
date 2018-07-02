@@ -20,7 +20,7 @@
           <th>Deskripsi</th>
           <th>Kesulitan</th>
           <th>Jumlah</th>
-          <th>DP</th>
+          <th>Total</th>
           <th>Aksi</th>
         </tr>
       </thead>
@@ -37,7 +37,7 @@
               <td><?php echo $data->deskripsi_pesanan; ?></td>
               <td><?php echo $data->kesulitan; ?></td>
               <td><?php echo $data->jumlah; ?></td>
-              <td><?php echo $data->dp; ?></td>
+              <td><?php echo rupiah($data->harga); ?></td>
               <td><a href="<?php echo base_url('/Pesanan/id/').$data->id?>"> <button class="btn btn-info detail-dataPosisi" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-info-sign"></i> Detail</button></a></td>
             </tr>
             <?php

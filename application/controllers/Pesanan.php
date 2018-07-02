@@ -30,6 +30,9 @@ class Pesanan extends AUTH_Controller {
 
   public function riwayat() {
     $data['dataPesanan'] = $this->M_pesanan->select_all_complete();
+    foreach($data['dataPesanan'] as $key => $value) {
+      $data['dataPesanan'][$key]->harga = $this->M_pesanan->getTotal($value->id);
+    }
 
     $data['page'] = "riwayat";
     $data['judul'] = "Data Pesanan";
