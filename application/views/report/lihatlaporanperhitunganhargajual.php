@@ -29,32 +29,32 @@
 				<td align="left">Harga jual yang di bebankan kepada pemesan</td>
 				<td align="left"></td>
 				<td align="left"><?php echo rupiah($harga_jual = 130*$total_biaya/100); ?></td>
-      <tr>
+      </tr>
       <tr>
 				<td align="left">Biaya bahan baku sesungguhnya</td>
 				<td align="left"><?php echo rupiah($total_biaya_bb); ?></td>
 				<td align="left"></td>
-      <tr>
+      </tr>
       <tr>
 				<td align="left">Biaya tenaga kerja langsung sesungguhnya</td>
 				<td align="left"><?php echo rupiah($total_biaya_tkl); ?></td>
 				<td align="left"></td>
-      <tr>
+      </tr>
       <tr>
 				<td align="left">Taksiran biaya overhead pabrik</td>
 				<td align="left"><?php echo rupiah($total_biaya_bp + $total_biaya_overhead); ?></td>
 				<td align="left"></td>
-      <tr>
+      </tr>
       <tr>
 				<td align="left">Total biaya produksi pesanan</td>
 				<td align="left"></td>
 				<td align="left"><?php echo rupiah($total_biaya_bb + $total_biaya_tkl + $total_biaya_bp + $total_biaya_overhead); ?></td>
-      <tr>
+      </tr>
       <tr>
 				<td align="left">Laba bruto</td>
 				<td align="left"></td>
 				<td align="left"><?php echo rupiah($harga_jual - ($total_biaya_bb + $total_biaya_tkl + $total_biaya_bp + $total_biaya_overhead)); ?></td>
-      <tr>
+      </tr>
 	</table>
   </div>
 </div>

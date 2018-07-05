@@ -89,4 +89,10 @@ class M_btkl extends CI_Model {
 		$data = $this->db->get('t_btkl');
 		return $data->num_rows();
 	}
+
+	public function insert_beban($id) {
+		$this->db->where('id', $id);
+		$this->db->set('beban_gaji', 'beban_gaji+gaji', FALSE);
+		$this->db->update('t_pegawai');
+	}
 }

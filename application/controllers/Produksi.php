@@ -5,6 +5,7 @@ class Produksi extends AUTH_Controller {
   public function __construct() {
     parent::__construct();
     $this->load->model('M_produksi');
+    $this->load->model('M_report');
     $this->load->model('M_pesanan');
     $this->load->model('M_overhead');
     $this->load->model('M_bahanBaku');
@@ -172,5 +173,11 @@ class Produksi extends AUTH_Controller {
 		$this->M_report->insert_jurnal(412, $result, 'c', $bbb);
 		$this->M_report->insert_jurnal(114, $result, 'd', $bbb);
 
-    }
+		}
+		
+		public function reset_beban($id) {
+			$this->db->where('id', $id);
+			$this->db->set('beban_gaji', '0', FALSE);
+			$this->db->update('t_pegawai');
+		}
 }

@@ -10,7 +10,7 @@ class M_pegawai extends CI_Model {
 	}
 
 	public function select_all_btkl() {
-		$this->db->where('tipe_gaji', 'btkl');
+		$this->db->where('tipe_gaji !=', 'tetap');
 		$data = $this->db->get('t_pegawai');
 		return $data->result();
 	}

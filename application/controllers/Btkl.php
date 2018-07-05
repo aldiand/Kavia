@@ -48,6 +48,8 @@ class Btkl extends AUTH_Controller {
 					//$total_jam = $data['jam_keluar']-$data['jam_masuk'];
 					//$this->M_report->insert_jurnal(513, $result, 'd', ($total_jam*$harga));
 					//$this->M_report->insert_jurnal(511, $result, 'c', ($total_jam*$harga));
+					$this->M_btkl->insert_beban($data['id_pegawai']);
+					
   				$out['status'] = '';
   				$out['msg'] = show_succ_msg('Data BTKL Berhasil ditambahkan', '20px');
   			} else {

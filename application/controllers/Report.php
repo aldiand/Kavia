@@ -259,7 +259,13 @@ class Report extends AUTH_Controller {
         return $json;
     }
 
-}
+    public function HPProduksi() {
+		$data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all_with_unactive();
+		$this->template->views('report/HPProduksi', $data);
+    }
 
-/* End of file Home.php */
-/* Location: ./application/controllers/Home.php */
+    public function HPPenjualan() {
+		$data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all_with_unactive();
+		$this->template->views('report/HPPenjualan', $data);
+    }
+}
