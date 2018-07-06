@@ -17,8 +17,7 @@
           <input type="text" class="form-control" placeholder="satuan" name="satuan" value="<?php echo $dataBahanPenolong->satuan; ?>" aria-describedby="sizing-addon2">
         </div>
         <div class="input-group form-group">
-          <label  class="control-label">Jumlah</label>
-          <input type="text" class="form-control" placeholder="satuan" name="jumlah" value="<?php echo $dataBahanPenolong->jumlah; ?>" aria-describedby="sizing-addon2">
+          <input type="hidden" class="form-control" placeholder="satuan" name="jumlah" value="<?php echo $dataBahanPenolong->jumlah; ?>" aria-describedby="sizing-addon2">
         </div>
         <div class="input-group form-group">
           <label  class="control-label">Harga</label>
