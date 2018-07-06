@@ -19,7 +19,6 @@
           <th>Alamat</th>
           <th>Pesanan</th>
           <th>Deskripsi</th>
-          <th>Kesulitan</th>
           <th>Jumlah</th>
           <th>Tanggal Estimasi</th>
           <th>DP</th>

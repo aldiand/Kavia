@@ -159,25 +159,30 @@ class Produksi extends AUTH_Controller {
     			echo show_err_msg('Produksi Gagal di Update', '20px');
 			}
 			
-		$bbb = $this->M_bbb->get_biaya_by_produksi($id);
-		$bbp = $this->M_bbp->get_biaya_by_produksi($id);
-		$btkl = $this->M_btkl->get_biaya_by_produksi($id);
+		// $bbb = $this->M_bbb->get_biaya_by_produksi($id);
+		// $bbp = $this->M_bbp->get_biaya_by_produksi($id);
+		// $btkl = $this->M_btkl->get_biaya_by_produksi($id);
 		$bop = $this->M_produksi->get_overhead_by_produksi($id);
 
-		foreach($this->M_btkl->get_pegawai_by_produksi($id) as $prod) {
-			$this->M_btkl->reset_beban($prod->id_pegawai);
-		}
+		// foreach($this->M_btkl->get_pegawai_by_produksi($id) as $prod) {
+		// 	$this->M_btkl->reset_beban($prod->id_pegawai);
+		// }
 
-		$this->M_report->insert_jurnal(114, $result, 'd', $bbb + $bbp + $btkl + $bop);
-		if($bbb){
-			$this->M_report->insert_jurnal(512, $result, 'c', $bbb);
-		}
-		if($bbp || $bop){
-			$this->M_report->insert_jurnal(514, $result, 'c', $bbp + $bop);
-		}
-		if($btkl){
-			$this->M_report->insert_jurnal(513, $result, 'c', $btkl);
-		}
-		}
+		// $this->M_report->insert_jurnal(114, $result, 'd', $bbb + $bbp + $btkl + $bop);
+		// if($bbb){
+		// 	$this->M_report->insert_jurnal(512, $result, 'c', $bbb);
+		// }
+		// if($bbp || $bop){
+		// 	$this->M_report->insert_jurnal(514, $result, 'c', $bbp + $bop);
+		// }
+		// if($btkl){
+		// 	$this->M_report->insert_jurnal(513, $result, 'c', $btkl);
+		// }
+		// }
+		$this->M_report->insert_jurnal(311, $id, 'd', $bop);
+		$this->M_report->insert_jurnal(111, $id, 'c', $bop);
 		
+		$this->M_report->insert_jurnal(516, $id, 'd', $bop);
+		$this->M_report->insert_jurnal(311, $id, 'c', $bop);
+	}
 }

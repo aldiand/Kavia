@@ -63,7 +63,7 @@ $jenis = $this->session->userdata('jenis');
                   <b>Jumlah Tenaga Kerja</b><a style="word-wrap: break-word; float:right;"><?php echo getRowCountTablebyProduksi('t_btkl', $produksi->id); ?></a>
                 </li>
                 <li class="list-group-item">
-                  <b>Total Biaya</b> <a style="word-wrap: break-word; float:right;"><?php echo rupiah($total_biaya_tkl * getValueKesulitan($produksi->id_pesanan)); ?></a>
+                  <b>Total Biaya</b> <a style="word-wrap: break-word; float:right;"><?php echo rupiah($total_biaya_tkl); ?></a>
                 </li>
               </ul>
             </div>

@@ -73,7 +73,7 @@ class Report extends AUTH_Controller {
     
           $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
           $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_pesanan($id);
-          $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id) * getValueKesulitan($id);
+          $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id);
           $data['total_biaya_overhead'] = $this->M_produksi->get_overhead_by_pesanan($id);
     
         $data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];
@@ -96,7 +96,7 @@ class Report extends AUTH_Controller {
     
           $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_pesanan($id);
           $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_pesanan($id);
-          $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id) * getValueKesulitan($id);
+          $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_pesanan($id);
           $data['total_biaya_overhead'] = $this->M_produksi->get_overhead_by_pesanan($id);
     
         $data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];

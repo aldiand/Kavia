@@ -103,7 +103,7 @@ class M_pesanan extends CI_Model {
 		$this->load->model('M_produksi');
 		$total = ($this->M_bbb->get_biaya_by_pesanan($id) 
 			+ $this->M_bbp->get_biaya_by_pesanan($id) 
-			+ ($this->M_btkl->get_biaya_by_pesanan($id) * getValueKesulitan($id)) 
+			+ ($this->M_btkl->get_biaya_by_pesanan($id)) 
 			+ $this->M_produksi->get_overhead_by_pesanan($id));
 		return $total;
 	}

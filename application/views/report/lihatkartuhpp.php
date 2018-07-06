@@ -127,7 +127,7 @@
           <td><?php echo getSid($bbb->id, 't_pegawai'); ?></td>
           <!-- <td align="right"><?php echo rupiah($bbb->gaji); ?></td> -->
           <td align="right"><?php echo $bbb->total_jam; ?></td>
-          <td align="right"><?php echo rupiah($bbb->biaya * getValueKesulitan($data->id)); ?></td>
+          <td align="right"><?php echo rupiah($bbb->biaya); ?></td>
         </tr>
           <?php endforeach; ?>
         </tbody>
