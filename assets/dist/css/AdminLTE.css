@@ -4615,6 +4615,7 @@ table.text-center th {
   padding: 0;
 }
 .list-group-unbordered > .list-group-item {
+  word-wrap: break-wrap;
   border-left: 0;
   border-right: 0;
   border-radius: 0;

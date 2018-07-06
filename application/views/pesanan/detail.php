@@ -22,16 +22,16 @@
         <p class="text-muted text-center">Detail Pemesan</p>
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
-            <b>Tanggal Pesanan</b> <a class="pull-right"><?php echo $data->tanggal_pesanan; ?></a>
+            <b>Tanggal Pesanan</b> <br> <a style="word-wrap: break-word;"><?php echo $data->tanggal_pesanan; ?></a>
           </li>
           <li class="list-group-item">
-            <b>Nama Pemesan</b> <a class="pull-right"><?php echo $data->nama_pemesan; ?></a>
+            <b>Nama Pemesan</b> <br> <a style="word-wrap: break-word;"><?php echo $data->nama_pemesan; ?></a>
           </li>
           <li class="list-group-item">
-          <b>Alamat</b> <a class="pull-right"><?php echo $data->alamat; ?></a>
+          <b>Alamat</b> <br> <a style="word-wrap: break-word;"><?php echo $data->alamat; ?></a>
           </li>
           <li class="list-group-item">
-          <b>No Telpon</b> <a class="pull-right"><?php echo $data->no_telp; ?></a>
+          <b>No Telpon</b> <br> <a style="word-wrap: break-word;"><?php echo $data->no_telp; ?></a>
           </li>
       </div>
     </div>
@@ -43,22 +43,19 @@
           <p class="text-muted text-center">Detail Pesanan</p>
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              <b>Status Pesanan </b> <a class="pull-right"><?php echo getStatus($data->status); ?></a>
+              <b>Status Pesanan </b><br> <a style="word-wrap: break-word;"><?php echo getStatus($data->status); ?></a>
             </li>
             <li class="list-group-item">
-              <b>Pesanan</b> <a class="pull-right"><?php echo $data->pesanan; ?></a>
+              <b>Pesanan</b><br> <a style="word-wrap: break-word;"><?php echo $data->pesanan; ?></a>
             </li>
             <li class="list-group-item">
-              <b>Deskripsi</b> <a class="pull-right"><?php echo $data->deskripsi_pesanan; ?></a>
+              <b>Deskripsi</b> <br> <a style="word-wrap: break-word;"><?php echo $data->deskripsi_pesanan; ?></a>
             </li>
             <li class="list-group-item">
-            <b>Kesulitan</b> <a class="pull-right"><?php echo $data->kesulitan; ?></a>
+            <b>Kesulitan</b><br> <a style="word-wrap: break-word;"><?php echo $data->kesulitan; ?></a>
             </li>
             <li class="list-group-item">
-            <b>Jumlah</b> <a class="pull-right"><?php echo $data->jumlah; ?></a>
-            </li>
-            <li class="list-group-item">
-            <b>DP</b> <a class="pull-right"><?php echo rupiah($data->dp); ?></a>
+            <b>Jumlah</b><br> <a style="word-wrap: break-word;"><?php echo $data->jumlah; ?></a>
             </li>
         </div>
       </div>
@@ -71,13 +68,13 @@
             <p class="text-muted text-center">Detail Produksi</p>
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Produksi aktif </b> <a class="pull-right"><?php echo $a = getRowCountStatusPesanan('t_produksi', 'id_pesanan', $data->id, 1); ?></a>
+                <b>Produksi aktif </b> <br> <a style="word-wrap: break-word;"><?php echo $a = getRowCountStatusPesanan('t_produksi', 'id_pesanan', $data->id, 1); ?></a>
               </li>
               <li class="list-group-item">
-                <b>Produksi selesai </b> <a class="pull-right"><?php echo $b = getRowCountStatusPesanan('t_produksi', 'id_pesanan', $data->id, 2); ?></a>
+                <b>Produksi selesai </b> <br> <a style="word-wrap: break-word;"><?php echo $b = getRowCountStatusPesanan('t_produksi', 'id_pesanan', $data->id, 2); ?></a>
               </li>
               <li class="list-group-item">
-              <b>Total Produksi</b> <a class="pull-right"><?php echo $c=$a+$b; ?></a>
+              <b>Total Produksi</b> <br> <a style="word-wrap: break-word;"><?php echo $c=$a+$b; ?></a>
               </li>
               <?php if ($c==0) {?>
               <li class="list-group-item">
@@ -104,26 +101,29 @@
             <p class="text-muted text-center">Detail Biaya</p>
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Biaya Bahan Baku </b> <a class="pull-right"><?php echo rupiah($total_biaya_bb); ?></a>
+                <b>Biaya Bahan Baku </b> <br> <a style="word-wrap: break-word;"><?php echo rupiah($total_biaya_bb); ?></a>
               </li>
               <li class="list-group-item">
-                <b>Biaya Bahan Penolong </b> <a class="pull-right"><?php echo rupiah($total_biaya_bp); ?></a>
+                <b>Biaya Bahan Penolong </b> <br> <a style="word-wrap: break-word;"><?php echo rupiah($total_biaya_bp); ?></a>
               </li>
               <li class="list-group-item">
-              <b>Beban BTKL</b> <a class="pull-right"><?php echo rupiah($total_biaya_tkl); ?></a>
+              <b>Beban BTKL</b><br> <a style="word-wrap: break-word;"><?php echo rupiah($total_biaya_tkl); ?></a>
               </li>
               <?php if ($data->status == 2): ?>
                 <li class="list-group-item">
-                <b>Beban BOP</b> <a class="pull-right"><?php echo rupiah($total_biaya_overhead); ?></a>
+                <b>Beban BOP</b><br> <a style="word-wrap: break-word;"><?php echo rupiah($total_biaya_overhead); ?></a>
                 </li>
                 <li class="list-group-item">
-                <b>Total Biaya </b> <a class="pull-right"><?php echo rupiah($total_biaya); ?></a>
+                <b>Total Biaya </b><br> <a style="word-wrap: break-word;"><?php echo rupiah($total_biaya); ?></a>
                 </li>
                 <li class="list-group-item">
-                <b>Harga Jual </b> <a class="pull-right"><?php echo rupiah((130*$total_biaya/100)); ?></a>
+                <b>Harga Jual </b> <br> <a style="word-wrap: break-word;"><?php echo rupiah((130*$total_biaya/100)); ?></a>
                 </li>
+            <li class="list-group-item">
+            <b>DP</b><br> <a style="word-wrap: break-word;"><?php echo rupiah($data->dp); ?></a>
+            </li>
                 <li class="list-group-item">
-                <b>Total Bayar(Harga - DP)</b> <a class="pull-right"><?php echo rupiah((130*$total_biaya/100)-$data->dp); ?></a>
+                <b>Total Bayar(Harga - DP)</b> <br> <a style="word-wrap: break-word;"><?php echo rupiah((130*$total_biaya/100)-$data->dp); ?></a>
                 </li>
                 <!-- <a href="<?php echo base_url('/Pesanan/detail/').$data->id?>"><button class="btn btn-success" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-files"></i> Detail</button></a> -->
 

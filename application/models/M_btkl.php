@@ -67,6 +67,13 @@ class M_btkl extends CI_Model {
 		return $data[0]->biaya;
 	}
 
+	public function get_pegawai_by_produksi($id_produksi) {
+		$this->db->select('id_pegawai');
+		$this->db->from('t_btkl');
+		$this->db->where('id_produksi', $id_produksi);
+		return $this->db->get()->result();
+	}
+
   public function insert($data){
     $this->db->insert('t_btkl', $data);
 		$hasil=$this->db->insert_id();
@@ -93,6 +100,13 @@ class M_btkl extends CI_Model {
 	public function insert_beban($id) {
 		$this->db->where('id', $id);
 		$this->db->set('beban_gaji', 'beban_gaji+gaji', FALSE);
+		$this->db->update('t_pegawai');
+	}
+
+	
+	public function reset_beban($id) {
+		$this->db->where('id', $id);
+		$this->db->set('beban_gaji', '0', FALSE);
 		$this->db->update('t_pegawai');
 	}
 }
