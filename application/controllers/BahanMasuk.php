@@ -40,7 +40,7 @@ class BahanMasuk extends AUTH_Controller {
   			if ($result > 0) {
 				$result2 = $this->M_bahanMasuk->tambahStok($data['id_bbb'], $data['jumlah']);
 				if ($result2 > 0){
-					$this->M_report->insert_jurnal(112, $result, 'd', ($data['jumlah']*$data['harga_beli']));
+					$this->M_report->insert_jurnal(215, $result, 'd', ($data['jumlah']*$data['harga_beli']));
 					$this->M_report->insert_jurnal(111, $result, 'c', ($data['jumlah']*$data['harga_beli']));
 
 					$out['status'] = '';

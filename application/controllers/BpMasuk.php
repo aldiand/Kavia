@@ -40,7 +40,7 @@ class BpMasuk extends AUTH_Controller {
   			if ($result > 0) {
                 $result2 = $this->M_bp_masuk->tambahStok($data['id_bahan_penolong'], $data['jumlah']);
                 if ($result2 > 0){
-					$this->M_report->insert_jurnal(113, $result, 'd', ($data['jumlah']*$data['harga_beli']));
+					$this->M_report->insert_jurnal(215, $result, 'd', ($data['jumlah']*$data['harga_beli']));
 					$this->M_report->insert_jurnal(111, $result, 'c', ($data['jumlah']*$data['harga_beli']));
                     $out['status'] = '';
                     $out['msg'] = show_succ_msg('Data Bahan Masuk Berhasil ditambahkan', '20px');
