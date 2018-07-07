@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2018 at 10:06 AM
+-- Generation Time: Jul 07, 2018 at 02:18 AM
 -- Server version: 5.7.18
 -- PHP Version: 7.0.6
 
@@ -77,7 +77,9 @@ INSERT INTO `t_bbb` (`id`, `sid`, `nama_bahan_baku`, `satuan`, `jumlah`, `harga`
 (19, 'bb2', 'Japlaywood - 122x244 - 9ml', 'lembar', 1, 183, 0, '2018-05-24'),
 (20, 'BBKP', 'kayu pinus', 'pcs', 200, 4000000, 1, NULL),
 (21, 'bb2', 'Japlaywood - 122x244 - 9ml', 'lembar', 0, 183000, 0, '2018-06-17'),
-(22, 'BB1', 'kayu jati', 'pcs', 30, 600000, 1, NULL);
+(22, 'BB1', 'kayu jati', 'pcs', 30, 600000, 1, NULL),
+(23, 'BB2', 'Triplek', 'lembar', 0, 20000, 0, '2018-07-06'),
+(24, 'BB2', 'Tripleks', 'lembar', 0, 20000, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -237,7 +239,8 @@ INSERT INTO `t_btkl` (`id`, `sid`, `tanggal`, `jam_masuk`, `jam_keluar`, `id_peg
 (42, NULL, '2018-07-04', '04:52', '', 8, 22, NULL),
 (43, NULL, '2018-07-04', '04:52', '', 9, 22, NULL),
 (44, NULL, '2018-07-04', '05:31', '', 8, 23, NULL),
-(45, NULL, '2018-07-04', '05:31', '', 8, 23, NULL);
+(45, NULL, '2018-07-04', '05:31', '', 8, 23, NULL),
+(46, NULL, '2018-07-06', '05:28', '', 8, 24, NULL);
 
 -- --------------------------------------------------------
 
@@ -260,7 +263,7 @@ CREATE TABLE `t_coa` (
 
 INSERT INTO `t_coa` (`id`, `sid`, `kode`, `nama`, `active`, `last_active`) VALUES
 (2, NULL, '112', 'Persediaan BB', 1, NULL),
-(3, NULL, '511', 'Gaji dan Upah', 1, NULL),
+(3, NULL, '511', 'Beban Upah', 1, NULL),
 (7, NULL, '111', 'Kas', 1, NULL),
 (10, NULL, '514', 'BDP - BBP', 1, NULL),
 (11, NULL, '113', 'Persediaan BP', 1, NULL),
@@ -270,8 +273,13 @@ INSERT INTO `t_coa` (`id`, `sid`, `kode`, `nama`, `active`, `last_active`) VALUE
 (15, NULL, '214', 'Piutang Dagang', 1, NULL),
 (16, NULL, '411', 'Penjualan', 1, NULL),
 (17, NULL, '114', 'Persedian Barang Jadi', 1, NULL),
-(19, NULL, '513', 'BDP = BTKL', 1, NULL),
-(20, NULL, '512 ', 'BDP = BBB', 1, NULL);
+(19, NULL, '513', 'BDP -BTK', 1, NULL),
+(20, NULL, '512 ', 'BDP - BBB', 1, NULL),
+(21, NULL, '215', 'Pembelian', 1, NULL),
+(22, NULL, '515', 'BTKTL', 1, NULL),
+(23, NULL, '516', 'BDP - BOP', 1, NULL),
+(24, NULL, '216', 'HPP', 1, NULL),
+(25, NULL, '311', 'Beban Listrik', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -390,7 +398,12 @@ INSERT INTO `t_jurnal` (`id`, `sid`, `kode_akun`, `reff`, `tanggal`, `posisi`, `
 (187, NULL, 111, '17', '2018-06-17', 'd', 1000000, NULL),
 (188, NULL, 213, '17', '2018-06-17', 'c', 1000000, NULL),
 (189, NULL, 114, '1', '2018-07-04', 'd', 126000, NULL),
-(190, NULL, 114, '1', '2018-07-04', 'd', 126000, NULL);
+(190, NULL, 114, '1', '2018-07-04', 'd', 126000, NULL),
+(191, NULL, 114, '1', '2018-07-05', 'd', 152000, NULL),
+(192, NULL, 114, '1', '2018-07-06', 'd', 76000, NULL),
+(193, NULL, 114, '1', '2018-07-06', 'd', 76000, NULL),
+(194, NULL, 514, '1', '2018-07-06', 'c', 26000, NULL),
+(195, NULL, 513, '1', '2018-07-06', 'c', 50000, NULL);
 
 -- --------------------------------------------------------
 
@@ -416,9 +429,9 @@ CREATE TABLE `t_overhead` (
 INSERT INTO `t_overhead` (`id`, `sid`, `nama`, `harga_per_bulan`, `dibebankan_per_produksi`, `jumlah`, `active`, `last_active`) VALUES
 (3, 'BP1', 'listrik', 100000, 2000, 0, 0, NULL),
 (4, 'BP2', 'telfon', 300000, 6000, 0, 0, NULL),
-(5, 'BOP2', 'telfon', 300000, 6000, 0, 1, NULL),
+(5, 'BOP2', 'telfon', 300000, 6000, 0, 0, NULL),
 (6, 'BOP1', 'listrik', 100000, 2000, 0, 0, NULL),
-(7, 'BTO', 'telfon', 500000, 10000, 0, 1, NULL),
+(7, 'BTO', 'telfon', 500000, 10000, 0, 0, NULL),
 (8, 'BT2', 'air', 1000000, 0, 0, 0, NULL),
 (9, 'BOP1', 'listrik', 100000, 10000, 0, 1, NULL),
 (10, 'zzz', 'zzz', 2222222, 444444, 2222222, 0, NULL);
@@ -447,12 +460,9 @@ CREATE TABLE `t_pegawai` (
 --
 
 INSERT INTO `t_pegawai` (`id`, `sid`, `nama_pegawai`, `alamat`, `tipe_gaji`, `gaji`, `beban_gaji`, `no_telp`, `active`, `last_active`) VALUES
-(8, 'BT1', 'aceng', 'jdsuarhfuwebfjkl', 'perpesanan', 50000, 100000, '08328493849', 1, NULL),
-(9, 'BT2', 'cecep', 'jisufiehiurf', 'perpesanan', 75000, 0, '0898342858', 1, NULL),
-(10, 'P23', 'anang', 'sukabirus no.1', 'tetap', 3000000, 0, '082116787374', 1, NULL),
-(11, 'zzz', 'zzz', 'zzz', 'tetap', 222, 0, '213', 0, NULL),
-(12, 'zzz', 'zzz', 'zzz', 'tetap', 222, 0, '213', 1, NULL),
-(13, 'zzzz', 'zzz', 'zzz', 'tetap', 22222, 22222, '2312', 1, NULL);
+(8, 'BT1', 'aceng', 'jdsuarhfuwebfjkl', 'perpesanan', 50000, 0, '08328493849', 1, NULL),
+(9, 'BT2', 'cecep', 'jisufiehiurf', 'perproject', 75000, 0, '0898342858', 1, NULL),
+(10, 'P23', 'anang', 'sukabirus no.1', 'tetap', 3000000, 0, '082116787374', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -503,7 +513,7 @@ INSERT INTO `t_pesanan` (`id`, `sid`, `nama_pemesan`, `alamat`, `no_telp`, `pesa
 (13, NULL, 'irfan', 'pesbal b6 no.2', 2147483647, 'mudah', 'kitchen set', 'perorangan', 1, 'sedang', 1000000, 2, '2018-05-24', '2018-05-26', NULL),
 (15, NULL, 'fini', 'perum baros', 2147483647, 'meja', 'meja makan kayu jati', 'perorangan', 1, 'sedang', 500000, 2, '2018-06-09', '2018-06-09', NULL),
 (16, NULL, 'sarah', 'kecubung 6', 2147483647, 'lemari', 'lemari warna putih dengan kaca', 'perorangan', 1, 'sedang', 500000, 2, '2018-06-16', '2018-06-16', NULL),
-(17, NULL, 'All corp', 'sukapura', 81324325, 'Meja', 'meja untuk project', 'project', 500, 'sedang', 1000000, 1, '2018-06-17', '0000-00-00', NULL);
+(17, NULL, 'All corp', 'sukapura', 81324325, 'Meja', 'meja untuk project', 'perproject', 500, 'sedang', 1000000, 1, '2018-06-17', '0000-00-00', NULL);
 
 -- --------------------------------------------------------
 
@@ -535,7 +545,9 @@ INSERT INTO `t_produksi` (`id`, `sid`, `tanggal_mulai`, `tanggal_selesai`, `desk
 (20, NULL, '2018-06-09', '2018-06-09', 'finishing', 2, 15, NULL),
 (21, NULL, '2018-06-16', '2018-06-16', 'membuat lemari', 2, 16, NULL),
 (22, NULL, '2018-07-04', '2018-07-04', 'hihi', 2, 17, NULL),
-(23, NULL, '2018-07-04', '2018-07-04', 'hehe', 2, 17, NULL);
+(23, NULL, '2018-07-04', '2018-07-05', 'hehe', 2, 17, NULL),
+(24, NULL, '2018-07-06', '2018-07-06', 'huhu', 2, 17, NULL),
+(25, NULL, '2018-07-06', NULL, 'hoho', 1, 17, NULL);
 
 --
 -- Indexes for dumped tables
@@ -662,7 +674,7 @@ ALTER TABLE `t_bahan_penolong`
 -- AUTO_INCREMENT for table `t_bbb`
 --
 ALTER TABLE `t_bbb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `t_bb_masuk`
 --
@@ -692,17 +704,17 @@ ALTER TABLE `t_bp_masuk`
 -- AUTO_INCREMENT for table `t_btkl`
 --
 ALTER TABLE `t_btkl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `t_coa`
 --
 ALTER TABLE `t_coa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `t_jurnal`
 --
 ALTER TABLE `t_jurnal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=191;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
 --
 -- AUTO_INCREMENT for table `t_overhead`
 --
@@ -712,7 +724,7 @@ ALTER TABLE `t_overhead`
 -- AUTO_INCREMENT for table `t_pegawai`
 --
 ALTER TABLE `t_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `t_pengerjaan`
 --
@@ -727,7 +739,7 @@ ALTER TABLE `t_pesanan`
 -- AUTO_INCREMENT for table `t_produksi`
 --
 ALTER TABLE `t_produksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- Constraints for dumped tables
 --
