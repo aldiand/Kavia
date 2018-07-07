@@ -173,6 +173,13 @@
 
 		}
 
+	function getSifatPesananByProduksi($id) {
+		$ci =& get_instance();
+		$ci->db->where_in("id","SELECT id_pesanan from t_produksi where id='$id'", false);
+		$data = $ci->db->get('t_pesanan')->result();
+		return $data[0]->sifat_pemesanan;
+	}
+
 	function rupiah($angka){
 		$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
 		return $hasil_rupiah;

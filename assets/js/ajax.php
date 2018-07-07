@@ -103,6 +103,22 @@
 	$(document).on("click", ".konfirmasiHapus-pegawai", function() {
 		id_pegawai = $(this).attr("data-id");
 	})
+
+	$(document).on("click", ".gaji-pegawai", function() {
+		var id = $(this).attr("data-id");
+
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('Pegawai/gaji'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#tempat-modal').html(data);
+			$('#gaji-pegawai').modal('show');
+		})
+
+	})
+	
 	$(document).on("click", ".hapus-dataPegawai", function() {
 		var id = id_pegawai;
 
@@ -185,6 +201,32 @@
 		e.preventDefault();
 	});
 
+	$(document).on('submit', '#form-penggajian', function(e){
+		var data = $(this).serialize();
+
+		$.ajax({
+			method: 'POST',
+			url: '<?php echo base_url('Pegawai/prosesGaji'); ?>',
+			data: data
+		})
+		.done(function(data) {
+			var out = jQuery.parseJSON(data);
+
+			tampilPegawai();
+			if (out.status == 'form') {
+				$('.form-msg').html(out.msg);
+				effect_msg_form();
+			} else {
+				document.getElementById("form-penggajian").reset();
+				$('#gaji-pegawai').modal('hide');
+				$('.msg').html(out.msg);
+				effect_msg();
+			}
+		})
+
+		e.preventDefault();
+	});
+
 	$('#tambah-pegawai').on('hidden.bs.modal', function () {
 	  $('.form-msg').html('');
 	})
@@ -192,6 +234,7 @@
 	$('#update-pegawai').on('hidden.bs.modal', function () {
 	  $('.form-msg').html('');
 	})
+
 
 //Pesanan
 

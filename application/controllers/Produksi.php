@@ -45,13 +45,12 @@ class Produksi extends AUTH_Controller {
     $data['dataBahanBaku'] = $this->M_bahanBaku->select_all();
     $data['dataOverhead'] = $this->M_overhead->select_all();
     $data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all();
-    $data['dataPegawai'] = $this->M_pegawai->select_all_btkl();
+    $data['dataPegawai'] = $this->M_pegawai->select_all_btkl($id);
 
     $data['total_biaya_bb'] = $this->M_bbb->get_biaya_by_produksi($id);
     $data['total_biaya_bp'] = $this->M_bbp->get_biaya_by_produksi($id);
     $data['total_biaya_tkl'] = $this->M_btkl->get_biaya_by_produksi($id);
     $data['total_jam_tkl'] = $this->M_btkl->get_totaljam_by_produksi($id);
-
 
     $data['page'] = "produksi";
     $data['judul'] = "Detail Produksi";

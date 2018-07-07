@@ -190,20 +190,18 @@ class Pesanan extends AUTH_Controller {
 
         $data['total_biaya'] = $data['total_biaya_bb'] + $data['total_biaya_bp'] + $data['total_biaya_tkl'] + $data['total_biaya_overhead'];
 
-    $this->M_report->insert_jurnal(114, $id, 'd', ($data['total_biaya']/100));
-    $this->M_report->insert_jurnal(111, $id, 'c', $data['total_biaya_bb'] );
-    $this->M_report->insert_jurnal(213, $id, 'c', $data['total_biaya_bp']);
-    $this->M_report->insert_jurnal(213, $id, 'c', $data['total_biaya_tkl'] );
+    $this->M_report->insert_jurnal(114, $id, 'd', $data['total_biaya']);
+    $this->M_report->insert_jurnal(512, $id, 'c', $data['total_biaya_bb'] );
+    $this->M_report->insert_jurnal(516, $id, 'c', ($data['total_biaya_bp']+$data['total_biaya_overhead']));
+    $this->M_report->insert_jurnal(513, $id, 'c', $data['total_biaya_tkl'] );
 
-    $this->M_report->insert_jurnal(214, $id, 'd', (130*$data['total_biaya']/100));
-    $this->M_report->insert_jurnal(111, $id, 'c', (130*$data['total_biaya']/100) );
-    $this->M_report->insert_jurnal(213, $id, 'c',  $data['lengkap'][0]->dp );
+    $this->M_report->insert_jurnal(216, $id, 'd', $data['total_biaya']);
+    $this->M_report->insert_jurnal(114, $id, 'c', $data['total_biaya']);
 
     $this->M_report->insert_jurnal(111, $id, 'd', (130*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
-    $this->M_report->insert_jurnal(411, $id, 'c', (130*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
+    $this->M_report->insert_jurnal(213, $id, 'd', $data['lengkap'][0]->dp );
+    $this->M_report->insert_jurnal(411, $id, 'c', (130*$data['total_biaya']/100));
 
-    // $this->M_report->insert_jurnal(111, $id, 'd', (130*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
-    // $this->M_report->insert_jurnal(411, $id, 'c', (130*$data['total_biaya']/100) - $data['lengkap'][0]->dp );
   			echo show_succ_msg('Pesanan Selesai', '20px');
   		} else {
   			echo show_err_msg('Pesanan Gagal di Update', '20px');

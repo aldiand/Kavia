@@ -12,6 +12,9 @@
       <td class="text-center" style="min-width:230px;">
         <button class="btn btn-warning update-dataPegawai" data-id="<?php echo $pegawai->id; ?>"><i class="glyphicon glyphicon-repeat"></i> Update</button>
         <button class="btn btn-danger konfirmasiHapus-pegawai" data-id="<?php echo $pegawai->id; ?>" data-toggle="modal" data-target="#konfirmasiHapus"><i class="glyphicon glyphicon-remove-sign"></i> Delete</button>
+        <?php if ($pegawai->tipe_gaji == 'tetap') { ?>
+          <button class="btn btn-success gaji-pegawai" data-id="<?php echo $pegawai->id; ?>"><i class="glyphicon glyphicon-usd"></i> Gaji</button>
+        <?php } ?> 
       </td>
     </tr>
     <?php

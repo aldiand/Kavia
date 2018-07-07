@@ -9,8 +9,12 @@ class M_pegawai extends CI_Model {
 		return $data->result();
 	}
 
-	public function select_all_btkl() {
-		$this->db->where('tipe_gaji !=', 'tetap');
+	public function select_all_btkl($id) {
+    if(getSifatPesananByProduksi($id) == 'perorangan'){
+      $this->db->where('tipe_gaji', 'perpesanan');
+    } else {
+      $this->db->where('tipe_gaji', 'perproject');
+    }
 		$data = $this->db->get('t_pegawai');
 		return $data->result();
 	}
@@ -38,6 +42,12 @@ class M_pegawai extends CI_Model {
     $hasil=$this->db->update('t_pegawai', array('active' => 0));
 		$data['id'] = null;
     $hasil=$this->db->insert('t_pegawai', $data);
+    return $hasil;
+  }
+
+  public function update_normal($data, $id){
+    $this->db->where('id', $id);
+    $hasil=$this->db->update('t_pegawai', $data);
     return $hasil;
   }
 
