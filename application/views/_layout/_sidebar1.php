@@ -68,6 +68,7 @@
             <li><a href="<?php echo base_url(); ?>Report/Penjualan#"><i class="fa fa-circle-o"></i> Report Penjualan</a></li>
             <li><a href="<?php echo base_url(); ?>Report/HPProduksi#"><i class="fa fa-circle-o"></i> HPProduksi</a></li>
             <li><a href="<?php echo base_url(); ?>Report/HPPenjualan#"><i class="fa fa-circle-o"></i> HPPenjualan</a></li>
+            <li><a href="<?php echo base_url(); ?>Report/labarugi#"><i class="fa fa-circle-o"></i> Laba Rugi</a></li>
 
           </ul>
         </li>

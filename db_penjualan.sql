@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2018 at 02:18 AM
+-- Generation Time: Jul 08, 2018 at 02:00 AM
 -- Server version: 5.7.18
 -- PHP Version: 7.0.6
 
@@ -37,17 +37,6 @@ CREATE TABLE `t_bahan_penolong` (
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `t_bahan_penolong`
---
-
-INSERT INTO `t_bahan_penolong` (`id`, `sid`, `nama`, `satuan`, `jumlah`, `harga`, `active`, `last_active`) VALUES
-(7, 'BP1', 'cat', 'kaleng', 3, 150000, 0, '2018-05-15'),
-(8, 'BP1', 'cat', 'kaleng', 0, 150000, 0, '2018-05-24'),
-(9, 'BP2', 'paku', 'kg', 0, 30000, 0, '2018-05-24'),
-(10, 'BP2', 'paku', 'kg', 65, 30000, 1, NULL),
-(11, 'BP1', 'cat', 'kaleng', 180, 150000, 1, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -65,22 +54,6 @@ CREATE TABLE `t_bbb` (
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `t_bbb`
---
-
-INSERT INTO `t_bbb` (`id`, `sid`, `nama_bahan_baku`, `satuan`, `jumlah`, `harga`, `active`, `last_active`) VALUES
-(15, 'BB1', 'kayu jati', 'pcs', 2, 400000, 0, '2018-05-09'),
-(16, 'BB1', 'kayu jati', 'pcs', 2, 40000, 0, '2018-05-09'),
-(17, 'BB1', 'kayu jati', 'pcs', 0, 400000, 0, '2018-05-24'),
-(18, 'bb2', 'Japlaywood - 122x244 - 9ml', 'lembar', 20, 185, 0, '2018-05-15'),
-(19, 'bb2', 'Japlaywood - 122x244 - 9ml', 'lembar', 1, 183, 0, '2018-05-24'),
-(20, 'BBKP', 'kayu pinus', 'pcs', 200, 4000000, 1, NULL),
-(21, 'bb2', 'Japlaywood - 122x244 - 9ml', 'lembar', 0, 183000, 0, '2018-06-17'),
-(22, 'BB1', 'kayu jati', 'pcs', 30, 600000, 1, NULL),
-(23, 'BB2', 'Triplek', 'lembar', 0, 20000, 0, '2018-07-06'),
-(24, 'BB2', 'Tripleks', 'lembar', 0, 20000, 1, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -96,14 +69,6 @@ CREATE TABLE `t_bb_masuk` (
   `id_bbb` int(11) NOT NULL,
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `t_bb_masuk`
---
-
-INSERT INTO `t_bb_masuk` (`id`, `sid`, `tanggal`, `jumlah`, `harga_beli`, `id_bbb`, `last_active`) VALUES
-(1, NULL, '2018-05-15', 1, 2000, 19, NULL),
-(2, NULL, '2018-06-09', 50, 400000, 22, NULL);
 
 -- --------------------------------------------------------
 
@@ -121,19 +86,6 @@ CREATE TABLE `t_bb_terpakai` (
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `t_bb_terpakai`
---
-
-INSERT INTO `t_bb_terpakai` (`id`, `sid`, `tanggal`, `jumlah`, `id_bbb`, `id_produksi`, `last_active`) VALUES
-(4, NULL, '2018-05-09', 1, 17, 15, NULL),
-(5, NULL, '2018-05-15', 20, 19, 16, NULL),
-(6, NULL, '2018-05-15', 1, 17, 16, NULL),
-(7, NULL, '2018-05-26', 10, 22, 17, NULL),
-(8, NULL, '2018-06-09', 1, 21, 18, NULL),
-(9, NULL, '2018-06-09', 10, 22, 19, NULL),
-(10, NULL, '2018-06-16', 10, 22, 21, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -149,20 +101,6 @@ CREATE TABLE `t_biaya_bahan_penolong` (
   `id_produksi` int(11) NOT NULL,
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `t_biaya_bahan_penolong`
---
-
-INSERT INTO `t_biaya_bahan_penolong` (`id`, `sid`, `tanggal`, `jumlah`, `id_bahan_penolong`, `id_produksi`, `last_active`) VALUES
-(4, NULL, '2018-05-09', 1, 7, 15, NULL),
-(5, NULL, '2018-05-15', 2, 9, 16, NULL),
-(6, NULL, '2018-05-15', 2, 8, 16, NULL),
-(7, NULL, '2018-05-26', 10, 11, 17, NULL),
-(8, NULL, '2018-05-26', 30, 10, 17, NULL),
-(9, NULL, '2018-06-09', 5, 10, 18, NULL),
-(10, NULL, '2018-06-09', 5, 11, 19, NULL),
-(11, NULL, '2018-06-16', 5, 11, 21, NULL);
 
 -- --------------------------------------------------------
 
@@ -195,13 +133,6 @@ CREATE TABLE `t_bp_masuk` (
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `t_bp_masuk`
---
-
-INSERT INTO `t_bp_masuk` (`id`, `sid`, `tanggal`, `jumlah`, `id_bahan_penolong`, `harga_beli`, `last_active`) VALUES
-(1, NULL, '2018-05-15', 1, 7, 1000, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -218,29 +149,6 @@ CREATE TABLE `t_btkl` (
   `id_produksi` int(11) NOT NULL,
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `t_btkl`
---
-
-INSERT INTO `t_btkl` (`id`, `sid`, `tanggal`, `jam_masuk`, `jam_keluar`, `id_pegawai`, `id_produksi`, `last_active`) VALUES
-(30, NULL, '2018-05-09', '04:07', '04:09', 8, 15, NULL),
-(31, NULL, '2018-05-09', '04:07', '04:09', 8, 15, NULL),
-(32, NULL, '2018-05-09', '04:07', '04:09', 8, 15, NULL),
-(33, NULL, '2018-05-15', '05:23', '05:26', 8, 16, NULL),
-(34, NULL, '2018-05-15', '05:23', '05:26', 9, 16, NULL),
-(35, NULL, '2018-05-26', '05:25', '', 9, 17, NULL),
-(36, NULL, '2018-06-09', '02:22', '', 8, 18, NULL),
-(37, NULL, '2018-06-09', '02:25', '', 9, 19, NULL),
-(38, NULL, '2018-06-09', '02:27', '', 9, 20, NULL),
-(39, NULL, '2018-06-09', '02:27', '', 8, 20, NULL),
-(40, NULL, '2018-06-16', '06:10', '', 8, 21, NULL),
-(41, NULL, '2018-06-16', '06:10', '', 9, 21, NULL),
-(42, NULL, '2018-07-04', '04:52', '', 8, 22, NULL),
-(43, NULL, '2018-07-04', '04:52', '', 9, 22, NULL),
-(44, NULL, '2018-07-04', '05:31', '', 8, 23, NULL),
-(45, NULL, '2018-07-04', '05:31', '', 8, 23, NULL),
-(46, NULL, '2018-07-06', '05:28', '', 8, 24, NULL);
 
 -- --------------------------------------------------------
 
@@ -298,113 +206,6 @@ CREATE TABLE `t_jurnal` (
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `t_jurnal`
---
-
-INSERT INTO `t_jurnal` (`id`, `sid`, `kode_akun`, `reff`, `tanggal`, `posisi`, `nominal`, `last_active`) VALUES
-(95, NULL, 211, '11', '2018-05-09', 'd', 200000, NULL),
-(96, NULL, 213, '11', '2018-05-09', 'c', 200000, NULL),
-(97, NULL, 512, '4', '2018-05-09', 'd', 400000, NULL),
-(98, NULL, 112, '4', '2018-05-09', 'c', 400000, NULL),
-(99, NULL, 514, '4', '2018-05-09', 'd', 150000, NULL),
-(100, NULL, 113, '4', '2018-05-09', 'c', 150000, NULL),
-(101, NULL, 513, '30', '2018-05-09', 'd', 50000, NULL),
-(102, NULL, 511, '30', '2018-05-09', 'c', 50000, NULL),
-(103, NULL, 513, '31', '2018-05-09', 'd', 50000, NULL),
-(104, NULL, 511, '31', '2018-05-09', 'c', 50000, NULL),
-(105, NULL, 513, '32', '2018-05-09', 'd', 50000, NULL),
-(106, NULL, 511, '32', '2018-05-09', 'c', 50000, NULL),
-(107, NULL, 111, '11', '2018-05-09', 'd', 642400, NULL),
-(108, NULL, 214, '11', '2018-05-09', 'c', 642400, NULL),
-(109, NULL, 113, '1', '2018-05-15', 'd', 1000, NULL),
-(110, NULL, 111, '1', '2018-05-15', 'c', 1000, NULL),
-(111, NULL, 111, '12', '2018-05-15', 'd', 1000000, NULL),
-(112, NULL, 213, '12', '2018-05-15', 'c', 1000000, NULL),
-(113, NULL, 512, '5', '2018-05-15', 'd', 3660, NULL),
-(114, NULL, 112, '5', '2018-05-15', 'c', 3660, NULL),
-(115, NULL, 512, '6', '2018-05-15', 'd', 400000, NULL),
-(116, NULL, 112, '6', '2018-05-15', 'c', 400000, NULL),
-(117, NULL, 514, '5', '2018-05-15', 'd', 60000, NULL),
-(118, NULL, 113, '5', '2018-05-15', 'c', 60000, NULL),
-(119, NULL, 514, '6', '2018-05-15', 'd', 300000, NULL),
-(120, NULL, 113, '6', '2018-05-15', 'c', 300000, NULL),
-(121, NULL, 513, '33', '2018-05-15', 'd', 75000, NULL),
-(122, NULL, 511, '33', '2018-05-15', 'c', 75000, NULL),
-(123, NULL, 513, '34', '2018-05-15', 'd', 112500, NULL),
-(124, NULL, 511, '34', '2018-05-15', 'c', 112500, NULL),
-(125, NULL, 111, '12', '2018-05-15', 'd', 150992, NULL),
-(126, NULL, 214, '12', '2018-05-15', 'c', 150992, NULL),
-(127, NULL, 112, '1', '2018-05-15', 'd', 2000, NULL),
-(128, NULL, 111, '1', '2018-05-15', 'c', 2000, NULL),
-(129, NULL, 111, '13', '2018-05-24', 'd', 1000000, NULL),
-(130, NULL, 213, '13', '2018-05-24', 'c', 1000000, NULL),
-(131, NULL, 512, '7', '2018-05-26', 'd', 6000000, NULL),
-(132, NULL, 112, '7', '2018-05-26', 'c', 6000000, NULL),
-(133, NULL, 514, '7', '2018-05-26', 'd', 1500000, NULL),
-(134, NULL, 113, '7', '2018-05-26', 'c', 1500000, NULL),
-(135, NULL, 514, '8', '2018-05-26', 'd', 900000, NULL),
-(136, NULL, 113, '8', '2018-05-26', 'c', 900000, NULL),
-(137, NULL, 214, '13', '2018-05-26', 'd', 10243800, NULL),
-(138, NULL, 111, '13', '2018-05-26', 'c', 10243800, NULL),
-(139, NULL, 213, '13', '2018-05-26', 'c', 1000000, NULL),
-(140, NULL, 111, '13', '2018-05-26', 'd', 9243800, NULL),
-(141, NULL, 411, '13', '2018-05-26', 'c', 9243800, NULL),
-(142, NULL, 214, '13', '2018-05-26', 'd', 10243800, NULL),
-(143, NULL, 111, '13', '2018-05-26', 'c', 10243800, NULL),
-(144, NULL, 213, '13', '2018-05-26', 'c', 1000000, NULL),
-(145, NULL, 111, '13', '2018-05-26', 'd', 9243800, NULL),
-(146, NULL, 411, '13', '2018-05-26', 'c', 9243800, NULL),
-(147, NULL, 214, '13', '2018-05-26', 'd', 10243800, NULL),
-(148, NULL, 111, '13', '2018-05-26', 'c', 10243800, NULL),
-(149, NULL, 213, '13', '2018-05-26', 'c', 1000000, NULL),
-(150, NULL, 111, '13', '2018-05-26', 'd', 9243800, NULL),
-(151, NULL, 411, '13', '2018-05-26', 'c', 9243800, NULL),
-(152, NULL, 214, '13', '2018-05-26', 'd', 10243800, NULL),
-(153, NULL, 111, '13', '2018-05-26', 'c', 10243800, NULL),
-(154, NULL, 213, '13', '2018-05-26', 'c', 1000000, NULL),
-(155, NULL, 111, '13', '2018-05-26', 'd', 9243800, NULL),
-(156, NULL, 411, '13', '2018-05-26', 'c', 9243800, NULL),
-(157, NULL, 111, '14', '2018-05-26', 'd', 0, NULL),
-(158, NULL, 213, '14', '2018-05-26', 'c', 0, NULL),
-(159, NULL, 111, '15', '2018-06-09', 'd', 500000, NULL),
-(160, NULL, 213, '15', '2018-06-09', 'c', 500000, NULL),
-(161, NULL, 512, '8', '2018-06-09', 'd', 183000, NULL),
-(162, NULL, 112, '8', '2018-06-09', 'c', 183000, NULL),
-(163, NULL, 514, '9', '2018-06-09', 'd', 150000, NULL),
-(164, NULL, 113, '9', '2018-06-09', 'c', 150000, NULL),
-(165, NULL, 112, '2', '2018-06-09', 'd', 20000000, NULL),
-(166, NULL, 111, '2', '2018-06-09', 'c', 20000000, NULL),
-(167, NULL, 512, '9', '2018-06-09', 'd', 6000000, NULL),
-(168, NULL, 112, '9', '2018-06-09', 'c', 6000000, NULL),
-(169, NULL, 514, '10', '2018-06-09', 'd', 750000, NULL),
-(170, NULL, 113, '10', '2018-06-09', 'c', 750000, NULL),
-(171, NULL, 214, '15', '2018-06-09', 'd', 9014400, NULL),
-(172, NULL, 111, '15', '2018-06-09', 'c', 9014400, NULL),
-(173, NULL, 213, '15', '2018-06-09', 'c', 500000, NULL),
-(174, NULL, 111, '15', '2018-06-09', 'd', 8514400, NULL),
-(175, NULL, 411, '15', '2018-06-09', 'c', 8514400, NULL),
-(176, NULL, 111, '16', '2018-06-16', 'd', 500000, NULL),
-(177, NULL, 213, '16', '2018-06-16', 'c', 500000, NULL),
-(178, NULL, 512, '10', '2018-06-16', 'd', 6000000, NULL),
-(179, NULL, 112, '10', '2018-06-16', 'c', 6000000, NULL),
-(180, NULL, 514, '11', '2018-06-16', 'd', 750000, NULL),
-(181, NULL, 113, '11', '2018-06-16', 'c', 750000, NULL),
-(182, NULL, 214, '16', '2018-06-16', 'd', 9042150, NULL),
-(183, NULL, 111, '16', '2018-06-16', 'c', 9042150, NULL),
-(184, NULL, 213, '16', '2018-06-16', 'c', 500000, NULL),
-(185, NULL, 111, '16', '2018-06-16', 'd', 8542150, NULL),
-(186, NULL, 411, '16', '2018-06-16', 'c', 8542150, NULL),
-(187, NULL, 111, '17', '2018-06-17', 'd', 1000000, NULL),
-(188, NULL, 213, '17', '2018-06-17', 'c', 1000000, NULL),
-(189, NULL, 114, '1', '2018-07-04', 'd', 126000, NULL),
-(190, NULL, 114, '1', '2018-07-04', 'd', 126000, NULL),
-(191, NULL, 114, '1', '2018-07-05', 'd', 152000, NULL),
-(192, NULL, 114, '1', '2018-07-06', 'd', 76000, NULL),
-(193, NULL, 114, '1', '2018-07-06', 'd', 76000, NULL),
-(194, NULL, 514, '1', '2018-07-06', 'c', 26000, NULL),
-(195, NULL, 513, '1', '2018-07-06', 'c', 50000, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -455,15 +256,6 @@ CREATE TABLE `t_pegawai` (
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `t_pegawai`
---
-
-INSERT INTO `t_pegawai` (`id`, `sid`, `nama_pegawai`, `alamat`, `tipe_gaji`, `gaji`, `beban_gaji`, `no_telp`, `active`, `last_active`) VALUES
-(8, 'BT1', 'aceng', 'jdsuarhfuwebfjkl', 'perpesanan', 50000, 0, '08328493849', 1, NULL),
-(9, 'BT2', 'cecep', 'jisufiehiurf', 'perproject', 75000, 0, '0898342858', 1, NULL),
-(10, 'P23', 'anang', 'sukabirus no.1', 'tetap', 3000000, 0, '082116787374', 1, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -503,18 +295,6 @@ CREATE TABLE `t_pesanan` (
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `t_pesanan`
---
-
-INSERT INTO `t_pesanan` (`id`, `sid`, `nama_pemesan`, `alamat`, `no_telp`, `pesanan`, `deskripsi_pesanan`, `sifat_pemesanan`, `jumlah`, `kesulitan`, `dp`, `status`, `tanggal_pesanan`, `tanggal_selesai`, `last_active`) VALUES
-(11, NULL, 'sarah', 'sukabirus no 28', 812674839, 'meja', 'meja warna coklat', 'perorangan', 1, 'mudah', 200000, 2, '2018-05-09', '2018-05-09', NULL),
-(12, NULL, 'lila', 'jln gatot subroto', 84623726, 'mudah', 'dekorasi kamar', 'perorangan', 1, 'sedang', 1000000, 2, '2018-05-15', '2018-05-15', NULL),
-(13, NULL, 'irfan', 'pesbal b6 no.2', 2147483647, 'mudah', 'kitchen set', 'perorangan', 1, 'sedang', 1000000, 2, '2018-05-24', '2018-05-26', NULL),
-(15, NULL, 'fini', 'perum baros', 2147483647, 'meja', 'meja makan kayu jati', 'perorangan', 1, 'sedang', 500000, 2, '2018-06-09', '2018-06-09', NULL),
-(16, NULL, 'sarah', 'kecubung 6', 2147483647, 'lemari', 'lemari warna putih dengan kaca', 'perorangan', 1, 'sedang', 500000, 2, '2018-06-16', '2018-06-16', NULL),
-(17, NULL, 'All corp', 'sukapura', 81324325, 'Meja', 'meja untuk project', 'perproject', 500, 'sedang', 1000000, 1, '2018-06-17', '0000-00-00', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -531,23 +311,6 @@ CREATE TABLE `t_produksi` (
   `id_pesanan` int(11) NOT NULL,
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `t_produksi`
---
-
-INSERT INTO `t_produksi` (`id`, `sid`, `tanggal_mulai`, `tanggal_selesai`, `deskripsi`, `status`, `id_pesanan`, `last_active`) VALUES
-(15, NULL, '2018-05-09', '2018-05-09', 'membuat meja', 2, 11, NULL),
-(16, NULL, '2018-05-15', '2018-05-15', 'membuat project', 2, 12, NULL),
-(17, NULL, '2018-05-24', '2018-05-26', 'membuat interior', 2, 13, NULL),
-(18, NULL, '2018-06-09', '2018-06-09', 'membuat meja', 2, 15, NULL),
-(19, NULL, '2018-06-09', '2018-06-09', 'membuat meja', 2, 15, NULL),
-(20, NULL, '2018-06-09', '2018-06-09', 'finishing', 2, 15, NULL),
-(21, NULL, '2018-06-16', '2018-06-16', 'membuat lemari', 2, 16, NULL),
-(22, NULL, '2018-07-04', '2018-07-04', 'hihi', 2, 17, NULL),
-(23, NULL, '2018-07-04', '2018-07-05', 'hehe', 2, 17, NULL),
-(24, NULL, '2018-07-06', '2018-07-06', 'huhu', 2, 17, NULL),
-(25, NULL, '2018-07-06', NULL, 'hoho', 1, 17, NULL);
 
 --
 -- Indexes for dumped tables
@@ -679,7 +442,7 @@ ALTER TABLE `t_bbb`
 -- AUTO_INCREMENT for table `t_bb_masuk`
 --
 ALTER TABLE `t_bb_masuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `t_bb_terpakai`
 --
@@ -699,7 +462,7 @@ ALTER TABLE `t_bop`
 -- AUTO_INCREMENT for table `t_bp_masuk`
 --
 ALTER TABLE `t_bp_masuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `t_btkl`
 --
@@ -714,7 +477,7 @@ ALTER TABLE `t_coa`
 -- AUTO_INCREMENT for table `t_jurnal`
 --
 ALTER TABLE `t_jurnal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
 --
 -- AUTO_INCREMENT for table `t_overhead`
 --

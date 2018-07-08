@@ -64,7 +64,7 @@ class M_btkl extends CI_Model {
 		$this->db->join('t_pegawai', 't_pegawai.id = t_btkl.id_pegawai');
     $this->db->where_in("t_btkl.id_produksi","SELECT id AS id_produksi from t_produksi where id_pesanan=$id_pesanan", false);
 		$data = $this->db->get()->result();
-		return $data[0]->biaya;
+		return $data[0]->biaya?$data[0]->biaya:0;
 	}
 
 	public function get_pegawai_by_produksi($id_produksi) {

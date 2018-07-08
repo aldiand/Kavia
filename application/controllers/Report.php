@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Report extends AUTH_Controller {
 	public function __construct() {
         parent::__construct();
+        $this->load->model('M_report');
         $this->load->model('M_pesanan');
         $this->load->model('M_produksi');
         $this->load->model('M_overhead');
@@ -260,12 +261,99 @@ class Report extends AUTH_Controller {
     }
 
     public function HPProduksi() {
-		$data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all_with_unactive();
-		$this->template->views('report/HPProduksi', $data);
+		$data['wip_awal'] = 0;
+		$data['bb_akhir'] = ($result = $this->M_report->bb_akhir()) ? $result:0;
+		$data['bb_pembelian'] =  ($result = $this->M_report->bb_pembelian()) ? $result:0;
+		$data['total_bb'] =  ($result =$this->M_report->total_bb()) ? $result:0;
+		$data['bb_jumlah'] = $data['bb_akhir'] + $data['total_bb'];
+		$data['bb_awal'] = $data['bb_jumlah'] - $data['bb_pembelian'];
+		
+        $data['bp_akhir'] = ($result = $this->M_report->bp_akhir()) ? $result:0;
+		$data['bp_pembelian'] = ($result = $this->M_report->bp_pembelian()) ? $result:0;
+        $data['total_bp'] = ($result = $this->M_report->total_bp()) ? $result:0;
+		$data['bp_jumlah'] = $data['bp_akhir'] + $data['total_bp'];
+		$data['bp_awal'] = $data['bp_jumlah'] - $data['bp_pembelian'];
+        
+        $data['btkl_perproject'] = ($result = $this->M_report->btkl_perproject()) ? $result:0;
+		$data['btkl_perpesanan'] = ($result = $this->M_report->btkl_perpesanan()) ? $result:0;
+		$data['total_btkl'] = $data['btkl_perproject'] + $data['btkl_perpesanan'];
+        
+        $data['btktl'] = ($result = $this->M_report->btktl()) ? $result:0;
+		$data['beban_listrik'] = ($result = $this->M_report->beban_listrik()) ? $result:0;
+		$data['total_bop'] = $data['btktl'] + $data['beban_listrik'];
+        
+		$data['total_biaya'] = $data['total_bop'] + $data['total_bp'] + $data['total_bb'] + $data['total_btkl'];
+        $data['wip_akhir'] = 0;
+		$data['HPProduksi'] = $data['total_biaya'] + $data['wip_awal'] - $data['wip_akhir'];
+        //var_dump($data);
+        $this->template->views('report/HPProduksi', $data);
     }
 
     public function HPPenjualan() {
-		$data['dataBahanPenolong'] = $this->M_bahanPenolong->select_all_with_unactive();
-		$this->template->views('report/HPPenjualan', $data);
+        $data['wip_awal'] = 0;
+		$data['bb_akhir'] = ($result = $this->M_report->bb_akhir()) ? $result:0;
+		$data['bb_pembelian'] =  ($result = $this->M_report->bb_pembelian()) ? $result:0;
+		$data['total_bb'] =  ($result =$this->M_report->total_bb()) ? $result:0;
+		$data['bb_jumlah'] = $data['bb_akhir'] + $data['total_bb'];
+		$data['bb_awal'] = $data['bb_jumlah'] - $data['bb_pembelian'];
+		
+        $data['bp_akhir'] = ($result = $this->M_report->bp_akhir()) ? $result:0;
+		$data['bp_pembelian'] = ($result = $this->M_report->bp_pembelian()) ? $result:0;
+        $data['total_bp'] = ($result = $this->M_report->total_bp()) ? $result:0;
+		$data['bp_jumlah'] = $data['bp_akhir'] + $data['total_bp'];
+		$data['bp_awal'] = $data['bp_jumlah'] - $data['bp_pembelian'];
+        
+        $data['btkl_perproject'] = ($result = $this->M_report->btkl_perproject()) ? $result:0;
+		$data['btkl_perpesanan'] = ($result = $this->M_report->btkl_perpesanan()) ? $result:0;
+		$data['total_btkl'] = $data['btkl_perproject'] + $data['btkl_perpesanan'];
+        
+        $data['btktl'] = ($result = $this->M_report->btktl()) ? $result:0;
+		$data['beban_listrik'] = ($result = $this->M_report->beban_listrik()) ? $result:0;
+		$data['total_bop'] = $data['btktl'] + $data['beban_listrik'];
+        
+		$data['total_biaya'] = $data['total_bop'] + $data['total_bp'] + $data['total_bb'] + $data['total_btkl'];
+        $data['wip_akhir'] = 0;
+		$data['HPProduksi'] = $data['total_biaya'] + $data['wip_awal'] - $data['wip_akhir'];
+        
+        $data['fg_awal'] = 0;
+        $data['fg_akhir'] = 0;
+        $data['HPPenjualan'] = $data['HPProduksi'] + $data['fg_awal'] - $data['fg_akhir'];
+
+        $this->template->views('report/HPPenjualan', $data);
+    }
+
+    public function labarugi() {
+        $data['wip_awal'] = 0;
+		$data['bb_akhir'] = ($result = $this->M_report->bb_akhir()) ? $result:0;
+		$data['bb_pembelian'] =  ($result = $this->M_report->bb_pembelian()) ? $result:0;
+		$data['total_bb'] =  ($result =$this->M_report->total_bb()) ? $result:0;
+		$data['bb_jumlah'] = $data['bb_akhir'] + $data['total_bb'];
+		$data['bb_awal'] = $data['bb_jumlah'] - $data['bb_pembelian'];
+		
+        $data['bp_akhir'] = ($result = $this->M_report->bp_akhir()) ? $result:0;
+		$data['bp_pembelian'] = ($result = $this->M_report->bp_pembelian()) ? $result:0;
+        $data['total_bp'] = ($result = $this->M_report->total_bp()) ? $result:0;
+		$data['bp_jumlah'] = $data['bp_akhir'] + $data['total_bp'];
+		$data['bp_awal'] = $data['bp_jumlah'] - $data['bp_pembelian'];
+        
+        $data['btkl_perproject'] = ($result = $this->M_report->btkl_perproject()) ? $result:0;
+		$data['btkl_perpesanan'] = ($result = $this->M_report->btkl_perpesanan()) ? $result:0;
+		$data['total_btkl'] = $data['btkl_perproject'] + $data['btkl_perpesanan'];
+        
+        $data['btktl'] = ($result = $this->M_report->btktl()) ? $result:0;
+		$data['beban_listrik'] = ($result = $this->M_report->beban_listrik()) ? $result:0;
+		$data['total_bop'] = $data['btktl'] + $data['beban_listrik'];
+        
+		$data['total_biaya'] = $data['total_bop'] + $data['total_bp'] + $data['total_bb'] + $data['total_btkl'];
+        $data['wip_akhir'] = 0;
+		$data['HPProduksi'] = $data['total_biaya'] + $data['wip_awal'] - $data['wip_akhir'];
+        
+        $data['fg_awal'] = 0;
+        $data['fg_akhir'] = 0;
+        $data['penjualan'] = ($result = $this->M_report->penjualan()) ? $result:0;
+        $data['HPPenjualan'] = $data['HPProduksi'] + $data['fg_awal'] - $data['fg_akhir'];
+        $data['laba_kotor'] = $data['penjualan'] - $data['HPPenjualan'] ;
+
+        $this->template->views('report/labarugi', $data);
     }
 }

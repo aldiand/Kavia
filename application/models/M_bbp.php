@@ -53,7 +53,7 @@ class M_bbp extends CI_Model {
 		$this->db->join('t_bahan_penolong', 't_bahan_penolong.id = t_biaya_bahan_penolong.id_bahan_penolong');
     $this->db->where_in("t_biaya_bahan_penolong.id_produksi","SELECT id AS id_produksi from t_produksi where id_pesanan=$id_pesanan", false);
 		$data = $this->db->get()->result();
-		return $data[0]->hasil;
+		return $data[0]->hasil?$data[0]->hasil:0;
 	}
 
   public function insert($data){

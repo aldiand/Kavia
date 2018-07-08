@@ -5,6 +5,7 @@ class Pegawai extends AUTH_Controller {
   public function __construct() {
     parent::__construct();
     $this->load->model('M_pegawai');
+    $this->load->model('M_report');
   }
 
   public function index() {
