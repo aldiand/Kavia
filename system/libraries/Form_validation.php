@@ -1599,4 +1599,16 @@ class CI_Form_validation {
 		return $this;
 	}
 
+	
+	public function alpha_dash_space($str)
+	{
+			if (!preg_match("/^([-a-z_ ])+$/i", $str))
+			{
+					return FALSE;
+			}
+			else
+			{
+					return TRUE;
+			}
+	}
 }
