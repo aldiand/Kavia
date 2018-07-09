@@ -5,8 +5,7 @@
 
   <form id="form-tambah-bahanBaku" method="POST">
     <div class="input-group form-group">
-      <label  class="control-label">ID</label>
-      <input type="text" class="form-control" placeholder="ID" name="sid" aria-describedby="sizing-addon2">
+      <input type="hidden"  value='0' class="form-control" placeholder="ID" name="sid" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
       <label  class="control-label">Nama Bahan Baku</label>

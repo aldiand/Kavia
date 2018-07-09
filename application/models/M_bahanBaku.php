@@ -36,6 +36,10 @@ class M_bahanBaku extends CI_Model {
 	}
   public function insert($data){
     $hasil=$this->db->insert('t_bbb', $data);
+		$insert_id = $this->db->insert_id();
+		$data['sid'] = 'BB'.$insert_id;
+		$this->db->where('id', $insert_id);
+		$this->db->update('t_bbb', $data);
     return $hasil;
   }
 

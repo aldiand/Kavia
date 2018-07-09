@@ -36,7 +36,11 @@ class M_bahanPenolong extends CI_Model {
   }
 
   public function insert($data){
-    $hasil=$this->db->insert('t_bahan_penolong', $data);
+		$hasil=$this->db->insert('t_bahan_penolong', $data);
+		$insert_id = $this->db->insert_id();
+		$data['sid'] = 'BP'.$insert_id;
+		$this->db->where('id', $insert_id);
+		$this->db->update('t_bahan_penolong', $data);
     return $hasil;
   }
 
