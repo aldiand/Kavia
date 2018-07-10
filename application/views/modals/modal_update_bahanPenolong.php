@@ -21,7 +21,7 @@
         </div>
         <div class="input-group form-group">
           <label  class="control-label">Harga</label>
-          <input type="text" class="form-control" placeholder="harga" name="harga" value="<?php echo $dataBahanPenolong->harga; ?>" aria-describedby="sizing-addon2">
+          <input type="text" class="form-control rupiah" placeholder="harga" name="harga" value="<?php echo $dataBahanPenolong->harga; ?>" aria-describedby="sizing-addon2">
         </div>
         <div class="form-group">
           <div class="col-md-12">

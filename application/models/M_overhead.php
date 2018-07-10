@@ -17,6 +17,10 @@ class M_overhead extends CI_Model {
 
   public function insert($data){
     $hasil=$this->db->insert('t_overhead', $data);
+		$insert_id = $this->db->insert_id();
+		$data['sid'] = 'BOP'.$insert_id;
+		$this->db->where('id', $insert_id);
+		$this->db->update('t_overhead', $data);
     return $hasil;
   }
 

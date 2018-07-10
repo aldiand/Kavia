@@ -1494,5 +1494,9 @@ $('#update-coa').on('hidden.bs.modal', function () {
 	// })
 	<?php } ?>
 	//end of report
+	$(document).ready(function(){
 
+	$(".rupiah").mask("000.000.000.000.000.000",       {reverse:true});
+
+	}); 
 </script>

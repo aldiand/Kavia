@@ -8,7 +8,8 @@
     <input type="hidden" name="id" value="<?php echo $dataPegawai->id; ?>">
     <div class="input-group form-group">
       <label  class="control-label">Nominal Gaji</label>
-      <input type="text" class="form-control" placeholder="gaji" name="beban_gaji" value="<?php echo $dataPegawai->gaji;?>"  aria-describedby="sizing-addon2">
+      <input type="text" class="form-control rupiah" placeholder="gaji" value="<?php echo $dataPegawai->gaji;?>"  aria-describedby="sizing-addon2">
+      <input type="hidden" class="form-control" placeholder="gaji" name="beban_gaji" value="<?php echo $dataPegawai->gaji;?>"  aria-describedby="sizing-addon2">
     </div>
     <div class="form-group">
       <div class="col-md-12">
@@ -17,3 +18,9 @@
     </div>
   </form>
 </div>
+
+<script>
+$('.rupiah').change(function() {
+    $('input[name="beban_gaji"]').val($(this).val().replace(/\./g, ''));
+});
+</script>

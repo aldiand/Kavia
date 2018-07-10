@@ -27,6 +27,7 @@ class BahanMasuk extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
+		$_POST['harga_beli'] = preg_replace('/\D/','',$_POST['harga_beli']);
   		$this->form_validation->set_rules('harga_beli', 'Harga', 'trim|required|is_natural');
   		$this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required|is_natural');
 
@@ -69,6 +70,7 @@ class BahanMasuk extends AUTH_Controller {
 	}
 
   public function prosesUpdate() {
+	$_POST[''] = preg_replace('/\D/','',$_POST['harga']);
     $this->form_validation->set_rules('nama_bahan_Masuk', 'Nama', 'trim|required');
     $this->form_validation->set_rules('satuan', 'Satuan', 'trim|required');
     $this->form_validation->set_rules('harga', 'Harga', 'trim|required|is_natural');

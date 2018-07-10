@@ -15,7 +15,7 @@
         </div>
         <div class="input-group form-group">
           <label  class="control-label">Harga per Bulan</label>
-          <input type="number" class="form-control" id="harga1" placeholder="0" value="<?php echo $dataOverhead->harga_per_bulan; ?>" onchange="hitung()" name="harga_per_bulan" aria-describedby="sizing-addon2">
+          <input type="text" class="form-control rupiah" id="harga1" placeholder="0" value="<?php echo $dataOverhead->harga_per_bulan; ?>" onchange="hitung()" name="harga_per_bulan" aria-describedby="sizing-addon2">
         </div>
         <div class="input-group form-group">
           <label  class="control-label">Persen dibebankan</label>
@@ -24,17 +24,18 @@
         <script>
         function hitung()
         {
-          var cost = document.getElementById('harga1').value;
+          var cost = document.getElementById('harga1').value.replace(/\D/g, '');
           var discount = document.getElementById('persen1').value;
           //do the math
           var net = cost*(discount/100);
           //update
           document.getElementById('dibebankan1').value = net;
+          $("#dibebankan1").trigger('input');
         }
         </script>
         <div class="input-group form-group">
           <label  class="control-label">Dibebankan per produksi</label>
-          <input type="number" readonly="readonly" class="form-control" placeholder="0" id="dibebankan1" value="<?php echo $dataOverhead->dibebankan_per_produksi; ?>" name="dibebankan_per_produksi" aria-describedby="sizing-addon2">
+          <input type="text" readonly="readonly" class="form-control rupiah" placeholder="0" id="dibebankan1" value="<?php echo $dataOverhead->dibebankan_per_produksi; ?>" name="dibebankan_per_produksi" aria-describedby="sizing-addon2">
         </div>
         <div class="form-group">
           <div class="col-md-12">

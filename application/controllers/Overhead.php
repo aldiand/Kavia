@@ -24,6 +24,8 @@ class Overhead extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
+		$_POST['harga_per_bulan'] = preg_replace('/\D/','',$_POST['harga_per_bulan']);
+		$_POST['dibebankan_per_produksi'] = preg_replace('/\D/','',$_POST['dibebankan_per_produksi']);
     	$this->form_validation->set_rules('sid', 'ID', 'trim|required|is_unique_active[t_overhead.sid]');
       $this->form_validation->set_rules('nama', 'Nama', 'trim|required|alpha_dash_space');
       $this->form_validation->set_rules('harga_per_bulan', 'Harga', 'trim|required');
@@ -61,7 +63,9 @@ class Overhead extends AUTH_Controller {
 	}
 
   public function prosesUpdate() {
-    $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+	$_POST['harga_per_bulan'] = preg_replace('/\D/','',$_POST['harga_per_bulan']);
+	$_POST['dibebankan_per_produksi'] = preg_replace('/\D/','',$_POST['dibebankan_per_produksi']);
+    $this->form_validation->set_rules('nama', 'Nama', 'trim|required|alpha_dash_space');
     $this->form_validation->set_rules('harga_per_bulan', 'Harga', 'trim|required');
     $this->form_validation->set_rules('dibebankan_per_produksi', 'Dibebankan', 'trim|required');
 

@@ -5,6 +5,7 @@
 <script src="<?php echo base_url(); ?>assets/plugins/iCheck/icheck.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/mask/jquery.mask.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/app.min.js"></script>
 

@@ -91,6 +91,7 @@ class Pesanan extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
+      $_POST['dp'] = preg_replace('/\D/','',$_POST['dp']);
   		$this->form_validation->set_rules('nama_pemesan', 'Nama', 'trim|required');
   		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
   		$this->form_validation->set_rules('no_telp', 'Nomer Telp', 'trim|required|numeric');

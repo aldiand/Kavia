@@ -42,7 +42,7 @@
           </div>
           <div class="input-group form-group">
             <label  class="control-label">DP</label>
-            <input type="number" class="form-control" placeholder="DP" name="dp" value="<?php echo $dataPesanan->dp; ?>" aria-describedby="sizing-addon2">
+            <input type="text" class="form-control rupiah" placeholder="DP" name="dp" value="<?php echo $dataPesanan->dp; ?>" aria-describedby="sizing-addon2">
           </div>
         <div class="form-group">
           <div class="col-md-12">

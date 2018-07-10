@@ -21,7 +21,8 @@
   </div>
     <div class="input-group form-group">
       <label  class="control-label">Harga beli</label>
-      <input type="number" class="form-control" placeholder="Harga beli" name="harga_beli" aria-describedby="sizing-addon2">
+      <input type="text" class="form-control rupiah" placeholder="Harga beli" aria-describedby="sizing-addon2">
+      <input type="hidden" class="form-control" placeholder="Harga beli" name="harga_beli" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
       <label  class="control-label">Jumlah</label>
@@ -34,3 +35,9 @@
     </div>
   </form>
 </div>
+
+<script>
+$('.rupiah').change(function() {
+    $('input[name="harga_beli"]').val($(this).val().replace(/\./g, ''));
+});
+</script>

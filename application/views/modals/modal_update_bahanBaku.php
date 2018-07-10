@@ -19,7 +19,7 @@
         </div>
         <div class="input-group form-group">
           <label  class="control-label">Harga</label>
-          <input type="text" class="form-control" placeholder="harga" name="harga" value="<?php echo $dataBahanBaku->harga; ?>" aria-describedby="sizing-addon2">
+          <input type="text" class="form-control rupiah" placeholder="harga" name="harga" value="<?php echo $dataBahanBaku->harga; ?>" aria-describedby="sizing-addon2">
         </div>
         <div class="input-group form-group">
           <input type="hidden" class="form-control" placeholder="Jumlah" name="jumlah" value="<?php echo $dataBahanBaku->jumlah; ?>" aria-describedby="sizing-addon2">

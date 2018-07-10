@@ -24,8 +24,9 @@ class Pegawai extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
+		$_POST['gaji'] = preg_replace('/\D/','',$_POST['gaji']);
     	$this->form_validation->set_rules('sid', 'ID', 'trim|required|is_unique_active[t_pegawai.sid]');
-  		$this->form_validation->set_rules('nama_pegawai', 'Nama', 'trim|required');
+  		$this->form_validation->set_rules('nama_pegawai', 'Nama', 'trim|required|alpha_dash_space');
   		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
   		$this->form_validation->set_rules('tipe_gaji', 'Tipe Gaji', 'trim|required');
   		$this->form_validation->set_rules('gaji', 'Gaji', 'trim|required|is_natural');
@@ -65,6 +66,7 @@ class Pegawai extends AUTH_Controller {
 	}
 
   public function prosesUpdate() {
+		$_POST['gaji'] = preg_replace('/\D/','',$_POST['gaji']);
 		$this->form_validation->set_rules('nama_pegawai', 'Nama', 'trim|required|alpha_dash_space');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('tipe_gaji', 'Tipe Gaji', 'trim|required');

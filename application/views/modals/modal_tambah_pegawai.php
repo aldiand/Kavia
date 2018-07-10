@@ -32,7 +32,7 @@
     </div>
     <div class="input-group form-group">
       <label  class="control-label">Gaji</label>
-      <input type="number" class="form-control" placeholder="Gaji" name="gaji" aria-describedby="sizing-addon2">
+      <input type="text" class="form-control rupiah" placeholder="Gaji" name="gaji" aria-describedby="sizing-addon2">
     </div>
     <div class="input-group form-group">
       <label  class="control-label">Nomer Telpon</label>

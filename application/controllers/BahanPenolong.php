@@ -24,6 +24,7 @@ class BahanPenolong extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
+		$_POST['harga'] = preg_replace('/\D/','',$_POST['harga']);
     	$this->form_validation->set_rules('sid', 'ID', 'trim|required|is_unique_active[t_bahan_penolong.sid]');
   		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|alpha_dash_space');
   		$this->form_validation->set_rules('satuan', 'Satuan', 'trim|required');
@@ -60,7 +61,8 @@ class BahanPenolong extends AUTH_Controller {
 	}
 
   public function prosesUpdate() {
-    $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+	$_POST['harga'] = preg_replace('/\D/','',$_POST['harga']);
+    $this->form_validation->set_rules('nama', 'Nama', 'trim|required|alpha_dash_space');
     $this->form_validation->set_rules('satuan', 'Satuan', 'trim|required');
     $this->form_validation->set_rules('harga', 'Harga', 'trim|required|is_natural');
     $this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required|is_natural');
