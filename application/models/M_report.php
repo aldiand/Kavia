@@ -30,6 +30,17 @@ class M_report extends CI_Model {
 
 	}
 
+	public function get_jurnal_by_period($month, $year) {
+		$this->db->where("YEAR(tanggal)", $year);
+		$this->db->where("MONTH(tanggal)", $month);
+		$this->db->select('a.kode_akun, tanggal, reff, nama, a.posisi, nominal');
+		$this->db->from('t_jurnal a');
+		$this->db->join('t_coa b', 'b.kode = a.kode_akun');
+		$query = $this->db->get();
+		return $query->result_array();
+
+	}
+
 	public function get_buku_besar($kode_akun){
 		$this->db->where('a.kode_akun', $kode_akun);
 		$this->db->select('a.kode_akun, nama, reff, tanggal, a.posisi, nominal');

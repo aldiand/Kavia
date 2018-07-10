@@ -1,13 +1,30 @@
 <div class="box">
   <div class="box-header">
     <div class="col-md-12" style="padding: 0;">
-    <form align ="center" method="post" action="<?php echo site_url().'jurnal/view_jurnal' ?> " class="form-inline">
-		<label>Tanggal Awal</label>
-		<input type = "date" name="tanggal_awal" class = "form-control">
-		<label>Tanggal Akhir</label>
-		<input type = "date" name="tanggal_akhir" class = "form-control">
-	    <input type="submit" value="filter" class="btn btn-info">
-    </form>
+
+    <form align="" method="post" action="<?php echo site_url().'jurnal/view_jurnal' ?>" class="form-inline">
+
+	<label>Bulan</label>
+	<select name="bulan" class = "form-control">
+	<option value="">-</option> 
+	<?php
+	$bulan=array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+	$jlh_bln=count($bulan);
+	for($c=0; $c<$jlh_bln; $c+=1){
+			echo"<option value='".($c+1)."'> $bulan[$c] </option>";
+	}
+	?>
+	</select>
+	<label>Tahun</label>
+	<select name="tahun" class = "form-control">
+	<option value="">-</option>
+	<?php for($i = 2017; $i <= Date('Y'); $i++ ) {
+			echo "<option value='$i'"; echo ">$i</option>";
+	} ?>
+	</select>
+	<input type="submit" value="filter" class="btn btn-info">
+
+	</form>
     </div>
   </div>
   <h1 align="center">Jurnal Umum</h1>
@@ -40,14 +57,14 @@
 
 
 						<td>".$data['nama']."</td>
-						<td align = 'right'>".$data['kode_akun']."</td>
+						<td align = 'center'>".$data['kode_akun']."</td>
 						<td align = 'right'>".rupiah($data['nominal'])."</td>
 						<td align = 'right'></td>";
 						$total = $total+$data['nominal'];
 				}else{
 					echo"
-						<td align='right'>".$data['nama']."</td>
-						<td align = 'right'>".$data['kode_akun']."</td>
+						<td style='padding-left:4em '>".$data['nama']."</td>
+						<td align = 'center'>".$data['kode_akun']."</td>
 						<td align = 'right'></td>
 						<td align = 'right'>".rupiah($data['nominal'])."</td>
 					</tr>

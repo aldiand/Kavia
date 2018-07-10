@@ -28,7 +28,7 @@ class Jurnal extends AUTH_Controller {
 		$data['page'] 			= "jurnal";
 		$data['judul'] 			= "Jurnal";
         $data['deskripsi'] 		= "Pilih waktu jurnal";
-        $data['jurnal'] = $this->M_report->get_jurnal_by_date($_POST['tanggal_awal'], $_POST['tanggal_akhir']);
+        $data['jurnal'] = $this->M_report->get_jurnal_by_period($_POST['bulan'], $_POST['tahun']);
 		$this->template->views('jurnal/home', $data);
 
     }
