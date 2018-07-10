@@ -41,7 +41,14 @@ class M_overhead extends CI_Model {
 	public function total_rows() {
 		$data = $this->db->get('t_overhead');
 		return $data->num_rows();
-	}
+  }
+  
+  public function add_beban() {
+    $this->db->set('jumlah', 'jumlah+dibebankan_per_produksi', FALSE);
+	  $this->db->where('active', 1);
+    $hasil=$this->db->update('t_overhead');
+    return $hasil;
+  }
 }
 
 /* End of file M_t_overhead.php */

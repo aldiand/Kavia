@@ -183,5 +183,7 @@ class Produksi extends AUTH_Controller {
 		
 		$this->M_report->insert_jurnal(516, $id, 'd', $bop);
 		$this->M_report->insert_jurnal(311, $id, 'c', $bop);
+
+		$this->M_overhead->add_beban();
 	}
 }
