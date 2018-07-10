@@ -28,10 +28,10 @@ class Pegawai extends AUTH_Controller {
   		$this->form_validation->set_rules('nama_pegawai', 'Nama', 'trim|required');
   		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
   		$this->form_validation->set_rules('tipe_gaji', 'Tipe Gaji', 'trim|required');
-  		$this->form_validation->set_rules('gaji', 'Gaji', 'trim|required|numeric');
+  		$this->form_validation->set_rules('gaji', 'Gaji', 'trim|required|is_natural');
 		$this->form_validation->set_message('is_unique', '%s sudah ada di database');
 		$this->form_validation->set_message('required', '%s tidak boleh kosong');
-		$this->form_validation->set_message('numeric', '%s hanya boleh berisi Angka 1-9');
+		$this->form_validation->set_message('is_natural', '%s hanya boleh berisi Angka 1-9');
 
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
@@ -67,11 +67,11 @@ class Pegawai extends AUTH_Controller {
 		$this->form_validation->set_rules('nama_pegawai', 'Nama', 'trim|required|alpha_dash_space');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('tipe_gaji', 'Tipe Gaji', 'trim|required');
-		$this->form_validation->set_rules('gaji', 'Gaji', 'trim|required|numeric');
+		$this->form_validation->set_rules('gaji', 'Gaji', 'trim|required|is_natural');
 
 		$this->form_validation->set_message('is_unique', '%s sudah ada di database');
 		$this->form_validation->set_message('required', '%s tidak boleh kosong');
-		$this->form_validation->set_message('numeric', '%s hanya boleh berisi Angka 1-9');
+		$this->form_validation->set_message('is_natural', '%s hanya boleh berisi Angka 1-9');
 		
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
@@ -113,11 +113,11 @@ class Pegawai extends AUTH_Controller {
 	}
 	
 	public function prosesGaji() {
-		$this->form_validation->set_rules('beban_gaji', 'Gaji', 'trim|required|numeric');
+		$this->form_validation->set_rules('beban_gaji', 'Gaji', 'trim|required|is_natural');
 
 		$this->form_validation->set_message('is_unique', '%s sudah ada di database');
 		$this->form_validation->set_message('required', '%s tidak boleh kosong');
-		$this->form_validation->set_message('numeric', '%s hanya boleh berisi Angka 1-9');
+		$this->form_validation->set_message('is_natural', '%s hanya boleh berisi Angka 1-9');
 		
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {

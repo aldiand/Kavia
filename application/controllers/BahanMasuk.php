@@ -27,12 +27,12 @@ class BahanMasuk extends AUTH_Controller {
 	}
 
   	public function prosesTambah() {
-  		$this->form_validation->set_rules('harga_beli', 'Harga', 'trim|required|numeric');
-  		$this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required|numeric');
+  		$this->form_validation->set_rules('harga_beli', 'Harga', 'trim|required|is_natural');
+  		$this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required|is_natural');
 
 		$this->form_validation->set_message('is_unique', '%s sudah ada di database');
 		$this->form_validation->set_message('required', '%s tidak boleh kosong');
-		$this->form_validation->set_message('numeric', '%s hanya boleh berisi Angka 1-9');
+		$this->form_validation->set_message('is_natural', '%s hanya boleh berisi Angka 1-9');
 
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
@@ -71,12 +71,12 @@ class BahanMasuk extends AUTH_Controller {
   public function prosesUpdate() {
     $this->form_validation->set_rules('nama_bahan_Masuk', 'Nama', 'trim|required');
     $this->form_validation->set_rules('satuan', 'Satuan', 'trim|required');
-    $this->form_validation->set_rules('harga', 'Harga', 'trim|required|numeric');
-    $this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required|numeric');
+    $this->form_validation->set_rules('harga', 'Harga', 'trim|required|is_natural');
+    $this->form_validation->set_rules('jumlah', 'Jumlah', 'trim|required|is_natural');
 
 	$this->form_validation->set_message('is_unique', '%s sudah ada di database');
 	$this->form_validation->set_message('required', '%s tidak boleh kosong');
-	$this->form_validation->set_message('numeric', '%s hanya boleh berisi Angka 1-9');
+	$this->form_validation->set_message('is_natural', '%s hanya boleh berisi Angka 1-9');
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {

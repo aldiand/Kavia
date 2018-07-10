@@ -37,7 +37,7 @@ class Btkl extends AUTH_Controller {
 
 			$this->form_validation->set_message('is_unique', '%s sudah ada di database');
 			$this->form_validation->set_message('required', '%s tidak boleh kosong');
-			$this->form_validation->set_message('numeric', '%s hanya boleh berisi Angka 1-9');
+			$this->form_validation->set_message('is_natural', '%s hanya boleh berisi Angka 1-9');
 			
   		$data = $this->input->post();
   		if ($this->form_validation->run() == TRUE) {
@@ -78,7 +78,7 @@ class Btkl extends AUTH_Controller {
 
 		$this->form_validation->set_message('is_unique', '%s sudah ada di database');
 		$this->form_validation->set_message('required', '%s tidak boleh kosong');
-		$this->form_validation->set_message('numeric', '%s hanya boleh berisi Angka 1-9');
+		$this->form_validation->set_message('is_natural', '%s hanya boleh berisi Angka 1-9');
 		
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
