@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2018 at 02:00 AM
+-- Generation Time: Jul 10, 2018 at 04:36 PM
 -- Server version: 5.7.18
 -- PHP Version: 7.0.6
 
@@ -161,6 +161,7 @@ CREATE TABLE `t_coa` (
   `sid` varchar(30) DEFAULT NULL,
   `kode` varchar(10) NOT NULL,
   `nama` varchar(50) NOT NULL,
+  `saldo` int(11) NOT NULL DEFAULT '0',
   `active` int(1) NOT NULL DEFAULT '1',
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -169,25 +170,25 @@ CREATE TABLE `t_coa` (
 -- Dumping data for table `t_coa`
 --
 
-INSERT INTO `t_coa` (`id`, `sid`, `kode`, `nama`, `active`, `last_active`) VALUES
-(2, NULL, '112', 'Persediaan BB', 1, NULL),
-(3, NULL, '511', 'Beban Upah', 1, NULL),
-(7, NULL, '111', 'Kas', 1, NULL),
-(10, NULL, '514', 'BDP - BBP', 1, NULL),
-(11, NULL, '113', 'Persediaan BP', 1, NULL),
-(12, NULL, '211', 'Utang Dagang', 1, NULL),
-(13, NULL, '212', 'Pendapatan', 1, NULL),
-(14, NULL, '213', 'Pendapatan Diterima Dimuka', 1, NULL),
-(15, NULL, '214', 'Piutang Dagang', 1, NULL),
-(16, NULL, '411', 'Penjualan', 1, NULL),
-(17, NULL, '114', 'Persedian Barang Jadi', 1, NULL),
-(19, NULL, '513', 'BDP -BTK', 1, NULL),
-(20, NULL, '512 ', 'BDP - BBB', 1, NULL),
-(21, NULL, '215', 'Pembelian', 1, NULL),
-(22, NULL, '515', 'BTKTL', 1, NULL),
-(23, NULL, '516', 'BDP - BOP', 1, NULL),
-(24, NULL, '216', 'HPP', 1, NULL),
-(25, NULL, '311', 'Beban Listrik', 1, NULL);
+INSERT INTO `t_coa` (`id`, `sid`, `kode`, `nama`, `saldo`, `active`, `last_active`) VALUES
+(2, NULL, '112', 'Persediaan BB', 0, 1, NULL),
+(3, NULL, '511', 'Beban Upah', 0, 1, NULL),
+(7, NULL, '111', 'Kas', 0, 1, NULL),
+(10, NULL, '514', 'BDP - BBP', 0, 1, NULL),
+(11, NULL, '113', 'Persediaan BP', 0, 1, NULL),
+(12, NULL, '211', 'Utang Dagang', 0, 1, NULL),
+(13, NULL, '212', 'Pendapatan', 0, 1, NULL),
+(14, NULL, '213', 'Pendapatan Diterima Dimuka', 0, 1, NULL),
+(15, NULL, '214', 'Piutang Dagang', 0, 1, NULL),
+(16, NULL, '411', 'Penjualan', 0, 1, NULL),
+(17, NULL, '114', 'Persedian Barang Jadi', 0, 1, NULL),
+(19, NULL, '513', 'BDP -BTK', 0, 1, NULL),
+(20, NULL, '512 ', 'BDP - BBB', 0, 1, NULL),
+(21, NULL, '215', 'Pembelian', 0, 1, NULL),
+(22, NULL, '515', 'BTKTL', 0, 1, NULL),
+(23, NULL, '516', 'BDP - BOP', 0, 1, NULL),
+(24, NULL, '216', 'HPP', 0, 1, NULL),
+(25, NULL, '311', 'Beban Listrik', 0, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -203,6 +204,7 @@ CREATE TABLE `t_jurnal` (
   `tanggal` date NOT NULL,
   `posisi` varchar(1) NOT NULL,
   `nominal` float NOT NULL,
+  `saldo` int(11) NOT NULL DEFAULT '0',
   `last_active` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -432,12 +434,12 @@ ALTER TABLE `t_produksi`
 -- AUTO_INCREMENT for table `t_bahan_penolong`
 --
 ALTER TABLE `t_bahan_penolong`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1227;
 --
 -- AUTO_INCREMENT for table `t_bbb`
 --
 ALTER TABLE `t_bbb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `t_bb_masuk`
 --
@@ -487,7 +489,7 @@ ALTER TABLE `t_overhead`
 -- AUTO_INCREMENT for table `t_pegawai`
 --
 ALTER TABLE `t_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `t_pengerjaan`
 --
