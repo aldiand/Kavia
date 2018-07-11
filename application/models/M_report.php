@@ -16,7 +16,21 @@ class M_report extends CI_Model {
 			'posisi' => $posisi,
 			'nominal' => $nominal,
 			);
+	
+		if($posisi == 'c') {
+			$nominal = $nominal*-1;
+		}
+		$this->db->set('saldo', "(SELECT saldo from t_coa WHERE `kode`='$kode_akun') + nominal", FALSE);
 		$this->db->insert('t_jurnal',$jurnal);
+		$this->insert_saldo($kode_akun, $nominal);
+	}
+
+	public function insert_saldo($kode_akun, $nominal) {
+		$this->db->set('saldo', "saldo+$nominal", FALSE);
+		$this->db->where('kode', $kode_akun);
+		$hasil=$this->db->update('t_coa');
+		return $hasil;
+
 	}
 
 	public function get_jurnal_by_date($tgl_awal, $tgl_akhir) {
@@ -51,12 +65,44 @@ class M_report extends CI_Model {
 
 	}
 
+	public function get_saldo_awal($kode_akun,$month, $year){
+		$this->db->where("YEAR(tanggal)", $year);
+		$this->db->where("MONTH(tanggal)", $month);
+		$this->db->where('a.kode_akun', $kode_akun);
+		$this->db->select('nominal, saldo, posisi');
+		$this->db->from('t_jurnal a');
+		$query = $this->db->get()->result();
+		if($query){
+			if($query[0]->posisi == 'c'){
+				return ($query[0]->saldo + $query[0]->nominal);
+			} else {
+				return ($query[0]->saldo - $query[0]->nominal);
+			}
+		} else {
+			return 0;
+		}
+
+	}
+
 	public function GetDataBukuBesar ($no_akun,$tgl_awal, $tgl_akhir)
 	{
 		$this->db->where('tanggal >=', $tgl_awal);
 		$this->db->where('tanggal <=', $tgl_akhir);
 		$this->db->where('a.kode_akun', $no_akun);
 		$this->db->select('a.kode_akun, reff, tanggal, nama, a.posisi, nominal');
+		$this->db->from('t_jurnal a');
+		$this->db->join('t_coa b', 'b.kode = a.kode_akun');
+		$this->db->order_by('tanggal');
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function GetDataBukuBesarPeriod ($no_akun,$month, $year)
+	{
+		$this->db->where("YEAR(tanggal)", $year);
+		$this->db->where("MONTH(tanggal)", $month);
+		$this->db->where('a.kode_akun', $no_akun);
+		$this->db->select('a.kode_akun, reff, tanggal, nama, a.posisi, nominal, a.saldo');
 		$this->db->from('t_jurnal a');
 		$this->db->join('t_coa b', 'b.kode = a.kode_akun');
 		$this->db->order_by('tanggal');

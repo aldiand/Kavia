@@ -48,7 +48,7 @@ class Jurnal extends AUTH_Controller {
 			$no_akun = $_POST['no_akun'];
       $data['akun'] = $this->M_coa->select_all();
       $data['dataakun'] = $this->M_coa->select_by_id($no_akun);
-      $data['jurnal'] = $this->M_report->GetDataBukuBesar($no_akun,$_POST['tanggal_awal'], $_POST['tanggal_akhir']);      
+      $data['jurnal'] = $this->M_report->GetDataBukuBesarPeriod($no_akun,$_POST['bulan'], $_POST['tahun']);          
       $this->template->views('jurnal/bukubesar', $data);
     }
 }

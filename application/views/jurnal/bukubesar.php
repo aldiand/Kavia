@@ -12,10 +12,27 @@
 				}
 			?>
             </select>
-            <label>Tanggal Awal</label>
-		<input type = "date" name="tanggal_awal" class = "form-control">
-		<label>Tanggal Akhir</label>
-		<input type = "date" name="tanggal_akhir" class = "form-control">
+
+    <form align="" method="post" action="<?php echo site_url().'jurnal/view_jurnal' ?>" class="form-inline">
+
+		<label>Bulan</label>
+		<select name="bulan" class = "form-control">
+		<option value="">-</option> 
+		<?php
+		$bulan=array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+		$jlh_bln=count($bulan);
+		for($c=0; $c<$jlh_bln; $c+=1){
+				echo"<option value='".($c+1)."'> $bulan[$c] </option>";
+		}
+		?>
+		</select>
+		<label>Tahun</label>
+		<select name="tahun" class = "form-control">
+		<option value="">-</option>
+		<?php for($i = 2017; $i <= Date('Y'); $i++ ) {
+				echo "<option value='$i'"; echo ">$i</option>";
+		} ?>
+		</select>
 		<input type="submit" value="filter" class="btn btn-info">
 
 		</form>
@@ -34,15 +51,34 @@
 				<td align="center" style="vertical-align:middle;" align='center' rowspan="2"><b>TANGGAL</b></td>
 				<td align="center" style="vertical-align:middle;" align='center' rowspan="2"><b>KETERANGAN</b></td>
 				<td align="center" style="vertical-align:middle;" align='center' rowspan="2"><b>REFF</b></td>
-				<td align="center" align='center' colspan="2"><b>SALDO</b></td>
+				<td align="center" style="vertical-align:middle;" align='center' rowspan="2"><b>DEBIT</b></td>
+				<td align="center" style="vertical-align:middle;" align='center' rowspan="2"><b>KREDIT</b></td>
+				<td align="center" style="vertical-align:middle;" align='center' rowspan="2"><b>SALDO</b></td>
 			</tr>
 			<tr class="info">
-				<td align="center"><b>DEBIT</b></td>
-				<td align="center"><b>KREDIT</b></td>
 			</tr>
-			<?php
-			$total=0;
 
+			<?php
+			
+			if($jurnal){
+				if($jurnal[0]['posisi'] == 'c'){
+					$saldo_awal =  ($jurnal[0]['saldo'] + $jurnal[0]['nominal']);
+				} else {
+					$saldo_awal = ($jurnal[0]['saldo'] - $jurnal[0]['nominal']);
+				}
+			} else {
+				$saldo_awal = 0;
+			}
+			$total=0;
+			echo"
+			<tr>
+			<td align='center'>-</td>
+			<td>SALDO AWAL</td>
+			<td align='center'></td>
+			<td align='right'></td>
+			<td></td>
+			<td align='right'>".rupiah($saldo_awal)."</td>
+		";
 				foreach ($jurnal as $data){
 
 				   if($data['posisi']=='d'){
@@ -52,9 +88,10 @@
 					    <tr>
 							<td align='center'>".$data['tanggal']."</td>
 							<td>".$data['nama']."</td>
-							<td align='right'>".$data['kode_akun']."</td>
+							<td align='center'>".$data['kode_akun']."</td>
 							<td align='right'>".rupiah($data['nominal'])."</td>
 							<td></td>
+							<td align='right'>".rupiah($data['saldo'])."</td>
 						";
 
 
@@ -65,9 +102,10 @@
 					    <tr>
 							<td align='center'>".$data['tanggal']."</td>
 							<td>".$data['nama']."</td>
-							<td align='right'>".$data['kode_akun']."</td>
+							<td align='center'>".$data['kode_akun']."</td>
 							<td></td>
 							<td align='right'>".rupiah($data['nominal'])."</td>
+							<td align='right'>".rupiah($data['saldo'])."</td>
 						";
 
 				   }
