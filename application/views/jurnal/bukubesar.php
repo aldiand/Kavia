@@ -60,15 +60,6 @@
 
 			<?php
 			
-			if($jurnal){
-				if($jurnal[0]['posisi'] == 'c'){
-					$saldo_awal =  ($jurnal[0]['saldo'] + $jurnal[0]['nominal']);
-				} else {
-					$saldo_awal = ($jurnal[0]['saldo'] - $jurnal[0]['nominal']);
-				}
-			} else {
-				$saldo_awal = 0;
-			}
 			$total=0;
 			echo"
 			<tr>

@@ -66,18 +66,15 @@ class M_report extends CI_Model {
 	}
 
 	public function get_saldo_awal($kode_akun,$month, $year){
-		$this->db->where("YEAR(tanggal)", $year);
-		$this->db->where("MONTH(tanggal)", $month);
+		$this->db->where('tanggal >=', '0000-00-00');
+		$this->db->where('tanggal <=', "$year-$month-01");
 		$this->db->where('a.kode_akun', $kode_akun);
 		$this->db->select('nominal, saldo, posisi');
+		$this->db->order_by('id','desc');
 		$this->db->from('t_jurnal a');
 		$query = $this->db->get()->result();
 		if($query){
-			if($query[0]->posisi == 'c'){
-				return ($query[0]->saldo + $query[0]->nominal);
-			} else {
-				return ($query[0]->saldo - $query[0]->nominal);
-			}
+			return $query[0]->saldo;
 		} else {
 			return 0;
 		}
