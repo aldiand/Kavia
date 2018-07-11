@@ -20,7 +20,7 @@ class M_report extends CI_Model {
 		if($posisi == 'c') {
 			$nominal = $nominal*-1;
 		}
-		$this->db->set('saldo', "(SELECT saldo from t_coa WHERE `kode`='$kode_akun') + nominal", FALSE);
+		$this->db->set('saldo', "(SELECT saldo from t_coa WHERE `kode`='$kode_akun') + $nominal", FALSE);
 		$this->db->insert('t_jurnal',$jurnal);
 		$this->insert_saldo($kode_akun, $nominal);
 	}
