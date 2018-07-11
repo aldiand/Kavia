@@ -37,7 +37,7 @@
               <td><?php echo $data->kesulitan; ?></td>
               <td><?php echo $data->jumlah; ?></td>
               <td><?php echo $data->dp; ?></td>
-              <td><a href="<?php echo base_url('/Report/LihatLaporanPerhitunganHargaJual/').$data->id?>"> <button class="btn btn-info detail-dataPosisi" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-search"></i> Lihat Kartu HPP</button></a></td>
+              <td><a href="<?php echo base_url('/Report/LihatLaporanPerhitunganHargaJual/').$data->id?>"> <button class="btn btn-info detail-dataPosisi" data-id="<?php echo $data->id; ?>"><i class="glyphicon glyphicon-search"></i> Lihat</button></a></td>
             </tr>
             <?php
           }
