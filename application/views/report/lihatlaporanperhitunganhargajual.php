@@ -25,7 +25,7 @@
   <h1 align="center">Laporan Perhitungan Harga Jual</h1>
   <div class="box-body">
   <table class ="table table-bordered table-striped">
-      <tr>
+      <!-- <tr>
 				<td align="left">Harga jual yang di bebankan kepada pemesan</td>
 				<td align="left"></td>
 				<td align="left"><?php echo rupiah($harga_jual = 130*$total_biaya/100); ?></td>
@@ -54,6 +54,32 @@
 				<td align="left">Laba bruto</td>
 				<td align="left"></td>
 				<td align="left"><?php echo rupiah($harga_jual - ($total_biaya_bb + $total_biaya_tkl + $total_biaya_bp + $total_biaya_overhead)); ?></td>
+      </tr> -->
+
+      <tr>
+				<td align="left">Taksiran Biaya Produksi untuk Pemesan</td>
+				<td align="left"><?php echo rupiah($total_biaya); ?></td>
+				<td align="left"></td>
+      </tr>
+      <tr>
+				<td align="left">Taksiran Biaya Non Produksi </td>
+				<td align="left"><?php echo rupiah(0); ?></td>
+				<td align="left"></td>
+      </tr>
+      <tr>
+				<td align="left">Taksiran Total Biaya Pesanan</td>
+				<td align="left"></td>
+				<td align="left"><?php echo rupiah($total_biaya); ?></td>
+      </tr>
+      <tr>
+				<td align="left">Laba Yang Diinginkan</td>
+				<td align="left"></td>
+				<td align="left"><?php echo rupiah($total_biaya*30/100); ?></td>
+      </tr>
+      <tr class="info">
+				<td align="left">Taksiran Harga Jual</td>
+				<td align="left"></td>
+				<td align="left"><?php echo rupiah($total_biaya*130/100); ?></td>
       </tr>
 	</table>
   </div>
