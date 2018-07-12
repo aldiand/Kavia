@@ -20,7 +20,7 @@ class M_report extends CI_Model {
 		if($posisi == 'c') {
 			$nominal = $nominal*-1;
 		}
-		$this->db->set('saldo', "(SELECT saldo from t_coa WHERE `kode`='$kode_akun') + $nominal", FALSE);
+		$this->db->set('saldo', "(SELECT saldo from t_coa WHERE `kode`='$kode_akun') + ($nominal)", FALSE);
 		$this->db->insert('t_jurnal',$jurnal);
 		$this->insert_saldo($kode_akun, $nominal);
 	}
@@ -102,7 +102,7 @@ class M_report extends CI_Model {
 		$this->db->select('a.kode_akun, reff, tanggal, nama, a.posisi, nominal, a.saldo');
 		$this->db->from('t_jurnal a');
 		$this->db->join('t_coa b', 'b.kode = a.kode_akun');
-		$this->db->order_by('tanggal');
+		$this->db->order_by('a.id');
 		$query = $this->db->get();
 		return $query->result_array();
 	}
