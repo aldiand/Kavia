@@ -1,7 +1,7 @@
 <div class="col-md-offset-1 col-md-10 col-md-offset-1 well">
   <div class="form-msg"></div>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h3 style="display:block; text-align:center;">Tambah Data Bahan Baku</h3>
+  <h3 style="display:block; text-align:center;">Tambah Data COA</h3>
 
   <form id="form-tambah-coa" method="POST">
     <div class="input-group form-group">
