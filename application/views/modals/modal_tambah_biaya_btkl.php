@@ -23,8 +23,7 @@
       </select>
     </div>
     <div class="input-group form-group">
-      <label  class="control-label">Jam Masuk</label>
-      <input type="text" class="form-control" value="<?php echo Date('h:i');?>" readonly="readonly" name="jam_masuk" aria-describedby="sizing-addon2">
+      <input type="hidden" class="form-control" value="<?php echo Date('h:i');?>" readonly="readonly" name="jam_masuk" aria-describedby="sizing-addon2">
     </div>
     <?php if (!empty($this->uri->segment(3))): ?>
       <input type="hidden" class="form-control" name="id_produksi" value="<?php echo $this->uri->segment(3);?>" aria-describedby="sizing-addon2">
