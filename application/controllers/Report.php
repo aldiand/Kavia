@@ -290,6 +290,7 @@ class Report extends AUTH_Controller {
     }
 
     public function HPPenjualan() {
+        $data['penjualan'] = ($result = $this->M_report->penjualan()) ? $result:0;
         $data['wip_awal'] = 0;
 		$data['bb_akhir'] = ($result = $this->M_report->bb_akhir()) ? $result:0;
 		$data['bb_pembelian'] =  ($result = $this->M_report->bb_pembelian()) ? $result:0;
@@ -317,7 +318,7 @@ class Report extends AUTH_Controller {
         
         $data['fg_awal'] = 0;
         $data['fg_akhir'] = 0;
-        $data['HPPenjualan'] = $data['HPProduksi'] + $data['fg_awal'] - $data['fg_akhir'];
+        $data['HPPenjualan'] = $data['penjualan'] - $data['HPProduksi'] + $data['fg_awal'] - $data['fg_akhir'];
 
         $this->template->views('report/HPPenjualan', $data);
     }

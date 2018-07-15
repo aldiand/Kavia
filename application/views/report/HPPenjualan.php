@@ -9,6 +9,13 @@
   <div class="box-body">
   <table class ="table table-bordered table-striped">
       <tr>
+				<td align="left">Penjualan</td>
+				<td align="left"></td>
+				<td align="left"></td>
+				<td align="left"></td>
+				<td align="left"><?php echo rupiah($penjualan); ?></td>
+      </tr>
+      <tr>
 				<td align="left">FG Awal</td>
 				<td align="left"></td>
 				<td align="left"></td>
